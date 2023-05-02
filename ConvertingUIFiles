@@ -1,0 +1,12 @@
+from os import walk
+import pathlib
+import os
+
+f = []
+for (dirpath, dirnames, filenames) in walk(pathlib.Path().resolve()):
+    f.extend(filenames)
+    break
+
+for filename in f:
+    if "." in filename and filename.split(".")[1] == "ui" and filenames.count(filename) == 1:
+        os.system("pyuic5 {0}.ui -o {0}.py".format(filename.split(".")[0]))
