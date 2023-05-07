@@ -12,7 +12,7 @@
   </property>
   <property name="font">
    <font>
-    <pointsize>8</pointsize>
+    <pointsize>15</pointsize>
    </font>
   </property>
   <property name="acceptDrops">
@@ -50,18 +50,19 @@ border-bottom-right-radius: 15px;</string>
     <property name="lineWidth">
      <number>0</number>
     </property>
-    <widget class="QLabel" name="label_5">
+    <widget class="QLabel" name="text_heading">
      <property name="geometry">
       <rect>
        <x>20</x>
        <y>10</y>
-       <width>81</width>
-       <height>21</height>
+       <width>171</width>
+       <height>51</height>
       </rect>
      </property>
      <property name="font">
       <font>
-       <pointsize>10</pointsize>
+       <family>MS Shell Dlg 2</family>
+       <pointsize>15</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -69,6 +70,39 @@ border-bottom-right-radius: 15px;</string>
      </property>
      <property name="text">
       <string>Уровень 1</string>
+     </property>
+     <property name="textFormat">
+      <enum>Qt::AutoText</enum>
+     </property>
+     <property name="wordWrap">
+      <bool>false</bool>
+     </property>
+     <property name="margin">
+      <number>5</number>
+     </property>
+    </widget>
+    <widget class="QLabel" name="type_here">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>70</y>
+       <width>1580</width>
+       <height>270</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>15</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+     </property>
+     <property name="margin">
+      <number>5</number>
      </property>
     </widget>
    </widget>
@@ -78,15 +112,15 @@ border-bottom-right-radius: 15px;</string>
       <x>0</x>
       <y>0</y>
       <width>1920</width>
-      <height>50</height>
+      <height>70</height>
      </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgb(253, 253, 253);
-border-top-left-radius: 15px;
-border-bottom-left-radius: 15px;
-border-top-right-radius: 15px;
-border-bottom-right-radius: 15px;</string>
+</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
@@ -94,94 +128,36 @@ border-bottom-right-radius: 15px;</string>
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QPushButton" name="pause">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
+    <widget class="QLabel" name="cur_accuracy">
      <property name="geometry">
       <rect>
-       <x>960</x>
-       <y>10</y>
-       <width>93</width>
-       <height>28</height>
+       <x>380</x>
+       <y>0</y>
+       <width>55</width>
+       <height>70</height>
       </rect>
      </property>
      <property name="font">
       <font>
-       <family>Yu Gothic UI Semibold</family>
-       <pointsize>13</pointsize>
-       <weight>50</weight>
-       <italic>false</italic>
-       <bold>false</bold>
-       <stylestrategy>PreferDefault</stylestrategy>
-       <kerning>true</kerning>
+       <pointsize>15</pointsize>
       </font>
      </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton {
-	background-color: rgb(255, 177, 125);
-	border: none;
-	color: rgb(42, 85, 126);
-	border-top-left-radius: 5px;
-	border-bottom-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-right-radius: 5px;
-}</string>
-     </property>
      <property name="text">
-      <string>||</string>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>20</width>
-       <height>20</height>
-      </size>
-     </property>
-     <property name="checkable">
-      <bool>false</bool>
+      <string>10</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="label_accuracy">
      <property name="geometry">
       <rect>
-       <x>30</x>
+       <x>240</x>
        <y>0</y>
-       <width>91</width>
-       <height>50</height>
-      </rect>
-     </property>
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>10</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(39, 117, 117);</string>
-     </property>
-     <property name="text">
-      <string>Скорость</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_2">
-     <property name="geometry">
-      <rect>
-       <x>200</x>
-       <y>0</y>
-       <width>81</width>
-       <height>50</height>
+       <width>141</width>
+       <height>70</height>
       </rect>
      </property>
      <property name="font">
       <font>
-       <pointsize>10</pointsize>
+       <pointsize>15</pointsize>
        <weight>75</weight>
        <bold>true</bold>
       </font>
@@ -192,75 +168,178 @@ border-bottom-right-radius: 15px;</string>
      <property name="text">
       <string>Точность</string>
      </property>
-    </widget>
-    <widget class="QLabel" name="label_3">
-     <property name="geometry">
-      <rect>
-       <x>130</x>
-       <y>0</y>
-       <width>55</width>
-       <height>50</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>10</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>10</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_4">
-     <property name="geometry">
-      <rect>
-       <x>300</x>
-       <y>0</y>
-       <width>55</width>
-       <height>50</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>10</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>10</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="pushButton">
-     <property name="enabled">
+     <property name="scaledContents">
       <bool>false</bool>
      </property>
+     <property name="wordWrap">
+      <bool>false</bool>
+     </property>
+     <property name="margin">
+      <number>5</number>
+     </property>
+    </widget>
+    <widget class="QLabel" name="cur_speed">
      <property name="geometry">
       <rect>
-       <x>1810</x>
-       <y>10</y>
-       <width>93</width>
-       <height>28</height>
+       <x>160</x>
+       <y>0</y>
+       <width>55</width>
+       <height>70</height>
       </rect>
      </property>
      <property name="font">
       <font>
-       <pointsize>13</pointsize>
-       <weight>50</weight>
-       <bold>false</bold>
+       <pointsize>15</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>10</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_speed">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>0</y>
+       <width>131</width>
+       <height>70</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="font">
+      <font>
+       <family>MS Shell Dlg 2</family>
+       <pointsize>15</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">QPushButton {
-	background-color: rgb(255, 177, 125);
-	border: none;
-	color: rgb(42, 85, 126);
-	border-top-left-radius: 5px;
-	border-bottom-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-right-radius: 5px;
-}</string>
+      <string notr="true">color: rgb(39, 117, 117);
+text-align: justify;
+</string>
+     </property>
+     <property name="text">
+      <string>Скорость</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+     <property name="margin">
+      <number>5</number>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pause">
+     <property name="geometry">
+      <rect>
+       <x>980</x>
+       <y>10</y>
+       <width>81</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(42, 85, 126);
+background-color: rgb(255, 177, 125);</string>
+     </property>
+     <property name="text">
+      <string>||</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="back">
+     <property name="geometry">
+      <rect>
+       <x>1819</x>
+       <y>10</y>
+       <width>81</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(42, 85, 126);
+background-color: rgb(255, 177, 125);</string>
      </property>
      <property name="text">
       <string>Назад</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="restart">
+     <property name="geometry">
+      <rect>
+       <x>1720</x>
+       <y>10</y>
+       <width>81</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(42, 85, 126);
+background-color: rgb(255, 177, 125);</string>
+     </property>
+     <property name="text">
+      <string>Сброс</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="start">
+     <property name="geometry">
+      <rect>
+       <x>880</x>
+       <y>10</y>
+       <width>81</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(42, 85, 126);
+background-color: rgb(255, 177, 125);</string>
+     </property>
+     <property name="text">
+      <string>►</string>
      </property>
     </widget>
    </widget>
@@ -305,6 +384,11 @@ border-bottom-right-radius: 15px;</string>
      <layout class="QGridLayout" name="gridLayout" rowstretch="0,0,0,0,0,0">
       <item row="1" column="11">
        <widget class="QLabel" name="key_minus">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -318,6 +402,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="1" column="12">
        <widget class="QLabel" name="key_eq">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -331,6 +420,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="1" column="4">
        <widget class="QLabel" name="number_4">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -344,6 +438,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="1" column="2">
        <widget class="QLabel" name="number_2">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -357,6 +456,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="1" column="0">
        <widget class="QLabel" name="letter_7">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -370,6 +474,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="1" column="1">
        <widget class="QLabel" name="number_1">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -383,6 +492,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="1" column="6">
        <widget class="QLabel" name="number_6">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -396,6 +510,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="1" column="3">
        <widget class="QLabel" name="number_3">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -409,6 +528,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="1" column="9">
        <widget class="QLabel" name="number_9">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -422,6 +546,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="1" column="5">
        <widget class="QLabel" name="number_5">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -435,6 +564,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="1" column="10">
        <widget class="QLabel" name="number_0">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -448,6 +582,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="1" column="7">
        <widget class="QLabel" name="number_7">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::NoContextMenu</enum>
         </property>
@@ -461,6 +600,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="1" column="8">
        <widget class="QLabel" name="number_8">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -486,6 +630,11 @@ border-bottom-right-radius: 15px;</string>
           <height>0</height>
          </size>
         </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -505,6 +654,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="2" column="11">
        <widget class="QLabel" name="letter_9">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -518,6 +672,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="2" column="9">
        <widget class="QLabel" name="letter_26">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -531,6 +690,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="2" column="10">
        <widget class="QLabel" name="letter_27">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -544,6 +708,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="2" column="8">
        <widget class="QLabel" name="letter_4">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -563,6 +732,11 @@ border-bottom-right-radius: 15px;</string>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -579,6 +753,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="3" column="9">
        <widget class="QLabel" name="letter_13">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -592,6 +771,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="3" column="6">
        <widget class="QLabel" name="letter_17">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -605,6 +789,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="3" column="8">
        <widget class="QLabel" name="letter_16">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -618,6 +807,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="3" column="11">
        <widget class="QLabel" name="letter_8">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -631,6 +825,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="3" column="12">
        <widget class="QLabel" name="letter_31">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -642,8 +841,31 @@ border-bottom-right-radius: 15px;</string>
         </property>
        </widget>
       </item>
+      <item row="5" column="14">
+       <widget class="QLabel" name="key_right">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="contextMenuPolicy">
+         <enum>Qt::CustomContextMenu</enum>
+        </property>
+        <property name="text">
+         <string>→</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
       <item row="3" column="4">
        <widget class="QLabel" name="letter_3">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -668,6 +890,11 @@ border-bottom-right-radius: 15px;</string>
           <width>0</width>
           <height>0</height>
          </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
         </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
@@ -701,6 +928,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="3" column="10">
        <widget class="QLabel" name="letter_5">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -714,6 +946,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="3" column="7">
        <widget class="QLabel" name="letter_18">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -727,6 +964,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="3" column="5">
        <widget class="QLabel" name="letter_1">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -740,6 +982,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="3" column="3">
        <widget class="QLabel" name="letter_29">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -753,6 +1000,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="3" column="2">
        <widget class="QLabel" name="letter_22">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -766,6 +1018,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="3" column="0" colspan="2">
        <widget class="QLabel" name="key_CapsLk">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -779,6 +1036,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="5" column="0" colspan="2">
        <widget class="QLabel" name="key_Ctrl_l">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -792,6 +1054,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="2" column="6">
        <widget class="QLabel" name="letter_6">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -805,6 +1072,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="2" column="5">
        <widget class="QLabel" name="letter_12">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -818,6 +1090,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="2" column="14">
        <widget class="QLabel" name="key_backslash">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -843,6 +1120,11 @@ border-bottom-right-radius: 15px;</string>
           <height>0</height>
          </size>
         </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -862,6 +1144,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="2" column="7">
        <widget class="QLabel" name="letter_15">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -875,6 +1162,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="2" column="13">
        <widget class="QLabel" name="letter_28">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -899,6 +1191,11 @@ border-bottom-right-radius: 15px;</string>
           <width>0</width>
           <height>0</height>
          </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
         </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
@@ -931,6 +1228,11 @@ border-bottom-right-radius: 15px;</string>
           <height>0</height>
          </size>
         </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -950,6 +1252,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="2" column="12">
        <widget class="QLabel" name="letter_23">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -975,6 +1282,11 @@ border-bottom-right-radius: 15px;</string>
           <height>0</height>
          </size>
         </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -994,6 +1306,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="5" column="3">
        <widget class="QLabel" name="key_Alt_l">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -1007,6 +1324,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="3" column="13" colspan="2">
        <widget class="QLabel" name="key_Enter">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -1020,6 +1342,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="2" column="4">
        <widget class="QLabel" name="letter_21">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -1033,6 +1360,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="2" column="3">
        <widget class="QLabel" name="letter_24">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -1046,6 +1378,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="2" column="2">
        <widget class="QLabel" name="letter_11">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -1059,6 +1396,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="4" column="0" colspan="3">
        <widget class="QLabel" name="key_Shift_l">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -1072,6 +1414,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="2" column="0" colspan="2">
        <widget class="QLabel" name="key_Tab">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -1085,6 +1432,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="4" column="13" colspan="2">
        <widget class="QLabel" name="key_Shift_r">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -1098,6 +1450,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="5" column="12">
        <widget class="QLabel" name="key_left">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -1117,6 +1474,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="5" column="10" colspan="2">
        <widget class="QLabel" name="key_Ctrl_r">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -1135,6 +1497,11 @@ border-bottom-right-radius: 15px;</string>
         </property>
         <item>
          <widget class="QLabel" name="key_up">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
           <property name="contextMenuPolicy">
            <enum>Qt::CustomContextMenu</enum>
           </property>
@@ -1154,6 +1521,11 @@ border-bottom-right-radius: 15px;</string>
         </item>
         <item>
          <widget class="QLabel" name="key_down">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
           <property name="contextMenuPolicy">
            <enum>Qt::PreventContextMenu</enum>
           </property>
@@ -1188,6 +1560,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="5" column="2">
        <widget class="QLabel" name="key_Wind_key">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -1213,6 +1590,11 @@ border-bottom-right-radius: 15px;</string>
           <height>0</height>
          </size>
         </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -1232,6 +1614,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="4" column="12">
        <widget class="QLabel" name="key_dot">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -1256,6 +1643,11 @@ border-bottom-right-radius: 15px;</string>
           <width>0</width>
           <height>0</height>
          </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
         </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
@@ -1288,6 +1680,11 @@ border-bottom-right-radius: 15px;</string>
           <height>0</height>
          </size>
         </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -1318,6 +1715,11 @@ border-bottom-right-radius: 15px;</string>
           <width>0</width>
           <height>0</height>
          </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
         </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
@@ -1350,6 +1752,11 @@ border-bottom-right-radius: 15px;</string>
           <height>0</height>
          </size>
         </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -1369,6 +1776,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="4" column="10">
        <widget class="QLabel" name="letter_2">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -1382,6 +1794,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="4" column="11">
        <widget class="QLabel" name="letter_32">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -1406,6 +1823,11 @@ border-bottom-right-radius: 15px;</string>
           <width>0</width>
           <height>0</height>
          </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
         </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
@@ -1438,6 +1860,11 @@ border-bottom-right-radius: 15px;</string>
           <height>0</height>
          </size>
         </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -1469,6 +1896,11 @@ border-bottom-right-radius: 15px;</string>
           <height>0</height>
          </size>
         </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -1488,6 +1920,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="4" column="3">
        <widget class="QLabel" name="letter_33">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -1501,6 +1938,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="4" column="5">
        <widget class="QLabel" name="letter_19">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -1514,6 +1956,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="4" column="7">
        <widget class="QLabel" name="letter_10">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -1527,6 +1974,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="4" column="8">
        <widget class="QLabel" name="letter_20">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -1540,6 +1992,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="4" column="6">
        <widget class="QLabel" name="letter_14">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -1553,6 +2010,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="4" column="9">
        <widget class="QLabel" name="letter_30">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -1566,6 +2028,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="4" column="4">
        <widget class="QLabel" name="letter_25">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -1579,6 +2046,11 @@ border-bottom-right-radius: 15px;</string>
       </item>
       <item row="0" column="0">
        <widget class="QLabel" name="key_Esc">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -1590,34 +2062,10 @@ border-bottom-right-radius: 15px;</string>
         </property>
        </widget>
       </item>
-      <item row="5" column="14">
-       <widget class="QLabel" name="key_right">
-        <property name="contextMenuPolicy">
-         <enum>Qt::CustomContextMenu</enum>
-        </property>
-        <property name="text">
-         <string>→</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
      </layout>
     </widget>
    </widget>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>1920</width>
-     <height>23</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>
