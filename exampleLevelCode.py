@@ -261,10 +261,12 @@ class Mywindow(QtWidgets.QMainWindow):
         cursor.setPosition(position)
         end = 0
         if cursor.position() <= self.pos:
-            cursor.movePosition(QTextCursor.NextCharacter, -1)
-            self.format.setBackground(QBrush(QColor("white")))
-            cursor.mergeCharFormat(self.format)
-            self.pos = position - 1
+            print(cursor.position(), self.pos)
+            for i in range(-cursor.position()+self.pos, -1, -1 ):
+                cursor.movePosition(QTextCursor.NextCharacter, -1)
+                self.format.setBackground(QBrush(QColor("white")))
+                cursor.mergeCharFormat(self.format)
+                self.pos = position - 1
             return
         else:
             end = cursor.movePosition(QTextCursor.NextCharacter, 1)
