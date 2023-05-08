@@ -1,4 +1,6 @@
-from PyQt5 import QtWidgets, QtCore
+import PyQt5.Qt
+from PyQt5 import QtWidgets, QtCore, Qt
+from PyQt5.Qt import QTextCursor, QColor, QPen, QTextEdit, QTextCharFormat, QFont, QBrush, QFrame
 
 from exampleLevel import Ui_MainWindow
 import sys
@@ -9,6 +11,26 @@ class Mywindow(QtWidgets.QMainWindow):
         super(Mywindow, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+
+        self.textEdit = QTextEdit(self)
+        self.textEdit.setGeometry(QtCore.QRect(150, 250, 1580, 250))
+        self.text = ""
+        with open("TextExample.txt", encoding="utf-8") as f:
+            self.text = f.read()
+        self.ui.type_here.setText(self.text)
+
+        self.textEdit.setEnabled(True)
+        self.textEdit.setFocus()
+        self.textEdit.setStyleSheet("background-color: rgba(0,0,0,0);"
+                                    "color: rgba(0,0,0,0);")
+        self.textEdit.setFrameStyle(QFrame.NoFrame)
+        self.textEdit.setCursorWidth(0)
+        self.pos = -1
+        self.errors = []
+        self.textEdit.document().contentsChange.connect(self.contents_change)
+
+        self.format = QTextCharFormat()
+        self.format.setFont(QFont("Roboto", 25, QFont.Bold))
 
         self.key_labels = {
             48: self.ui.number_0,
@@ -109,6 +131,41 @@ class Mywindow(QtWidgets.QMainWindow):
         if event.key() in self.key_labels:
             self.key_labels[event.key()].setStyleSheet("background-color: transparent;")
         event.accept()
+
+    def contents_change(self, position):
+        cursor = self.ui.type_here.textCursor()
+        cursor.setPosition(position)
+        end = 0
+        if cursor.position() <= self.pos:
+            cursor.movePosition(QTextCursor.NextCharacter, -1)
+            self.format.setBackground(QBrush(QColor("white")))
+            cursor.mergeCharFormat(self.format)
+            self.pos = position - 1
+            return
+        else:
+            end = cursor.movePosition(QTextCursor.NextCharacter, 1)
+        self.pos = position
+        if end:
+            letter_text = self.text[position]
+            letter_area_for_typing = self.textEdit.document().toPlainText()[position]
+            print(letter_area_for_typing, letter_text)
+            if position in self.errors and letter_text == letter_area_for_typing:
+                self.format.setBackground(QBrush(QColor("yellow")))
+                self.format.setFontWordSpacing(25)
+            elif letter_text == letter_area_for_typing:
+                self.format.setBackground(QBrush(QColor("green")))
+                self.format.setFontWordSpacing(25)
+            else:
+                self.format.setBackground(QBrush(QColor("red")))
+                self.format.setFontWordSpacing(25)
+                self.errors.append(position)
+
+            if position == len(self.text) - 1:
+                self.textEdit.setEnabled(False)
+        else:
+            self.textEdit.setEnabled(False)
+
+        cursor.mergeCharFormat(self.format)
 
 
 app = QtWidgets.QApplication(sys.argv)

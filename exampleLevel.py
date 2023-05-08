@@ -9,6 +9,8 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import Qt
+from PyQt5.Qt import QTextEdit
 
 
 class Ui_MainWindow(object):
@@ -39,20 +41,23 @@ class Ui_MainWindow(object):
         self.text_heading = QtWidgets.QLabel(self.text)
         self.text_heading.setGeometry(QtCore.QRect(20, 10, 171, 51))
         font = QtGui.QFont()
-        font.setFamily("MS Shell Dlg 2")
+        font.setFamily("Roboto")
         font.setPointSize(15)
         self.text_heading.setFont(font)
         self.text_heading.setStyleSheet("color: rgb(39, 117, 117);")
         self.text_heading.setTextFormat(QtCore.Qt.AutoText)
         self.text_heading.setWordWrap(False)
         self.text_heading.setObjectName("text_heading")
-        self.type_here = QtWidgets.QLabel(self.text)
-        self.type_here.setGeometry(QtCore.QRect(20, 70, 1580, 270))
+        self.type_here = QTextEdit(self.text)
+        self.type_here.setGeometry(QtCore.QRect(20, 90, 1580, 250))
         font = QtGui.QFont()
-        font.setPointSize(15)
+        font.setFamily("Roboto")
+        font.setPointSize(25)
         self.type_here.setFont(font)
+        self.type_here.setFontWeight(215)
         self.type_here.setText("")
         self.type_here.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
+        self.type_here.setReadOnly(True)
         self.type_here.setObjectName("type_here")
         self.frame = QtWidgets.QFrame(self.centralwidget)
         self.frame.setGeometry(QtCore.QRect(0, 0, 1920, 70))
@@ -113,6 +118,7 @@ class Ui_MainWindow(object):
         self.pause.setAutoFillBackground(False)
         self.pause.setStyleSheet("color: rgb(42, 85, 126);\n"
 "background-color: rgb(255, 177, 125);")
+        self.pause.setFocusPolicy(Qt.NoFocus)
         self.pause.setObjectName("pause")
         self.back = QtWidgets.QPushButton(self.frame)
         self.back.setGeometry(QtCore.QRect(1819, 10, 81, 51))
@@ -124,6 +130,7 @@ class Ui_MainWindow(object):
         self.back.setAutoFillBackground(False)
         self.back.setStyleSheet("color: rgb(42, 85, 126);\n"
 "background-color: rgb(255, 177, 125);")
+        self.back.setFocusPolicy(Qt.NoFocus)
         self.back.setObjectName("back")
         self.restart = QtWidgets.QPushButton(self.frame)
         self.restart.setGeometry(QtCore.QRect(1720, 10, 81, 51))
@@ -135,6 +142,7 @@ class Ui_MainWindow(object):
         self.restart.setAutoFillBackground(False)
         self.restart.setStyleSheet("color: rgb(42, 85, 126);\n"
 "background-color: rgb(255, 177, 125);")
+        self.restart.setFocusPolicy(Qt.NoFocus)
         self.restart.setObjectName("restart")
         self.start = QtWidgets.QPushButton(self.frame)
         self.start.setGeometry(QtCore.QRect(880, 10, 81, 51))
@@ -146,6 +154,7 @@ class Ui_MainWindow(object):
         self.start.setAutoFillBackground(False)
         self.start.setStyleSheet("color: rgb(42, 85, 126);\n"
 "background-color: rgb(255, 177, 125);")
+        self.start.setFocusPolicy(Qt.NoFocus)
         self.start.setObjectName("start")
         self.keyboard = QtWidgets.QSplitter(self.centralwidget)
         self.keyboard.setGeometry(QtCore.QRect(160, 630, 1620, 320))
