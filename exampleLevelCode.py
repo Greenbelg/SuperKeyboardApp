@@ -9,8 +9,110 @@ import sys
 class Mywindow(QtWidgets.QMainWindow):
     def __init__(self):
         super(Mywindow, self).__init__()
+
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+
+        self.key_label = {
+            "0": self.ui.number_0,
+            "1": self.ui.number_1,
+            "2": self.ui.number_2,
+            "3": self.ui.number_3,
+            "4": self.ui.number_4,
+            "5": self.ui.number_5,
+            "6": self.ui.number_6,
+            "7": self.ui.number_7,
+            "8": self.ui.number_8,
+            "9": self.ui.number_9,
+            "esc": self.ui.key_Esc,
+            "\t": self.ui.key_Tab,
+            "backspace": self.ui.key_Backspace,
+            "delete": self.ui.key_Delete,
+            "insert": self.ui.key_Insert,
+            "\n": self.ui.key_Enter,
+            "left": self.ui.key_left,
+            "right": self.ui.key_right,
+            "up": self.ui.key_up,
+            "down": self.ui.key_down,
+            "wind_of_change": self.ui.key_Wind_key,
+            "caps": self.ui.key_CapsLk,
+            "f1": self.ui.key_F1,
+            "f2": self.ui.key_F2,
+            "f3": self.ui.key_F3,
+            "f4": self.ui.key_F4,
+            "f5": self.ui.key_F5,
+            "f6": self.ui.key_F6,
+            "f7": self.ui.key_F7,
+            "f8": self.ui.key_F8,
+            "f9": self.ui.key_F9,
+            "f10": self.ui.key_F10,
+            "f11": self.ui.key_F11,
+            "f12": self.ui.key_F12,
+            " ": self.ui.key_space,
+            "-": self.ui.key_minus,
+            "=": self.ui.key_eq,
+            ".": self.ui.key_dot,
+            "ё": self.ui.letter_7,
+            "й": self.ui.letter_11,
+            "ц": self.ui.letter_24,
+            "у": self.ui.letter_21,
+            "к": self.ui.letter_12,
+            "е": self.ui.letter_6,
+            "н": self.ui.letter_15,
+            "г": self.ui.letter_4,
+            "ш": self.ui.letter_26,
+            "щ": self.ui.letter_27,
+            "з": self.ui.letter_9,
+            "х": self.ui.letter_23,
+            "ъ": self.ui.letter_28,
+            "ф": self.ui.letter_22,
+            "ы": self.ui.letter_29,
+            "в": self.ui.letter_3,
+            "а": self.ui.letter_1,
+            "п": self.ui.letter_17,
+            "р": self.ui.letter_18,
+            "о": self.ui.letter_16,
+            "л": self.ui.letter_13,
+            "д": self.ui.letter_5,
+            "ж": self.ui.letter_8,
+            "э": self.ui.letter_31,
+            "я": self.ui.letter_33,
+            "ч": self.ui.letter_25,
+            "с": self.ui.letter_19,
+            "м": self.ui.letter_14,
+            "и": self.ui.letter_10,
+            "т": self.ui.letter_20,
+            "ь": self.ui.letter_30,
+            "б": self.ui.letter_2,
+            "ю": self.ui.letter_32,
+            "\\": self.ui.key_backslash,
+            "ctrl left" : self.ui.key_Ctrl_l,
+            "ctrl right" : self.ui.key_Ctrl_r,
+            "alt left" : self.ui.key_Alt_l,
+            "alt right" : self.ui.key_Alt_r,
+            "shift left" : self.ui.key_Shift_l,
+            "shift right" : self.ui.key_Shift_r
+        }
+
+        self.special_symbols = {
+            "~": "ё",
+            "!": "1",
+            '"': "2",
+            "№": "3",
+            ";": "4",
+            "%": "5",
+            ":": "6",
+            "?": "7",
+            "*": "8",
+            "(": "9",
+            ")": "0",
+            "_": "-",
+            "+": "=",
+            "/": "\\",
+            ",": "."
+        }
+
+        self.with_right_shift = "ё12345йцукефывапячсми" + "\t"
 
         self.textEdit = QTextEdit(self)
         self.textEdit.setGeometry(QtCore.QRect(150, 250, 1580, 250))
@@ -26,9 +128,11 @@ class Mywindow(QtWidgets.QMainWindow):
         self.textEdit.setFrameStyle(QFrame.NoFrame)
         self.textEdit.setCursorWidth(0)
         self.pos = -1
+        self.print_letter()
         self.errors = []
+        print(self.ui.type_here.document().toPlainText()[self.pos+1] == " ")
         self.textEdit.document().contentsChange.connect(self.contents_change)
-
+        self.textEdit.document().contentsChange.connect(self.print_letter)
         self.format = QTextCharFormat()
         self.format.setFont(QFont("Roboto", 25, QFont.Bold))
 
@@ -107,6 +211,7 @@ class Mywindow(QtWidgets.QMainWindow):
             92: self.ui.key_backslash,
         }
 
+
         self.double_key_labels = [
             (QtCore.Qt.Key_Control, self.ui.key_Ctrl_l),
             (QtCore.Qt.Key_Control, self.ui.key_Ctrl_r),
@@ -115,8 +220,26 @@ class Mywindow(QtWidgets.QMainWindow):
             (QtCore.Qt.Key_Shift, self.ui.key_Shift_l),
             (QtCore.Qt.Key_Shift, self.ui.key_Shift_r)]
 
+    def print_letter(self):
+        letter = self.ui.type_here.document().toPlainText()[self.pos+1]
+        for i in self.key_label.keys():
+            self.key_label[i].setStyleSheet("background-color: white;")
+
+        print(letter)
+        if letter.isalpha() and letter.isupper() or letter in self.special_symbols.keys():
+            a = letter.lower() if letter.isalpha() else self.special_symbols[letter]
+            if a in self.with_right_shift:
+                self.ui.key_Shift_r.setStyleSheet("background: grey;")
+            else:
+                self.ui.key_Shift_l.setStyleSheet("background: grey;")
+            self.key_label[a].setStyleSheet("background-color: grey;")
+        elif letter.isalpha() and letter.islower() or letter.isdigit() or letter in [" ", "\n", "\t", "."]:
+            self.key_label[letter].setStyleSheet("background-color: grey;")
+
+
+    '''
     def keyPressEvent(self, event):
-        print(event.key())
+        print(event.text())
         for key, label in self.double_key_labels:
             if event.key() == key:
                 label.setStyleSheet("background-color: gray;")
@@ -131,6 +254,7 @@ class Mywindow(QtWidgets.QMainWindow):
         if event.key() in self.key_labels:
             self.key_labels[event.key()].setStyleSheet("background-color: transparent;")
         event.accept()
+    '''
 
     def contents_change(self, position):
         cursor = self.ui.type_here.textCursor()
@@ -148,16 +272,15 @@ class Mywindow(QtWidgets.QMainWindow):
         if end:
             letter_text = self.text[position]
             letter_area_for_typing = self.textEdit.document().toPlainText()[position]
-            print(letter_area_for_typing, letter_text)
             if position in self.errors and letter_text == letter_area_for_typing:
                 self.format.setBackground(QBrush(QColor("yellow")))
-                self.format.setFontWordSpacing(25)
+                self.format.setFontWordSpacing(10)
             elif letter_text == letter_area_for_typing:
                 self.format.setBackground(QBrush(QColor("green")))
-                self.format.setFontWordSpacing(25)
+                self.format.setFontWordSpacing(10)
             else:
                 self.format.setBackground(QBrush(QColor("red")))
-                self.format.setFontWordSpacing(25)
+                self.format.setFontWordSpacing(10)
                 self.errors.append(position)
 
             if position == len(self.text) - 1:
