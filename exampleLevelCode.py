@@ -8,7 +8,7 @@ import sys
 
 
 class Mywindow(QtWidgets.QMainWindow):
-    def __init__(self):
+    def __init__(self, text):
         super(Mywindow, self).__init__()
 
         self.ui = Ui_MainWindow()
@@ -118,7 +118,7 @@ class Mywindow(QtWidgets.QMainWindow):
         self.textEdit = QTextEdit(self)
         self.textEdit.setGeometry(QtCore.QRect(150, 250, 1580, 250))
         self.text = ""
-        with open("TextExample.txt", encoding="utf-8") as f:
+        with open(text, encoding="utf-8") as f:
             self.text = f.read()
         self.ui.type_here.setText(self.text)
 
@@ -335,7 +335,7 @@ class Mywindow(QtWidgets.QMainWindow):
         cursor.mergeCharFormat(self.format)
 
 
-app = QtWidgets.QApplication(sys.argv)
-application = Mywindow()
-application.show()
-sys.exit(app.exec())
+#app = QtWidgets.QApplication(sys.argv)
+#application = Mywindow()
+#application.show()
+#sys.exit(app.exec())

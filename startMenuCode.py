@@ -1,6 +1,8 @@
 from PyQt5 import QtWidgets, QtGui
 from PyQt5.QtWidgets import QLabel
 from startMenu import Ui_MainWindow
+from exampleLevelCode import Mywindow
+from levelsChangeCode import MyWindow
 import sys
  
  
@@ -10,27 +12,18 @@ class mywindow(QtWidgets.QMainWindow):
         super(mywindow, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        
-# from screeninfo import get_monitors
+        self.ui.invisible_button_2.clicked.connect(self.goto_random)
+        self.ui.invisible_button.clicked.connect(self.goto_exercises)
 
-# screen_width = 0
-# screen_height = 0
+    def goto_random(self):
+        self.hide()
+        self.b = Mywindow("TextExample.txt")
+        self.b.show()
 
-# class Ui_MainWindow(object):
-#     def setupUi(self, MainWindow):
-
-#         def initialize_screen_parameters():
-#             for screen in get_monitors():
-#                 global screen_height, screen_width
-#                 screen_height = screen.height
-#                 screen_width = screen.width
-        
-#         initialize_screen_parameters()
-
-
-# shadow = QtWidgets.QGraphicsDropShadowEffect()
-# shadow.setBlurRadius(15)
-# self.Exercises.setGraphicsEffect(shadow)
+    def goto_exercises(self):
+        self.hide()
+        self.b = MyWindow()
+        self.b.show()
  
 app = QtWidgets.QApplication(sys.argv)
 application = mywindow()

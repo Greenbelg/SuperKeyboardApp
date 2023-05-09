@@ -8,5 +8,5 @@ for (dirpath, dirnames, filenames) in walk(pathlib.Path().resolve()):
     break
 
 for filename in f:
-    if "." in filename and filename.split(".")[1] == "ui":
+    if filename == "levelsChange.ui":
         os.system("pyuic5 {0}.ui -o {0}.py".format(filename.split(".")[0]))
