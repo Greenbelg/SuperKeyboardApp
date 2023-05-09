@@ -20,7 +20,7 @@ border-top-right-radius: 15px;
 border-bottom-right-radius: 15px;</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QFrame" name="frame">
+   <widget class="QFrame" name="frame_level_1">
     <property name="geometry">
      <rect>
       <x>150</x>
@@ -38,7 +38,7 @@ border-bottom-right-radius: 15px;</string>
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QLabel" name="label_3">
+    <widget class="QLabel" name="image_level_1">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -54,7 +54,7 @@ border-bottom-right-radius: 15px;</string>
       <pixmap>Images/уровень1.jpg</pixmap>
      </property>
     </widget>
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="name_level_1">
      <property name="geometry">
       <rect>
        <x>50</x>
@@ -81,7 +81,7 @@ background-color: rgb(255, 177, 125);</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QFrame" name="frame_3">
+    <widget class="QFrame" name="stat_level_1">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -99,7 +99,7 @@ background-color: rgb(255, 177, 125);</string>
      <property name="frameShadow">
       <enum>QFrame::Raised</enum>
      </property>
-     <widget class="QLabel" name="label_4">
+     <widget class="QLabel" name="spedd_level_1">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -121,7 +121,7 @@ background-color: rgb(255, 177, 125);</string>
        <string>Лучшая скорость</string>
       </property>
      </widget>
-     <widget class="QProgressBar" name="progressBar_2">
+     <widget class="QProgressBar" name="count_accuracy_level_1">
       <property name="geometry">
        <rect>
         <x>180</x>
@@ -155,7 +155,7 @@ QProgressBar::chunk {
        <string notr="true">%p%</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_5">
+     <widget class="QLabel" name="accuracy_level_1">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -177,7 +177,7 @@ QProgressBar::chunk {
        <string>Лучшая точность</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit">
+     <widget class="QLineEdit" name="count_spedd_level_1">
       <property name="geometry">
        <rect>
         <x>180</x>
@@ -205,7 +205,7 @@ QProgressBar::chunk {
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QLabel" name="label_6">
+     <widget class="QLabel" name="symbols_in_minute_level_1">
       <property name="geometry">
        <rect>
         <x>210</x>
@@ -227,7 +227,7 @@ QProgressBar::chunk {
       </property>
      </widget>
     </widget>
-    <widget class="Line" name="line">
+    <widget class="Line" name="separator_level_1">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -244,10 +244,26 @@ QProgressBar::chunk {
      </property>
     </widget>
    </widget>
-   <widget class="QFrame" name="frame_6">
+   <widget class="QPushButton" name="button_level_1">
     <property name="geometry">
      <rect>
-      <x>820</x>
+      <x>150</x>
+      <y>100</y>
+      <width>300</width>
+      <height>350</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton::hover{background-color : rgba(250, 250, 250, 30);}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QFrame" name="frame_level_2">
+    <property name="geometry">
+     <rect>
+      <x>480</x>
       <y>100</y>
       <width>300</width>
       <height>350</height>
@@ -262,7 +278,7 @@ QProgressBar::chunk {
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QLabel" name="label_12">
+    <widget class="QLabel" name="image_level_2">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -275,10 +291,10 @@ QProgressBar::chunk {
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>Images/уровень1.jpg</pixmap>
+      <pixmap>Images/уровень2.jpg</pixmap>
      </property>
     </widget>
-    <widget class="QLabel" name="label_13">
+    <widget class="QLabel" name="name_level_2">
      <property name="geometry">
       <rect>
        <x>50</x>
@@ -299,13 +315,13 @@ QProgressBar::chunk {
 background-color: rgb(255, 177, 125);</string>
      </property>
      <property name="text">
-      <string>Уровень 1</string>
+      <string>Уровень 2</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QFrame" name="frame_7">
+    <widget class="QFrame" name="stat_level_2">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -323,7 +339,7 @@ background-color: rgb(255, 177, 125);</string>
      <property name="frameShadow">
       <enum>QFrame::Raised</enum>
      </property>
-     <widget class="QLabel" name="label_14">
+     <widget class="QLabel" name="spedd_level_2">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -345,7 +361,7 @@ background-color: rgb(255, 177, 125);</string>
        <string>Лучшая скорость</string>
       </property>
      </widget>
-     <widget class="QProgressBar" name="progressBar_6">
+     <widget class="QProgressBar" name="count_accuracy_level_2">
       <property name="geometry">
        <rect>
         <x>180</x>
@@ -379,7 +395,7 @@ QProgressBar::chunk {
        <string notr="true">%p%</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_15">
+     <widget class="QLabel" name="accuracy_level_2">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -401,7 +417,7 @@ QProgressBar::chunk {
        <string>Лучшая точность</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_3">
+     <widget class="QLineEdit" name="count_spedd_level_2">
       <property name="geometry">
        <rect>
         <x>180</x>
@@ -429,7 +445,7 @@ QProgressBar::chunk {
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QLabel" name="label_16">
+     <widget class="QLabel" name="symbols_in_minute_level_2">
       <property name="geometry">
        <rect>
         <x>210</x>
@@ -451,7 +467,7 @@ QProgressBar::chunk {
       </property>
      </widget>
     </widget>
-    <widget class="Line" name="line_3">
+    <widget class="Line" name="separator_level_2">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -468,10 +484,26 @@ QProgressBar::chunk {
      </property>
     </widget>
    </widget>
-   <widget class="QFrame" name="frame_8">
+   <widget class="QPushButton" name="button_level_2">
     <property name="geometry">
      <rect>
-      <x>1160</x>
+      <x>480</x>
+      <y>100</y>
+      <width>300</width>
+      <height>350</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton::hover{background-color : rgba(250, 250, 250, 30);}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QFrame" name="frame_level_3">
+    <property name="geometry">
+     <rect>
+      <x>810</x>
       <y>100</y>
       <width>300</width>
       <height>350</height>
@@ -486,7 +518,7 @@ QProgressBar::chunk {
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QLabel" name="label_17">
+    <widget class="QLabel" name="image_level_3">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -499,10 +531,10 @@ QProgressBar::chunk {
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>Images/уровень1.jpg</pixmap>
+      <pixmap>Images/уровень3.png</pixmap>
      </property>
     </widget>
-    <widget class="QLabel" name="label_18">
+    <widget class="QLabel" name="name_level_3">
      <property name="geometry">
       <rect>
        <x>50</x>
@@ -523,13 +555,13 @@ QProgressBar::chunk {
 background-color: rgb(255, 177, 125);</string>
      </property>
      <property name="text">
-      <string>Уровень 1</string>
+      <string>Уровень 3</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QFrame" name="frame_9">
+    <widget class="QFrame" name="stat_level_3">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -547,7 +579,7 @@ background-color: rgb(255, 177, 125);</string>
      <property name="frameShadow">
       <enum>QFrame::Raised</enum>
      </property>
-     <widget class="QLabel" name="label_19">
+     <widget class="QLabel" name="spedd_level_3">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -569,7 +601,7 @@ background-color: rgb(255, 177, 125);</string>
        <string>Лучшая скорость</string>
       </property>
      </widget>
-     <widget class="QProgressBar" name="progressBar_7">
+     <widget class="QProgressBar" name="count_accuracy_level_3">
       <property name="geometry">
        <rect>
         <x>180</x>
@@ -603,7 +635,7 @@ QProgressBar::chunk {
        <string notr="true">%p%</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_20">
+     <widget class="QLabel" name="accuracy_level_3">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -625,7 +657,7 @@ QProgressBar::chunk {
        <string>Лучшая точность</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_4">
+     <widget class="QLineEdit" name="count_spedd_level_3">
       <property name="geometry">
        <rect>
         <x>180</x>
@@ -653,7 +685,7 @@ QProgressBar::chunk {
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QLabel" name="label_21">
+     <widget class="QLabel" name="symbols_in_minute_level_3">
       <property name="geometry">
        <rect>
         <x>210</x>
@@ -675,7 +707,7 @@ QProgressBar::chunk {
       </property>
      </widget>
     </widget>
-    <widget class="Line" name="line_4">
+    <widget class="Line" name="separator_level_3">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -692,10 +724,26 @@ QProgressBar::chunk {
      </property>
     </widget>
    </widget>
-   <widget class="QFrame" name="frame_10">
+   <widget class="QPushButton" name="button_level_3">
     <property name="geometry">
      <rect>
-      <x>1500</x>
+      <x>810</x>
+      <y>100</y>
+      <width>300</width>
+      <height>350</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton::hover{background-color : rgba(250, 250, 250, 30);}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QFrame" name="frame_level_4">
+    <property name="geometry">
+     <rect>
+      <x>1140</x>
       <y>100</y>
       <width>300</width>
       <height>350</height>
@@ -710,7 +758,7 @@ QProgressBar::chunk {
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QLabel" name="label_22">
+    <widget class="QLabel" name="image_level_4">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -723,10 +771,10 @@ QProgressBar::chunk {
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>Images/уровень1.jpg</pixmap>
+      <pixmap>Images/уровень4.jpg</pixmap>
      </property>
     </widget>
-    <widget class="QLabel" name="label_23">
+    <widget class="QLabel" name="name_level_4">
      <property name="geometry">
       <rect>
        <x>50</x>
@@ -747,13 +795,13 @@ QProgressBar::chunk {
 background-color: rgb(255, 177, 125);</string>
      </property>
      <property name="text">
-      <string>Уровень 1</string>
+      <string>Уровень 4</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QFrame" name="frame_11">
+    <widget class="QFrame" name="stat_level_4">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -771,7 +819,7 @@ background-color: rgb(255, 177, 125);</string>
      <property name="frameShadow">
       <enum>QFrame::Raised</enum>
      </property>
-     <widget class="QLabel" name="label_24">
+     <widget class="QLabel" name="spedd_level_4">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -793,7 +841,7 @@ background-color: rgb(255, 177, 125);</string>
        <string>Лучшая скорость</string>
       </property>
      </widget>
-     <widget class="QProgressBar" name="progressBar_8">
+     <widget class="QProgressBar" name="count_accuracy_level_4">
       <property name="geometry">
        <rect>
         <x>180</x>
@@ -827,7 +875,7 @@ QProgressBar::chunk {
        <string notr="true">%p%</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_25">
+     <widget class="QLabel" name="accuracy_level_4">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -849,7 +897,7 @@ QProgressBar::chunk {
        <string>Лучшая точность</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_5">
+     <widget class="QLineEdit" name="count_spedd_level_4">
       <property name="geometry">
        <rect>
         <x>180</x>
@@ -877,7 +925,7 @@ QProgressBar::chunk {
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QLabel" name="label_26">
+     <widget class="QLabel" name="symbols_in_minute_level_4">
       <property name="geometry">
        <rect>
         <x>210</x>
@@ -899,7 +947,7 @@ QProgressBar::chunk {
       </property>
      </widget>
     </widget>
-    <widget class="Line" name="line_5">
+    <widget class="Line" name="separator_level_4">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -916,7 +964,263 @@ QProgressBar::chunk {
      </property>
     </widget>
    </widget>
-   <widget class="QFrame" name="frame_12">
+   <widget class="QPushButton" name="button_level_4">
+    <property name="geometry">
+     <rect>
+      <x>1140</x>
+      <y>100</y>
+      <width>300</width>
+      <height>350</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton::hover{background-color : rgba(250, 250, 250, 30);}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QFrame" name="frame_level_5">
+    <property name="geometry">
+     <rect>
+      <x>1470</x>
+      <y>100</y>
+      <width>300</width>
+      <height>350</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(253, 253, 253);</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QLabel" name="image_level_5">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>281</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap>Images/уровень5.jpg</pixmap>
+     </property>
+    </widget>
+    <widget class="QLabel" name="name_level_5">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>120</y>
+       <width>200</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Roboto</family>
+       <pointsize>14</pointsize>
+       <stylestrategy>PreferDefault</stylestrategy>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(42, 85, 126);
+background-color: rgb(255, 177, 125);</string>
+     </property>
+     <property name="text">
+      <string>Уровень 5</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QFrame" name="stat_level_5">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>229</y>
+       <width>280</width>
+       <height>111</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(247, 247, 247);</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <widget class="QLabel" name="spedd_level_5">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>10</y>
+        <width>151</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Roboto</family>
+        <pointsize>9</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(39, 117, 117);</string>
+      </property>
+      <property name="text">
+       <string>Лучшая скорость</string>
+      </property>
+     </widget>
+     <widget class="QProgressBar" name="count_accuracy_level_5">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>70</y>
+        <width>81</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QProgressBar{
+	color: rgb(255, 180, 130);
+    border: 1px solid  grey;
+    border-radius: 5px;
+    text-align: center
+}
+QProgressBar::chunk {
+    background-color: rgb(39, 117, 117);;
+	border-radius: 3px;
+}</string>
+      </property>
+      <property name="value">
+       <number>75</number>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="format">
+       <string notr="true">%p%</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="accuracy_level_5">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>70</y>
+        <width>151</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Roboto</family>
+        <pointsize>9</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(39, 117, 117);</string>
+      </property>
+      <property name="text">
+       <string>Лучшая точность</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="count_spedd_level_5">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>10</y>
+        <width>31</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Roboto</family>
+        <pointsize>9</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(40, 120, 120);</string>
+      </property>
+      <property name="text">
+       <string>99</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="symbols_in_minute_level_5">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>21</y>
+        <width>47</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>7</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgba(39, 117, 117, 120);</string>
+      </property>
+      <property name="text">
+       <string>(слов)</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="Line" name="separator_level_5">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>210</y>
+       <width>280</width>
+       <height>1</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(239, 239, 239);</string>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="button_level_5">
+    <property name="geometry">
+     <rect>
+      <x>1470</x>
+      <y>100</y>
+      <width>300</width>
+      <height>350</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton::hover{background-color : rgba(250, 250, 250, 30);}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QFrame" name="frame_level_6">
     <property name="geometry">
      <rect>
       <x>150</x>
@@ -934,7 +1238,7 @@ QProgressBar::chunk {
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QLabel" name="label_27">
+    <widget class="QLabel" name="image_level_6">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -947,10 +1251,10 @@ QProgressBar::chunk {
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>Images/уровень1.jpg</pixmap>
+      <pixmap>Images/уровень6.jpg</pixmap>
      </property>
     </widget>
-    <widget class="QLabel" name="label_28">
+    <widget class="QLabel" name="name_level_6">
      <property name="geometry">
       <rect>
        <x>50</x>
@@ -971,13 +1275,13 @@ QProgressBar::chunk {
 background-color: rgb(255, 177, 125);</string>
      </property>
      <property name="text">
-      <string>Уровень 1</string>
+      <string>Уровень 6</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QFrame" name="frame_13">
+    <widget class="QFrame" name="stat_level_6">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -995,7 +1299,7 @@ background-color: rgb(255, 177, 125);</string>
      <property name="frameShadow">
       <enum>QFrame::Raised</enum>
      </property>
-     <widget class="QLabel" name="label_29">
+     <widget class="QLabel" name="spedd_level_6">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -1017,7 +1321,7 @@ background-color: rgb(255, 177, 125);</string>
        <string>Лучшая скорость</string>
       </property>
      </widget>
-     <widget class="QProgressBar" name="progressBar_9">
+     <widget class="QProgressBar" name="count_accuracy_level_6">
       <property name="geometry">
        <rect>
         <x>180</x>
@@ -1051,7 +1355,7 @@ QProgressBar::chunk {
        <string notr="true">%p%</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_30">
+     <widget class="QLabel" name="accuracy_level_6">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -1073,7 +1377,7 @@ QProgressBar::chunk {
        <string>Лучшая точность</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_6">
+     <widget class="QLineEdit" name="count_spedd_level_6">
       <property name="geometry">
        <rect>
         <x>180</x>
@@ -1101,7 +1405,7 @@ QProgressBar::chunk {
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QLabel" name="label_31">
+     <widget class="QLabel" name="symbols_in_minute_level_6">
       <property name="geometry">
        <rect>
         <x>210</x>
@@ -1123,7 +1427,7 @@ QProgressBar::chunk {
       </property>
      </widget>
     </widget>
-    <widget class="Line" name="line_6">
+    <widget class="Line" name="separator_level_6">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -1140,7 +1444,23 @@ QProgressBar::chunk {
      </property>
     </widget>
    </widget>
-   <widget class="QFrame" name="frame_14">
+   <widget class="QPushButton" name="button_level_6">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>530</y>
+      <width>300</width>
+      <height>350</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton::hover{background-color : rgba(250, 250, 250, 30);}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QFrame" name="frame_level_7">
     <property name="geometry">
      <rect>
       <x>480</x>
@@ -1158,7 +1478,7 @@ QProgressBar::chunk {
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QLabel" name="label_32">
+    <widget class="QLabel" name="image_level_7">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -1171,10 +1491,10 @@ QProgressBar::chunk {
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>Images/уровень1.jpg</pixmap>
+      <pixmap>Images/уровень7.jpg</pixmap>
      </property>
     </widget>
-    <widget class="QLabel" name="label_33">
+    <widget class="QLabel" name="name_level_7">
      <property name="geometry">
       <rect>
        <x>50</x>
@@ -1195,13 +1515,13 @@ QProgressBar::chunk {
 background-color: rgb(255, 177, 125);</string>
      </property>
      <property name="text">
-      <string>Уровень 1</string>
+      <string>Уровень 7</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QFrame" name="frame_15">
+    <widget class="QFrame" name="stat_level_7">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -1219,7 +1539,7 @@ background-color: rgb(255, 177, 125);</string>
      <property name="frameShadow">
       <enum>QFrame::Raised</enum>
      </property>
-     <widget class="QLabel" name="label_34">
+     <widget class="QLabel" name="spedd_level_7">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -1241,7 +1561,7 @@ background-color: rgb(255, 177, 125);</string>
        <string>Лучшая скорость</string>
       </property>
      </widget>
-     <widget class="QProgressBar" name="progressBar_10">
+     <widget class="QProgressBar" name="count_accuracy_level_7">
       <property name="geometry">
        <rect>
         <x>180</x>
@@ -1275,7 +1595,7 @@ QProgressBar::chunk {
        <string notr="true">%p%</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_35">
+     <widget class="QLabel" name="accuracy_level_7">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -1297,7 +1617,7 @@ QProgressBar::chunk {
        <string>Лучшая точность</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_7">
+     <widget class="QLineEdit" name="count_spedd_level_7">
       <property name="geometry">
        <rect>
         <x>180</x>
@@ -1325,7 +1645,7 @@ QProgressBar::chunk {
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QLabel" name="label_36">
+     <widget class="QLabel" name="symbols_in_minute_level_7">
       <property name="geometry">
        <rect>
         <x>210</x>
@@ -1347,7 +1667,7 @@ QProgressBar::chunk {
       </property>
      </widget>
     </widget>
-    <widget class="Line" name="line_7">
+    <widget class="Line" name="separator_level_7">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -1364,683 +1684,11 @@ QProgressBar::chunk {
      </property>
     </widget>
    </widget>
-   <widget class="QFrame" name="frame_16">
+   <widget class="QPushButton" name="button_level_7">
     <property name="geometry">
      <rect>
-      <x>830</x>
+      <x>480</x>
       <y>530</y>
-      <width>300</width>
-      <height>350</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(253, 253, 253);</string>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
-    </property>
-    <widget class="QLabel" name="label_37">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>10</y>
-       <width>281</width>
-       <height>81</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="pixmap">
-      <pixmap>Images/уровень1.jpg</pixmap>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_38">
-     <property name="geometry">
-      <rect>
-       <x>50</x>
-       <y>120</y>
-       <width>200</width>
-       <height>60</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Roboto</family>
-       <pointsize>14</pointsize>
-       <stylestrategy>PreferDefault</stylestrategy>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(42, 85, 126);
-background-color: rgb(255, 177, 125);</string>
-     </property>
-     <property name="text">
-      <string>Уровень 1</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QFrame" name="frame_17">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>229</y>
-       <width>280</width>
-       <height>111</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(247, 247, 247);</string>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
-     </property>
-     <widget class="QLabel" name="label_39">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>10</y>
-        <width>151</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Roboto</family>
-        <pointsize>9</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(39, 117, 117);</string>
-      </property>
-      <property name="text">
-       <string>Лучшая скорость</string>
-      </property>
-     </widget>
-     <widget class="QProgressBar" name="progressBar_11">
-      <property name="geometry">
-       <rect>
-        <x>180</x>
-        <y>70</y>
-        <width>81</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QProgressBar{
-	color: rgb(255, 180, 130);
-    border: 1px solid  grey;
-    border-radius: 5px;
-    text-align: center
-}
-QProgressBar::chunk {
-    background-color: rgb(39, 117, 117);;
-	border-radius: 3px;
-}</string>
-      </property>
-      <property name="value">
-       <number>75</number>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="format">
-       <string notr="true">%p%</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_40">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>70</y>
-        <width>151</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Roboto</family>
-        <pointsize>9</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(39, 117, 117);</string>
-      </property>
-      <property name="text">
-       <string>Лучшая точность</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit_8">
-      <property name="geometry">
-       <rect>
-        <x>180</x>
-        <y>10</y>
-        <width>31</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Roboto</family>
-        <pointsize>9</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(40, 120, 120);</string>
-      </property>
-      <property name="text">
-       <string>99</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
-      <property name="readOnly">
-       <bool>true</bool>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_41">
-      <property name="geometry">
-       <rect>
-        <x>210</x>
-        <y>21</y>
-        <width>47</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>7</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgba(39, 117, 117, 120);</string>
-      </property>
-      <property name="text">
-       <string>(слов)</string>
-      </property>
-     </widget>
-    </widget>
-    <widget class="Line" name="line_8">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>210</y>
-       <width>280</width>
-       <height>1</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(239, 239, 239);</string>
-     </property>
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QFrame" name="frame_18">
-    <property name="geometry">
-     <rect>
-      <x>1160</x>
-      <y>530</y>
-      <width>300</width>
-      <height>350</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(253, 253, 253);</string>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
-    </property>
-    <widget class="QLabel" name="label_42">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>10</y>
-       <width>281</width>
-       <height>81</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="pixmap">
-      <pixmap>Images/уровень1.jpg</pixmap>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_43">
-     <property name="geometry">
-      <rect>
-       <x>50</x>
-       <y>120</y>
-       <width>200</width>
-       <height>60</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Roboto</family>
-       <pointsize>14</pointsize>
-       <stylestrategy>PreferDefault</stylestrategy>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(42, 85, 126);
-background-color: rgb(255, 177, 125);</string>
-     </property>
-     <property name="text">
-      <string>Уровень 1</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QFrame" name="frame_19">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>229</y>
-       <width>280</width>
-       <height>111</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(247, 247, 247);</string>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
-     </property>
-     <widget class="QLabel" name="label_44">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>10</y>
-        <width>151</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Roboto</family>
-        <pointsize>9</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(39, 117, 117);</string>
-      </property>
-      <property name="text">
-       <string>Лучшая скорость</string>
-      </property>
-     </widget>
-     <widget class="QProgressBar" name="progressBar_12">
-      <property name="geometry">
-       <rect>
-        <x>180</x>
-        <y>70</y>
-        <width>81</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QProgressBar{
-	color: rgb(255, 180, 130);
-    border: 1px solid  grey;
-    border-radius: 5px;
-    text-align: center
-}
-QProgressBar::chunk {
-    background-color: rgb(39, 117, 117);;
-	border-radius: 3px;
-}</string>
-      </property>
-      <property name="value">
-       <number>75</number>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="format">
-       <string notr="true">%p%</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_45">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>70</y>
-        <width>151</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Roboto</family>
-        <pointsize>9</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(39, 117, 117);</string>
-      </property>
-      <property name="text">
-       <string>Лучшая точность</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit_9">
-      <property name="geometry">
-       <rect>
-        <x>180</x>
-        <y>10</y>
-        <width>31</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Roboto</family>
-        <pointsize>9</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(40, 120, 120);</string>
-      </property>
-      <property name="text">
-       <string>99</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
-      <property name="readOnly">
-       <bool>true</bool>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_46">
-      <property name="geometry">
-       <rect>
-        <x>210</x>
-        <y>21</y>
-        <width>47</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>7</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgba(39, 117, 117, 120);</string>
-      </property>
-      <property name="text">
-       <string>(слов)</string>
-      </property>
-     </widget>
-    </widget>
-    <widget class="Line" name="line_9">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>210</y>
-       <width>280</width>
-       <height>1</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(239, 239, 239);</string>
-     </property>
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QFrame" name="frame_20">
-    <property name="geometry">
-     <rect>
-      <x>1500</x>
-      <y>530</y>
-      <width>300</width>
-      <height>350</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(253, 253, 253);</string>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
-    </property>
-    <widget class="QLabel" name="label_47">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>10</y>
-       <width>281</width>
-       <height>81</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="pixmap">
-      <pixmap>Images/уровень1.jpg</pixmap>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_48">
-     <property name="geometry">
-      <rect>
-       <x>50</x>
-       <y>120</y>
-       <width>200</width>
-       <height>60</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Roboto</family>
-       <pointsize>14</pointsize>
-       <stylestrategy>PreferDefault</stylestrategy>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(42, 85, 126);
-background-color: rgb(255, 177, 125);</string>
-     </property>
-     <property name="text">
-      <string>Уровень 1</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QFrame" name="frame_21">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>229</y>
-       <width>280</width>
-       <height>111</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(247, 247, 247);</string>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
-     </property>
-     <widget class="QLabel" name="label_49">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>10</y>
-        <width>151</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Roboto</family>
-        <pointsize>9</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(39, 117, 117);</string>
-      </property>
-      <property name="text">
-       <string>Лучшая скорость</string>
-      </property>
-     </widget>
-     <widget class="QProgressBar" name="progressBar_13">
-      <property name="geometry">
-       <rect>
-        <x>180</x>
-        <y>70</y>
-        <width>81</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QProgressBar{
-	color: rgb(255, 180, 130);
-    border: 1px solid  grey;
-    border-radius: 5px;
-    text-align: center
-}
-QProgressBar::chunk {
-    background-color: rgb(39, 117, 117);;
-	border-radius: 3px;
-}</string>
-      </property>
-      <property name="value">
-       <number>75</number>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="format">
-       <string notr="true">%p%</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_50">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>70</y>
-        <width>151</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Roboto</family>
-        <pointsize>9</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(39, 117, 117);</string>
-      </property>
-      <property name="text">
-       <string>Лучшая точность</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit_10">
-      <property name="geometry">
-       <rect>
-        <x>180</x>
-        <y>10</y>
-        <width>31</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Roboto</family>
-        <pointsize>9</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(40, 120, 120);</string>
-      </property>
-      <property name="text">
-       <string>99</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
-      <property name="readOnly">
-       <bool>true</bool>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_51">
-      <property name="geometry">
-       <rect>
-        <x>210</x>
-        <y>21</y>
-        <width>47</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>7</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgba(39, 117, 117, 120);</string>
-      </property>
-      <property name="text">
-       <string>(слов)</string>
-      </property>
-     </widget>
-    </widget>
-    <widget class="Line" name="line_10">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>210</y>
-       <width>280</width>
-       <height>1</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(239, 239, 239);</string>
-     </property>
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QPushButton" name="pushButton">
-    <property name="geometry">
-     <rect>
-      <x>150</x>
-      <y>100</y>
       <width>300</width>
       <height>350</height>
      </rect>
@@ -2052,11 +1700,11 @@ QProgressBar::chunk {
      <string/>
     </property>
    </widget>
-   <widget class="QFrame" name="frame_2">
+   <widget class="QFrame" name="frame_level_8">
     <property name="geometry">
      <rect>
-      <x>510</x>
-      <y>100</y>
+      <x>810</x>
+      <y>530</y>
       <width>300</width>
       <height>350</height>
      </rect>
@@ -2070,7 +1718,7 @@ QProgressBar::chunk {
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QLabel" name="label_7">
+    <widget class="QLabel" name="image_level_8">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -2083,10 +1731,10 @@ QProgressBar::chunk {
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>Images/уровень1.jpg</pixmap>
+      <pixmap>Images/уровень8.jpg</pixmap>
      </property>
     </widget>
-    <widget class="QLabel" name="label_2">
+    <widget class="QLabel" name="name_level_8">
      <property name="geometry">
       <rect>
        <x>50</x>
@@ -2107,13 +1755,13 @@ QProgressBar::chunk {
 background-color: rgb(255, 177, 125);</string>
      </property>
      <property name="text">
-      <string>Уровень 1</string>
+      <string>Уровень 8</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QFrame" name="frame_4">
+    <widget class="QFrame" name="stat_level_8">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -2131,7 +1779,7 @@ background-color: rgb(255, 177, 125);</string>
      <property name="frameShadow">
       <enum>QFrame::Raised</enum>
      </property>
-     <widget class="QLabel" name="label_8">
+     <widget class="QLabel" name="spedd_level_8">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -2153,7 +1801,7 @@ background-color: rgb(255, 177, 125);</string>
        <string>Лучшая скорость</string>
       </property>
      </widget>
-     <widget class="QProgressBar" name="progressBar_3">
+     <widget class="QProgressBar" name="count_accuracy_level_8">
       <property name="geometry">
        <rect>
         <x>180</x>
@@ -2187,7 +1835,7 @@ QProgressBar::chunk {
        <string notr="true">%p%</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_9">
+     <widget class="QLabel" name="accuracy_level_8">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -2209,7 +1857,7 @@ QProgressBar::chunk {
        <string>Лучшая точность</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_2">
+     <widget class="QLineEdit" name="count_spedd_level_8">
       <property name="geometry">
        <rect>
         <x>180</x>
@@ -2237,7 +1885,7 @@ QProgressBar::chunk {
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QLabel" name="label_10">
+     <widget class="QLabel" name="symbols_in_minute_level_8">
       <property name="geometry">
        <rect>
         <x>210</x>
@@ -2259,7 +1907,7 @@ QProgressBar::chunk {
       </property>
      </widget>
     </widget>
-    <widget class="Line" name="line_2">
+    <widget class="Line" name="separator_level_8">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -2276,11 +1924,491 @@ QProgressBar::chunk {
      </property>
     </widget>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="button_level_8">
     <property name="geometry">
      <rect>
-      <x>510</x>
-      <y>100</y>
+      <x>810</x>
+      <y>530</y>
+      <width>300</width>
+      <height>350</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton::hover{background-color : rgba(250, 250, 250, 30);}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QFrame" name="frame_level_9">
+    <property name="geometry">
+     <rect>
+      <x>1140</x>
+      <y>530</y>
+      <width>300</width>
+      <height>350</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(253, 253, 253);</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QLabel" name="image_level_9">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>281</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap>Images/уровень9.jpg</pixmap>
+     </property>
+    </widget>
+    <widget class="QLabel" name="name_level_9">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>120</y>
+       <width>200</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Roboto</family>
+       <pointsize>14</pointsize>
+       <stylestrategy>PreferDefault</stylestrategy>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(42, 85, 126);
+background-color: rgb(255, 177, 125);</string>
+     </property>
+     <property name="text">
+      <string>Уровень 9</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QFrame" name="stat_level_9">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>229</y>
+       <width>280</width>
+       <height>111</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(247, 247, 247);</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <widget class="QLabel" name="spedd_level_9">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>10</y>
+        <width>151</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Roboto</family>
+        <pointsize>9</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(39, 117, 117);</string>
+      </property>
+      <property name="text">
+       <string>Лучшая скорость</string>
+      </property>
+     </widget>
+     <widget class="QProgressBar" name="count_accuracy_level_9">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>70</y>
+        <width>81</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QProgressBar{
+	color: rgb(255, 180, 130);
+    border: 1px solid  grey;
+    border-radius: 5px;
+    text-align: center
+}
+QProgressBar::chunk {
+    background-color: rgb(39, 117, 117);;
+	border-radius: 3px;
+}</string>
+      </property>
+      <property name="value">
+       <number>75</number>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="format">
+       <string notr="true">%p%</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="accuracy_level_9">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>70</y>
+        <width>151</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Roboto</family>
+        <pointsize>9</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(39, 117, 117);</string>
+      </property>
+      <property name="text">
+       <string>Лучшая точность</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="count_spedd_level_9">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>10</y>
+        <width>31</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Roboto</family>
+        <pointsize>9</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(40, 120, 120);</string>
+      </property>
+      <property name="text">
+       <string>99</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="symbols_in_minute_level_9">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>21</y>
+        <width>47</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>7</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgba(39, 117, 117, 120);</string>
+      </property>
+      <property name="text">
+       <string>(слов)</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="Line" name="separator_level_9">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>210</y>
+       <width>280</width>
+       <height>1</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(239, 239, 239);</string>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="button_level_9">
+    <property name="geometry">
+     <rect>
+      <x>1140</x>
+      <y>530</y>
+      <width>300</width>
+      <height>350</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton::hover{background-color : rgba(250, 250, 250, 30);}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QFrame" name="frame_level_10">
+    <property name="geometry">
+     <rect>
+      <x>1470</x>
+      <y>530</y>
+      <width>300</width>
+      <height>350</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(253, 253, 253);</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QLabel" name="image_level_10">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>281</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap>Images/уровень10.jpg</pixmap>
+     </property>
+    </widget>
+    <widget class="QLabel" name="name_level_10">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>120</y>
+       <width>200</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Roboto</family>
+       <pointsize>14</pointsize>
+       <stylestrategy>PreferDefault</stylestrategy>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(42, 85, 126);
+background-color: rgb(255, 177, 125);</string>
+     </property>
+     <property name="text">
+      <string>Уровень 10</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QFrame" name="stat_level_10">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>229</y>
+       <width>280</width>
+       <height>111</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(247, 247, 247);</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <widget class="QLabel" name="spedd_level_10">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>10</y>
+        <width>151</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Roboto</family>
+        <pointsize>9</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(39, 117, 117);</string>
+      </property>
+      <property name="text">
+       <string>Лучшая скорость</string>
+      </property>
+     </widget>
+     <widget class="QProgressBar" name="count_accuracy_level_10">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>70</y>
+        <width>81</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QProgressBar{
+	color: rgb(255, 180, 130);
+    border: 1px solid  grey;
+    border-radius: 5px;
+    text-align: center
+}
+QProgressBar::chunk {
+    background-color: rgb(39, 117, 117);;
+	border-radius: 3px;
+}</string>
+      </property>
+      <property name="value">
+       <number>75</number>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="format">
+       <string notr="true">%p%</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="accuracy_level_10">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>70</y>
+        <width>151</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Roboto</family>
+        <pointsize>9</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(39, 117, 117);</string>
+      </property>
+      <property name="text">
+       <string>Лучшая точность</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="count_spedd_level_10">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>10</y>
+        <width>31</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Roboto</family>
+        <pointsize>9</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(40, 120, 120);</string>
+      </property>
+      <property name="text">
+       <string>99</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="symbols_in_minute_level_10">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>21</y>
+        <width>47</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>7</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgba(39, 117, 117, 120);</string>
+      </property>
+      <property name="text">
+       <string>(слов)</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="Line" name="separator_level_10">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>210</y>
+       <width>280</width>
+       <height>1</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(239, 239, 239);</string>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="button_level_10">
+    <property name="geometry">
+     <rect>
+      <x>1470</x>
+      <y>530</y>
       <width>300</width>
       <height>350</height>
      </rect>

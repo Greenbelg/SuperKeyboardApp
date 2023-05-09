@@ -59,13 +59,15 @@ class Ui_MainWindow(object):
 
         self.Progres_exercises = QtWidgets.QProgressBar(self.Exercises)
         self.Progres_exercises.setGeometry(QtCore.QRect(27, 470, 701, 4))
-        self.Progres_exercises.setStyleSheet("background-color: rgb(238, 238, 238);\n"
-"QProgressBar {\n"
-"border: 2px solid black;\n"
-"border-radius: 20px;\n"  
+        self.Progres_exercises.setStyleSheet("QProgressBar{\n"
+"    color: rgb(255, 180, 130);\n"
+"    border: 1px solid  grey;\n"
+"    border-radius: 5px;\n"
+"    text-align: center\n"
 "}\n"
 "QProgressBar::chunk {\n"
-"border-radius: 20px;\n"
+"    background-color: rgb(39, 117, 117);;\n"
+"    border-radius: 3px;\n"
 "}")
         self.Progres_exercises.setProperty("value", 24)
         self.Progres_exercises.setTextVisible(False)
@@ -183,7 +185,7 @@ class Ui_MainWindow(object):
         self.Random_speed.setObjectName("Random_speed")
 
         self.WPM_main = QtWidgets.QLabel(self.Statistics_data)
-        self.WPM_main.setGeometry(QtCore.QRect(300, 94, 120, 16))
+        self.WPM_main.setGeometry(QtCore.QRect(300, 94, 160, 16))
         font = QtGui.QFont()
         font.setFamily("Roboto")
         font.setPointSize(8)
@@ -192,7 +194,7 @@ class Ui_MainWindow(object):
         self.WPM_main.setObjectName("WPM_main")
 
         self.WPM_random = QtWidgets.QLabel(self.Statistics_data)
-        self.WPM_random.setGeometry(QtCore.QRect(300, 174, 120, 16))
+        self.WPM_random.setGeometry(QtCore.QRect(300, 174, 160, 16))
         font = QtGui.QFont()
         font.setFamily("Roboto")
         font.setPointSize(8)
@@ -201,7 +203,7 @@ class Ui_MainWindow(object):
         self.WPM_random.setObjectName("WPM_random")
 
         self.WPM_exercises = QtWidgets.QLabel(self.Statistics_data)
-        self.WPM_exercises.setGeometry(QtCore.QRect(300, 254, 120, 16))
+        self.WPM_exercises.setGeometry(QtCore.QRect(300, 254, 160, 16))
         font = QtGui.QFont()
         font.setFamily("Roboto")
         font.setPointSize(8)
@@ -298,8 +300,16 @@ class Ui_MainWindow(object):
         self.Progress_main.setContextMenuPolicy(QtCore.Qt.NoContextMenu)
         self.Progress_main.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.Progress_main.setAutoFillBackground(False)
-        self.Progress_main.setStyleSheet("background-color: rgb(230, 230, 230);\n"
-"color: rgb(68, 68, 68);")
+        self.Progress_main.setStyleSheet("QProgressBar{\n"
+"    color: rgb(255, 150, 130);\n"
+"    border: 1px solid  grey;\n"
+"    border-radius: 5px;\n"
+"    text-align: center\n"
+"}\n"
+"QProgressBar::chunk {\n"
+"    background-color: rgb(39, 117, 117);;\n"
+"    border-radius: 3px;\n"
+"}")
         self.Progress_main.setProperty("value", 24)
         self.Progress_main.setAlignment(QtCore.Qt.AlignCenter)
         self.Progress_main.setOrientation(QtCore.Qt.Horizontal)
@@ -322,8 +332,16 @@ class Ui_MainWindow(object):
         self.Progress_random.setContextMenuPolicy(QtCore.Qt.NoContextMenu)
         self.Progress_random.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.Progress_random.setAutoFillBackground(False)
-        self.Progress_random.setStyleSheet("background-color: rgb(230, 230, 230);\n"
-"color: rgb(68, 68, 68);")
+        self.Progress_random.setStyleSheet("QProgressBar{\n"
+"    color: rgb(255, 150, 130);\n"
+"    border: 1px solid  grey;\n"
+"    border-radius: 5px;\n"
+"    text-align: center\n"
+"}\n"
+"QProgressBar::chunk {\n"
+"    background-color: rgb(39, 117, 117);;\n"
+"    border-radius: 3px;\n"
+"}")
         self.Progress_random.setProperty("value", 24)
         self.Progress_random.setAlignment(QtCore.Qt.AlignCenter)
         self.Progress_random.setOrientation(QtCore.Qt.Horizontal)
@@ -346,8 +364,16 @@ class Ui_MainWindow(object):
         self.Progress_exercises.setContextMenuPolicy(QtCore.Qt.NoContextMenu)
         self.Progress_exercises.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.Progress_exercises.setAutoFillBackground(False)
-        self.Progress_exercises.setStyleSheet("background-color: rgb(230, 230, 230);\n"
-"color: rgb(68, 68, 68);")
+        self.Progress_exercises.setStyleSheet("QProgressBar{\n"
+"    color: rgb(255, 150, 130);\n"
+"    border: 1px solid  grey;\n"
+"    border-radius: 5px;\n"
+"    text-align: center\n"
+"}\n"
+"QProgressBar::chunk {\n"
+"    background-color: rgb(39, 117, 117);;\n"
+"    border-radius: 3px;\n"
+"}")
         self.Progress_exercises.setProperty("value", 24)
         self.Progress_exercises.setAlignment(QtCore.Qt.AlignCenter)
         self.Progress_exercises.setOrientation(QtCore.Qt.Horizontal)
@@ -366,7 +392,7 @@ class Ui_MainWindow(object):
         self.Words.setObjectName("Words")
 
         self.Main_words = QtWidgets.QLabel(self.Statistics_data)
-        self.Main_words.setGeometry(QtCore.QRect(1130, 90, 231, 20))
+        self.Main_words.setGeometry(QtCore.QRect(1130, 90, 300, 20))
         font = QtGui.QFont()
         font.setFamily("Roboto")
         font.setPointSize(10)
@@ -375,7 +401,7 @@ class Ui_MainWindow(object):
         self.Main_words.setObjectName("Main_words")
 
         self.Random_words = QtWidgets.QLabel(self.Statistics_data)
-        self.Random_words.setGeometry(QtCore.QRect(1130, 170, 170, 20))
+        self.Random_words.setGeometry(QtCore.QRect(1130, 170, 300, 20))
         font = QtGui.QFont()
         font.setFamily("Roboto")
         font.setPointSize(10)
@@ -384,7 +410,7 @@ class Ui_MainWindow(object):
         self.Random_words.setObjectName("Random_words")
 
         self.Exercises_words = QtWidgets.QLabel(self.Statistics_data)
-        self.Exercises_words.setGeometry(QtCore.QRect(1130, 250, 170, 20))
+        self.Exercises_words.setGeometry(QtCore.QRect(1130, 250, 300, 20))
         font = QtGui.QFont()
         font.setFamily("Roboto")
         font.setPointSize(10)
@@ -393,7 +419,7 @@ class Ui_MainWindow(object):
         self.Exercises_words.setObjectName("Exercises_words")
 
         self.Count_W_main = QtWidgets.QLineEdit(self.Statistics_data)
-        self.Count_W_main.setGeometry(QtCore.QRect(1380, 90, 50, 20))
+        self.Count_W_main.setGeometry(QtCore.QRect(1450, 90, 50, 20))
         font = QtGui.QFont()
         font.setFamily("Roboto")
         font.setPointSize(12)
@@ -405,7 +431,7 @@ class Ui_MainWindow(object):
         self.Count_W_main.setObjectName("Count_W_main")
 
         self.Count_W_random = QtWidgets.QLineEdit(self.Statistics_data)
-        self.Count_W_random.setGeometry(QtCore.QRect(1380, 170, 50, 20))
+        self.Count_W_random.setGeometry(QtCore.QRect(1450, 170, 50, 20))
         font = QtGui.QFont()
         font.setFamily("Roboto")
         font.setPointSize(12)
@@ -417,7 +443,7 @@ class Ui_MainWindow(object):
         self.Count_W_random.setObjectName("Count_W_random")
 
         self.Count_W_exercises = QtWidgets.QLineEdit(self.Statistics_data)
-        self.Count_W_exercises.setGeometry(QtCore.QRect(1380, 250, 50, 20))
+        self.Count_W_exercises.setGeometry(QtCore.QRect(1450, 250, 50, 20))
         font = QtGui.QFont()
         font.setFamily("Roboto")
         font.setPointSize(12)
@@ -429,7 +455,7 @@ class Ui_MainWindow(object):
         self.Count_W_exercises.setObjectName("Count_W_exercises")
 
         self.W_main = QtWidgets.QLabel(self.Statistics_data)
-        self.W_main.setGeometry(QtCore.QRect(1430, 94, 120, 16))
+        self.W_main.setGeometry(QtCore.QRect(1500, 94, 120, 16))
         font = QtGui.QFont()
         font.setFamily("Roboto")
         font.setPointSize(8)
@@ -438,7 +464,7 @@ class Ui_MainWindow(object):
         self.W_main.setObjectName("W_main")
 
         self.W_random = QtWidgets.QLabel(self.Statistics_data)
-        self.W_random.setGeometry(QtCore.QRect(1430, 174, 120, 16))
+        self.W_random.setGeometry(QtCore.QRect(1500, 174, 120, 16))
         font = QtGui.QFont()
         font.setFamily("Roboto")
         font.setPointSize(8)
@@ -447,7 +473,7 @@ class Ui_MainWindow(object):
         self.W_random.setObjectName("W_random")
 
         self.W_exercises = QtWidgets.QLabel(self.Statistics_data)
-        self.W_exercises.setGeometry(QtCore.QRect(1430, 254, 120, 16))
+        self.W_exercises.setGeometry(QtCore.QRect(1500, 254, 120, 16))
         font = QtGui.QFont()
         font.setFamily("Roboto")
         font.setPointSize(8)
@@ -469,9 +495,9 @@ class Ui_MainWindow(object):
         self.Main_speed.setText(_translate("MainWindow", "Общая скорость"))
         self.Exercises_speed.setText(_translate("MainWindow", "Упражения"))
         self.Random_speed.setText(_translate("MainWindow", "Случайный текст"))
-        self.WPM_main.setText(_translate("MainWindow", "(Слов в минуту)"))
-        self.WPM_random.setText(_translate("MainWindow", "(Слов в минуту)"))
-        self.WPM_exercises.setText(_translate("MainWindow", "(Слов в минуту)"))
+        self.WPM_main.setText(_translate("MainWindow", "(Символов в минуту)"))
+        self.WPM_random.setText(_translate("MainWindow", "(Символов в минуту)"))
+        self.WPM_exercises.setText(_translate("MainWindow", "(Символов в минуту)"))
         self.Count_WPM_main.setText(_translate("MainWindow", "999"))
         self.Count_WPM_random.setText(_translate("MainWindow", "100"))
         self.Count_WPM_exercises.setText(_translate("MainWindow", "100"))
@@ -482,13 +508,13 @@ class Ui_MainWindow(object):
         self.Progress_main.setFormat(_translate("MainWindow", "%p%"))
         self.Progress_random.setFormat(_translate("MainWindow", "%p%"))
         self.Progress_exercises.setFormat(_translate("MainWindow", "%p%"))
-        self.Words.setText(_translate("MainWindow", "Слова"))
-        self.Main_words.setText(_translate("MainWindow", "Общее количество слов"))
+        self.Words.setText(_translate("MainWindow", "Символы"))
+        self.Main_words.setText(_translate("MainWindow", "Общее количество символов"))
         self.Random_words.setText(_translate("MainWindow", "Случайный текст"))
         self.Exercises_words.setText(_translate("MainWindow", "Упражения"))
         self.Count_W_main.setText(_translate("MainWindow", "999"))
         self.Count_W_random.setText(_translate("MainWindow", "999"))
         self.Count_W_exercises.setText(_translate("MainWindow", "999"))
-        self.W_main.setText(_translate("MainWindow", "(Слов)"))
-        self.W_random.setText(_translate("MainWindow", "(Слов)"))
-        self.W_exercises.setText(_translate("MainWindow", "(Слов)"))
+        self.W_main.setText(_translate("MainWindow", "(Символов)"))
+        self.W_random.setText(_translate("MainWindow", "(Символов)"))
+        self.W_exercises.setText(_translate("MainWindow", "(Символов)"))
