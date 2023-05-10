@@ -6,7 +6,7 @@ from PyQt5.Qt import QTextCursor, QColor, QTextEdit, QTextCharFormat, QFont, QBr
 from PyQt5.QtWidgets import QLabel
 from PyQt5.QtCore import QTimer
 import sys
- 
+
 
 class Start_Scene(QtWidgets.QMainWindow):
  
@@ -26,7 +26,8 @@ class Start_Scene(QtWidgets.QMainWindow):
         exercises = Exercises_scene()
         widget.addWidget(exercises)
         widget.setCurrentIndex(widget.currentIndex() + 1)
- 
+
+
 class Exercises_scene(QtWidgets.QMainWindow):
     def __init__(self):
         super(Exercises_scene, self).__init__()
@@ -55,6 +56,7 @@ class Exercises_scene(QtWidgets.QMainWindow):
         start_menu = Start_Scene()
         widget.addWidget(start_menu)
         widget.setCurrentIndex(widget.currentIndex()+1)
+
 
 class Keyboard_Scene(QtWidgets.QMainWindow):
     def __init__(self, text, isFromStartMenu):
@@ -178,6 +180,7 @@ class Keyboard_Scene(QtWidgets.QMainWindow):
         self.textEdit.setFrameStyle(QFrame.NoFrame)
         self.textEdit.setCursorWidth(0)
         self.pos = -1
+        self.rest = False
         self.errors = []
         self.textEdit.document().contentsChange.connect(self.contents_change)
         self.textEdit.document().contentsChange.connect(self.print_letter)
@@ -305,6 +308,7 @@ class Keyboard_Scene(QtWidgets.QMainWindow):
             self.textEdit.setEnabled(False)
 
     def restart(self):
+        self.rest = True
         self.timer.stop()
         self.time_label.setText("0:0")
         self.ui.start.setText("►")
@@ -312,6 +316,7 @@ class Keyboard_Scene(QtWidgets.QMainWindow):
         self.ui.cur_accuracy.setText("0")
         self.right_letters_count, self.count = 0, 0
         self.errors = []
+        self.textEdit.document().clear()
         self.pos = -1
         self.textEdit.setEnabled(False)
 
@@ -351,7 +356,8 @@ class Keyboard_Scene(QtWidgets.QMainWindow):
     def contents_change(self, position):
         cursor = self.ui.type_here.textCursor()
         cursor.setPosition(position)
-        if cursor.position() <= self.pos:
+        if cursor.position() <= self.pos or self.textEdit.document().toPlainText() == "":
+            print(cursor.position(), self.pos)
             for i in range(-cursor.position()+self.pos, -1, -1):
                 cursor.movePosition(QTextCursor.NextCharacter, -1)
                 self.format.setBackground(QBrush(QColor("white")))
@@ -364,6 +370,7 @@ class Keyboard_Scene(QtWidgets.QMainWindow):
         if end:
             letter_text = self.text[position]
             self.count += 1
+            print(position)
             letter_area_for_typing = self.textEdit.document().toPlainText()[position]
             if position in self.errors and letter_text == letter_area_for_typing:
                 self.format.setBackground(QBrush(QColor("yellow")))
@@ -397,5 +404,5 @@ application = Start_Scene()
 widget.addWidget(application)
 widget.resize(1920, 1080)
 widget.show()
- 
+
 sys.exit(app.exec())
