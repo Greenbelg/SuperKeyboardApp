@@ -3,7 +3,7 @@ from PyQt5.Qt import QTextCursor, QColor, QTextEdit, QTextCharFormat, QFont, QBr
 from PyQt5.QtCore import QTimer
 from PyQt5.QtWidgets import QLabel
 
-from exampleLevel import Ui_MainWindow
+from exampleLevel import Ui_MainWindowE
 import sys
 
 
@@ -11,7 +11,7 @@ class Mywindow(QtWidgets.QMainWindow):
     def __init__(self, text):
         super(Mywindow, self).__init__()
 
-        self.ui = Ui_MainWindow()
+        self.ui = Ui_MainWindowE()
         self.ui.setupUi(self)
 
         self.key_label = {
@@ -131,6 +131,7 @@ class Mywindow(QtWidgets.QMainWindow):
         self.errors = []
         self.textEdit.document().contentsChange.connect(self.contents_change)
         self.textEdit.document().contentsChange.connect(self.print_letter)
+        self.ui.back.clicked.connect(self.goto_mainMenu)
         self.format = QTextCharFormat()
         self.format.setFont(QFont("Roboto", 25, QFont.Bold))
 
@@ -333,6 +334,11 @@ class Mywindow(QtWidgets.QMainWindow):
         accuracy = self.right_letters_count/self.count
         self.ui.cur_accuracy.setText("{:.2%}".format(accuracy))
         cursor.mergeCharFormat(self.format)
+
+    def goto_mainMenu(self):
+        mainMenu = mywindow()
+        widget.addWidget(mainMenu)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
 
 
 #app = QtWidgets.QApplication(sys.argv)

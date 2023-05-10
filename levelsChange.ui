@@ -2420,6 +2420,50 @@ QProgressBar::chunk {
      <string/>
     </property>
    </widget>
+   <widget class="QLabel" name="name_go_home">
+    <property name="geometry">
+     <rect>
+      <x>770</x>
+      <y>900</y>
+      <width>371</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Roboto</family>
+      <pointsize>14</pointsize>
+      <stylestrategy>PreferDefault</stylestrategy>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(42, 85, 126);
+background-color: rgb(255, 177, 125);</string>
+    </property>
+    <property name="text">
+     <string>На главное меню</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="button_go_home">
+    <property name="geometry">
+     <rect>
+      <x>770</x>
+      <y>900</y>
+      <width>370</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton::hover{background-color : rgba(250, 250, 250, 30);}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>

@@ -13,7 +13,7 @@ from PyQt5.QtCore import Qt
 from PyQt5.Qt import QTextEdit
 
 
-class Ui_MainWindow(object):
+class Ui_keyboard_scene(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1920, 1080)
@@ -356,7 +356,8 @@ class Ui_MainWindow(object):
         self.gridLayout.addWidget(self.letter_17, 3, 6, 1, 1)
         self.letter_16 = QtWidgets.QLabel(self.widget)
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setPointSize(15)
+        font.setUnderline(True)
         self.letter_16.setFont(font)
         self.letter_16.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.letter_16.setAlignment(QtCore.Qt.AlignCenter)
@@ -436,7 +437,8 @@ class Ui_MainWindow(object):
         self.gridLayout.addWidget(self.letter_18, 3, 7, 1, 1)
         self.letter_1 = QtWidgets.QLabel(self.widget)
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setPointSize(15)
+        font.setUnderline(True)
         self.letter_1.setFont(font)
         self.letter_1.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.letter_1.setAlignment(QtCore.Qt.AlignCenter)
