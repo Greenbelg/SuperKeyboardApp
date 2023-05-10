@@ -180,6 +180,7 @@ class Keyboard_Scene(QtWidgets.QMainWindow):
         self.textEdit.setFrameStyle(QFrame.NoFrame)
         self.textEdit.setCursorWidth(0)
         self.pos = -1
+        self.a = 0
         self.rest = False
         self.errors = []
         self.textEdit.document().contentsChange.connect(self.contents_change)
@@ -317,6 +318,8 @@ class Keyboard_Scene(QtWidgets.QMainWindow):
         self.right_letters_count, self.count = 0, 0
         self.errors = []
         self.textEdit.document().clear()
+        self.a = 0
+        self.ui.type_here.verticalScrollBar().setValue(0)
         self.pos = -1
         self.textEdit.setEnabled(False)
 
@@ -357,12 +360,14 @@ class Keyboard_Scene(QtWidgets.QMainWindow):
         cursor = self.ui.type_here.textCursor()
         cursor.setPosition(position)
         if cursor.position() <= self.pos or self.textEdit.document().toPlainText() == "":
-            print(cursor.position(), self.pos)
             for i in range(-cursor.position()+self.pos, -1, -1):
                 cursor.movePosition(QTextCursor.NextCharacter, -1)
                 self.format.setBackground(QBrush(QColor("white")))
                 cursor.mergeCharFormat(self.format)
                 self.pos = position - 1
+                if (cursor.columnNumber() <= 1):
+                    self.a -= 1
+                    self.ui.type_here.verticalScrollBar().setValue(self.a * 30)
             return
         else:
             end = cursor.movePosition(QTextCursor.NextCharacter, 1)
@@ -370,7 +375,6 @@ class Keyboard_Scene(QtWidgets.QMainWindow):
         if end:
             letter_text = self.text[position]
             self.count += 1
-            print(position)
             letter_area_for_typing = self.textEdit.document().toPlainText()[position]
             if position in self.errors and letter_text == letter_area_for_typing:
                 self.format.setBackground(QBrush(QColor("yellow")))
@@ -389,6 +393,10 @@ class Keyboard_Scene(QtWidgets.QMainWindow):
         else:
             self.textEdit.setEnabled(False)
         accuracy = self.right_letters_count/self.count
+        if(cursor.columnNumber() <= 1):
+            self.ui.type_here.verticalScrollBar().setValue(self.a * 30)
+            self.a += 1
+        print(cursor.columnNumber())
         self.ui.cur_accuracy.setText("{:.2%}".format(accuracy))
         cursor.mergeCharFormat(self.format)
 

@@ -87,7 +87,7 @@ class Ui_keyboard_scene(object):
         self.cur_speed = QtWidgets.QLabel(self.frame)
         self.cur_speed.setGeometry(QtCore.QRect(160, 0, 55, 70))
         font = QtGui.QFont()
-        font.setPointSize(15)
+        font.setPointSize(12)
         self.cur_speed.setFont(font)
         self.cur_speed.setObjectName("cur_speed")
         self.label_speed = QtWidgets.QLabel(self.frame)
