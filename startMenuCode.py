@@ -175,6 +175,7 @@ class Keyboard_Scene(QtWidgets.QMainWindow):
         self.ui.type_here.setText(self.text)
 
         self.textEdit.setEnabled(False)
+        self.ui.type_here.setEnabled(False)
         self.textEdit.setStyleSheet("background-color: rgba(0,0,0,0);"
                                     "color: rgba(0,0,0,0);")
         self.textEdit.setFrameStyle(QFrame.NoFrame)
@@ -363,6 +364,7 @@ class Keyboard_Scene(QtWidgets.QMainWindow):
             for i in range(-cursor.position()+self.pos, -1, -1):
                 cursor.movePosition(QTextCursor.NextCharacter, -1)
                 self.format.setBackground(QBrush(QColor("white")))
+                self.format.setForeground(QBrush(QColor("black")))
                 cursor.mergeCharFormat(self.format)
                 self.pos = position - 1
                 if (cursor.columnNumber() <= 1):
@@ -377,14 +379,17 @@ class Keyboard_Scene(QtWidgets.QMainWindow):
             self.count += 1
             letter_area_for_typing = self.textEdit.document().toPlainText()[position]
             if position in self.errors and letter_text == letter_area_for_typing:
-                self.format.setBackground(QBrush(QColor("yellow")))
+                self.format.setBackground(QBrush(QColor(255, 233, 178)))
+                self.format.setForeground(QBrush(QColor(0, 128, 0)))
                 self.format.setFontWordSpacing(10)
             elif letter_text == letter_area_for_typing:
                 self.right_letters_count += 1
-                self.format.setBackground(QBrush(QColor("green")))
+                self.format.setBackground(QBrush(QColor(231, 251, 211)))
+                self.format.setForeground(QBrush(QColor(14, 99, 14)))
                 self.format.setFontWordSpacing(10)
             else:
-                self.format.setBackground(QBrush(QColor("red")))
+                self.format.setBackground(QBrush(QColor(255, 192, 203)))
+                self.format.setForeground(QBrush(QColor(139, 0, 0)))
                 self.format.setFontWordSpacing(10)
                 self.errors.append(position)
 
