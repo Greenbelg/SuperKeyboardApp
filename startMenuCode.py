@@ -1,6 +1,6 @@
-from startMenu import Ui_start_menu_scene
-from exampleLevel import Ui_keyboard_scene
-from levelsChange import Ui_exercises_scene
+from UI_Files.startMenu import Ui_start_menu_scene
+from UI_Files.exampleLevel import Ui_keyboard_scene
+from UI_Files.levelsChange import Ui_exercises_scene
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.Qt import QTextCursor, QColor, QTextEdit, QTextCharFormat, QFont, QBrush, QFrame
 from PyQt5.QtWidgets import QLabel
@@ -18,7 +18,7 @@ class Start_Scene(QtWidgets.QMainWindow):
         self.ui.invisible_button.clicked.connect(self.goto_exercises)
 
     def goto_random(self):
-        random = Keyboard_Scene("TextExample.txt", True, 0)
+        random = Keyboard_Scene("Texts/TextExample.txt", True, 0)
         widget.addWidget(random)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
@@ -34,8 +34,8 @@ class Exercises_scene(QtWidgets.QMainWindow):
         self.ui = Ui_exercises_scene()
         self.ui.setupUi(self)
 
-        main_text = "тренажер.txt"
-        extra_text = "для мизинцев.txt"
+        main_text = "Texts/тренажер.txt"
+        extra_text = "Texts/для мизинцев.txt"
 
         self.ui.button_go_home.clicked.connect(self.goto_start_menu)
         self.ui.button_level_1.clicked.connect(lambda: self.goto_keyboard(main_text, 1))
@@ -179,12 +179,8 @@ class Keyboard_Scene(QtWidgets.QMainWindow):
                 self.text = f.read()
         self.ui.type_here.setText(self.text)
 
-<<<<<<< HEAD
         self.textEdit.setEnabled(True)
-=======
-        self.textEdit.setEnabled(False)
         self.ui.type_here.setEnabled(False)
->>>>>>> origin/main
         self.textEdit.setStyleSheet("background-color: rgba(0,0,0,0);"
                                     "color: rgba(0,0,0,0);")
         self.textEdit.setFrameStyle(QFrame.NoFrame)
@@ -271,7 +267,8 @@ class Keyboard_Scene(QtWidgets.QMainWindow):
             for i in range(-cursor.position()+self.pos, -1, -1):
                 cursor.movePosition(QTextCursor.NextCharacter, -1)
                 self.format.setBackground(QBrush(QColor("white")))
-                self.format.setForeground(QBrush(QColor("black")))
+                self.format.setForeground(QBrush(QColor(
+                    "black" if self.textEdit.document().toPlainText() != "" else "grey")))
                 cursor.mergeCharFormat(self.format)
                 self.pos = position - 1
                 if (cursor.columnNumber() <= 1):
@@ -308,7 +305,6 @@ class Keyboard_Scene(QtWidgets.QMainWindow):
         if(cursor.columnNumber() <= 1):
             self.ui.type_here.verticalScrollBar().setValue(self.a * 30)
             self.a += 1
-        print(cursor.columnNumber())
         self.ui.cur_accuracy.setText("{:.2%}".format(accuracy))
         cursor.mergeCharFormat(self.format)
 
@@ -317,11 +313,12 @@ class Keyboard_Scene(QtWidgets.QMainWindow):
         widget.addWidget(prev)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
-app = QtWidgets.QApplication(sys.argv)
-widget = QtWidgets.QStackedWidget()
-application = Start_Scene()
-widget.addWidget(application)
-widget.resize(1920, 1080)
-widget.show()
+if __name__ == "__main__":
+    app = QtWidgets.QApplication(sys.argv)
+    widget = QtWidgets.QStackedWidget()
+    application = Start_Scene()
+    widget.addWidget(application)
+    widget.resize(1920, 1080)
+    widget.show()
 
-sys.exit(app.exec())
+    sys.exit(app.exec())
