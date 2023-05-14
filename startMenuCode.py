@@ -1,24 +1,39 @@
-from UI_Files.startMenu import Ui_start_menu_scene
-from UI_Files.exampleLevel import Ui_keyboard_scene
-from UI_Files.levelsChange import Ui_exercises_scene
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.Qt import QTextCursor, QColor, QTextEdit, QTextCharFormat, QFont, QBrush, QFrame
 from PyQt5.QtWidgets import QLabel
 from PyQt5.QtCore import QTimer
+import pathlib
 import sys
+folder_texts_path = pathlib.Path(__file__).parent.joinpath("Texts")
+folder_statistics_path = pathlib.Path(__file__).parent.joinpath("Statistics")
 
+sys.path.append(pathlib.Path(__file__).parent.__str__())
+from UI_Files.startMenu import Ui_start_menu_scene
+from UI_Files.exampleLevel import Ui_keyboard_scene
+from UI_Files.levelsChange import Ui_exercises_scene
 
 class Start_Scene(QtWidgets.QMainWindow):
- 
     def __init__(self):
         super(Start_Scene, self).__init__()
         self.ui = Ui_start_menu_scene()
         self.ui.setupUi(self)
+        self.initialize_statistics()
         self.ui.invisible_button_2.clicked.connect(self.goto_random)
         self.ui.invisible_button.clicked.connect(self.goto_exercises)
 
+    def initialize_statistics(self):
+        random_stat = folder_statistics_path.joinpath("general_stat.txt").read_text().split("\n")
+        exercises_stat = folder_statistics_path.joinpath("levels_stat.txt").read_text().split("\n")
+        general_speed = 0
+        general_accuracy = 0
+        general_symbols = 0
+        count = int(float(random_stat[1].split()[1]))
+        self.ui.Count_WPM_random.setText(str(int(float(random_stat[2].split()[1])/count if count != 0 else 0)))
+        self.ui.Progress_random.setValue(int(float(random_stat[3].split()[1])*100/count if count != 0 else 0))
+        self.ui.Count_W_random.setText(random_stat[4].split()[1])
+
     def goto_random(self):
-        random = Keyboard_Scene("Texts/TextExample.txt", True, 0)
+        random = Keyboard_Scene("Texts/TextExample.txt", True, "random")
         widget.addWidget(random)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
@@ -38,19 +53,19 @@ class Exercises_scene(QtWidgets.QMainWindow):
         extra_text = "Texts/для мизинцев.txt"
 
         self.ui.button_go_home.clicked.connect(self.goto_start_menu)
-        self.ui.button_level_1.clicked.connect(lambda: self.goto_keyboard(main_text, 1))
-        self.ui.button_level_2.clicked.connect(lambda: self.goto_keyboard(main_text, 2))
-        self.ui.button_level_3.clicked.connect(lambda: self.goto_keyboard(main_text, 3))
-        self.ui.button_level_4.clicked.connect(lambda: self.goto_keyboard(main_text, 4))
-        self.ui.button_level_5.clicked.connect(lambda: self.goto_keyboard(main_text, 5))
-        self.ui.button_level_6.clicked.connect(lambda: self.goto_keyboard(extra_text, 0))
-        self.ui.button_level_7.clicked.connect(lambda: self.goto_keyboard(main_text, 6))
-        self.ui.button_level_8.clicked.connect(lambda: self.goto_keyboard(main_text, 7))
-        self.ui.button_level_9.clicked.connect(lambda: self.goto_keyboard(main_text, 8))
-        self.ui.button_level_10.clicked.connect(lambda: self.goto_keyboard(main_text, 9))
+        self.ui.button_level_1.clicked.connect(lambda: self.goto_keyboard(main_text, '1'))
+        self.ui.button_level_2.clicked.connect(lambda: self.goto_keyboard(main_text, '2'))
+        self.ui.button_level_3.clicked.connect(lambda: self.goto_keyboard(main_text, '3'))
+        self.ui.button_level_4.clicked.connect(lambda: self.goto_keyboard(main_text, '4'))
+        self.ui.button_level_5.clicked.connect(lambda: self.goto_keyboard(main_text, '5'))
+        self.ui.button_level_6.clicked.connect(lambda: self.goto_keyboard(extra_text, '0'))
+        self.ui.button_level_7.clicked.connect(lambda: self.goto_keyboard(main_text, '6'))
+        self.ui.button_level_8.clicked.connect(lambda: self.goto_keyboard(main_text, '7'))
+        self.ui.button_level_9.clicked.connect(lambda: self.goto_keyboard(main_text, '8'))
+        self.ui.button_level_10.clicked.connect(lambda: self.goto_keyboard(main_text, '9'))
 
-    def goto_keyboard(self, text, level_number):
-        keyboard = Keyboard_Scene(text, False, level_number)
+    def goto_keyboard(self, text, level_name):
+        keyboard = Keyboard_Scene(text, False, level_name)
         widget.addWidget(keyboard)
         widget.setCurrentIndex(widget.currentIndex() + 1)
     
@@ -61,12 +76,13 @@ class Exercises_scene(QtWidgets.QMainWindow):
 
 
 class Keyboard_Scene(QtWidgets.QMainWindow):
-    def __init__(self, exerc_text, isFromStartMenu, level_number):
+    def __init__(self, exerc_text, isFromStartMenu, level_name):
         super(Keyboard_Scene, self).__init__()
 
         self.ui = Ui_keyboard_scene()
         self.ui.setupUi(self)
         self.isFromStartMenu = isFromStartMenu
+        self.level_name = level_name
 
         self.key_label = {
             "0": self.ui.number_0,
@@ -173,8 +189,8 @@ class Keyboard_Scene(QtWidgets.QMainWindow):
         self.textEdit.setGeometry(QtCore.QRect(150, 250, 1580, 250))
         self.text = ""
         with open(exerc_text, encoding="utf-8") as f:
-            if level_number != 0:
-                self.text = f.read().split('\n')[level_number - 1]
+            if level_name.isdigit() and int(level_name) != 0:
+                self.text = f.read().split('\n')[int(level_name) - 1]
             else:
                 self.text = f.read()
         self.ui.type_here.setText(self.text)
@@ -191,7 +207,7 @@ class Keyboard_Scene(QtWidgets.QMainWindow):
         self.rest = False
         self.errors = []
         self.textEdit.document().contentsChange.connect(self.contents_change)
-        self.textEdit.document().contentsChange.connect(self.print_letter)
+        self.textEdit.document().contentsChange.connect(self.paint_letter)
         self.ui.back.clicked.connect(self.goto_back)
         self.format = QTextCharFormat()
         self.format.setFont(QFont("Roboto", 25, QFont.Bold))
@@ -213,14 +229,15 @@ class Keyboard_Scene(QtWidgets.QMainWindow):
         self.timer.timeout.connect(self.update_time)
         self.second = 0
         self.count = 0
+        self.speed = 0
         self.right_letters_count = 0
         self.is_stopped = True
 
     def update_time(self):
         self.second += 1
         self.time_label.setText(f'{self.second // 60}:{self.second % 60}')
-        speed = self.count / self.second
-        self.ui.cur_speed.setText(str(round(speed, 2)))
+        self.speed = self.count / self.second
+        self.ui.cur_speed.setText(str(round(self.speed, 2)))
 
     def start(self):
         self.is_stopped = True
@@ -234,14 +251,14 @@ class Keyboard_Scene(QtWidgets.QMainWindow):
         self.ui.start.setText("►")
         self.ui.cur_speed.setText("0")
         self.ui.cur_accuracy.setText("0")
-        self.right_letters_count, self.count = 0, 0
+        self.right_letters_count = self.count = self.speed = 0
         self.errors = []
         self.textEdit.document().clear()
         self.a = 0
         self.ui.type_here.verticalScrollBar().setValue(0)
         self.pos = -1
 
-    def print_letter(self):
+    def paint_letter(self):
         letter = self.ui.type_here.document().toPlainText()[self.pos+1]
         for i in self.key_label.keys():
             self.key_label[i].setStyleSheet("background-color: white;")
@@ -302,16 +319,52 @@ class Keyboard_Scene(QtWidgets.QMainWindow):
         else:
             self.textEdit.setEnabled(False)
         accuracy = self.right_letters_count/self.count
-        if(cursor.columnNumber() <= 1):
+        if cursor.columnNumber() <= 1:
             self.ui.type_here.verticalScrollBar().setValue(self.a * 30)
             self.a += 1
         self.ui.cur_accuracy.setText("{:.2%}".format(accuracy))
         cursor.mergeCharFormat(self.format)
 
     def goto_back(self):
+        if self.count != 0:
+            self.write_statistics()
+            if self.level_name == "random":
+                self.update_random_statistics_UI()
         prev = Start_Scene() if self.isFromStartMenu else Exercises_scene()
         widget.addWidget(prev)
         widget.setCurrentIndex(widget.currentIndex() + 1)
+
+    def write_statistics(self):
+        current_file = ("random" if self.level_name == "random" else "levels") + "_stat.txt"
+        old_stat = folder_statistics_path.joinpath(current_file).read_text().split("\n")
+        for i, line in enumerate(old_stat):
+            if line == "level {}".format(self.level_name):
+                if self.level_name == "random":
+                    old_stat[i+1] = "speed: {}".format(self.speed)
+                    old_stat[i+2] = "accuracy: {}".format(self.right_letters_count / self.count)
+                    old_stat[i+3] = "symbols: {}".format(self.count)
+                else:
+                    old_stat[i + 1] = "speed: {}".format(max(self.speed, float(old_stat[i+1].split()[1])))
+                    old_stat[i + 2] = "accuracy: {}".format(max(self.right_letters_count / self.count, float(old_stat[i+2].split()[1])))
+                    old_stat[i + 3] = "symbols: {}".format(self.count)
+                break
+        folder_statistics_path.joinpath(current_file).write_text("\n".join(old_stat))
+
+    def update_random_statistics_UI(self):
+        current_stat = folder_statistics_path.joinpath("random_stat.txt").read_text().split("\n")
+        new_speed = float(current_stat[1].split()[1])
+        new_accuracy = float(current_stat[2].split()[1])
+        new_symbols = float(current_stat[3].split()[1])
+        old_stat = folder_statistics_path.joinpath("general_stat.txt").read_text().split("\n")
+        for i, line in enumerate(old_stat):
+            if line == "level random":
+                old_stat[i+1] = "count: " + str(float(old_stat[i+1].split()[1]) + 1)
+                old_stat[i + 2] = "speed: " + str(float(old_stat[i + 2].split()[1]) + new_speed)
+                old_stat[i + 3] = "accuracy: " + str(float(old_stat[i + 3].split()[1]) + new_accuracy)
+                old_stat[i + 4] = "symbols: " + str(float(old_stat[i + 4].split()[1]) + new_symbols)
+                break
+        folder_statistics_path.joinpath("general_stat.txt").write_text("\n".join(old_stat))
+
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)

@@ -1,0 +1,4 @@
+level random
+speed: 3.7777777777777777
+accuracy: 0.9411764705882353
+symbols: 102
