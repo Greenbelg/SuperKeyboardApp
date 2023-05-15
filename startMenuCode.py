@@ -83,8 +83,7 @@ class Start_Scene(QtWidgets.QMainWindow):
             self.ui.Count_W_random.setText(str(curr_progress_symbols))
 
     def goto_random(self):
-
-        random_text = Keyboard_Scene("Texts/Mumu.txt", True, "random")
+        random_text = Keyboard_Scene("Mumu.txt", True, "random")
         widget.addWidget(random_text)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
@@ -100,8 +99,8 @@ class Exercises_scene(QtWidgets.QMainWindow):
         self.ui = Ui_exercises_scene()
         self.ui.setupUi(self)
 
-        main_text = "Texts/тренажер.txt"
-        extra_text = "Texts/тренажер для мизинцев.txt"
+        main_text = "тренажер.txt"
+        extra_text = "тренажер для мизинцев.txt"
         self.initialize_statistics()
         self.ui.button_go_home.clicked.connect(self.goto_start_menu)
         self.ui.button_level_1.clicked.connect(lambda: self.goto_keyboard(main_text, '1'))
@@ -474,7 +473,7 @@ class Keyboard_Scene(QtWidgets.QMainWindow):
             .write_text("\n".join(new_stat))
 
 def read_text(text, level_number):
-    with open(text, encoding="utf-8") as f:
+    with open(folder_texts_path.joinpath(text).__str__(), encoding="utf-8") as f:
         if level_number != "for_little_fingers" and level_number !="random":
             return unicodedata.normalize("NFKC", f.read().split('\n')[int(level_number) - 1])
         else:
