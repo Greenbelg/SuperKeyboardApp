@@ -66,7 +66,7 @@ class Ui_keyboard_scene(object):
         self.label_accuracy = QtWidgets.QLabel(self.frame)
         self.label_accuracy.setGeometry(QtCore.QRect(240, 0, 141, 70))
         font = QtGui.QFont()
-        font.setPointSize(15)
+        font.setPointSize(13)
         font.setBold(True)
         font.setWeight(75)
         self.label_accuracy.setFont(font)
@@ -89,7 +89,7 @@ class Ui_keyboard_scene(object):
         self.label_speed.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setFamily("MS Shell Dlg 2")
-        font.setPointSize(15)
+        font.setPointSize(13)
         font.setBold(True)
         font.setWeight(75)
         self.label_speed.setFont(font)
@@ -110,6 +110,29 @@ class Ui_keyboard_scene(object):
 "background-color: rgb(255, 177, 125);")
         self.back.setFocusPolicy(Qt.NoFocus)
         self.back.setObjectName("back")
+
+        self.time_label = QtWidgets.QLabel(self.centralwidget)
+        self.time_label.setGeometry(QtCore.QRect(910, 80, 150, 30))
+        self.time_label.setAlignment(QtCore.Qt.AlignCenter)
+        self.time_label.setStyleSheet("background-color: white;"
+                                      "color: black;"
+                                      "border-top-left-radius: 15px;"
+                                      "border-bottom-left-radius: 15px;"
+                                      "border-top-right-radius: 15px;"
+                                      "border-bottom-right-radius: 15px;")
+        self.time_label.setFrameStyle(QtWidgets.QFrame.NoFrame)
+        self.time_label.setObjectName("time_label")
+
+        self.textEdit = QTextEdit(self.centralwidget)
+        self.textEdit.setGeometry(QtCore.QRect(150, 250, 1580, 250))
+        self.textEdit.setEnabled(True)
+        self.textEdit.setStyleSheet("background-color: rgba(0,0,0,0);"
+                                    "color: rgba(0,0,0,0);")
+        self.textEdit.setFrameStyle(QtWidgets.QFrame.NoFrame)
+        self.textEdit.setCursorWidth(0)
+        self.textEdit.setFocus()
+        self.textEdit.setObjectName("textEdit")
+
         self.restart = QtWidgets.QPushButton(self.frame)
         self.restart.setGeometry(QtCore.QRect(1720, 10, 81, 51))
         font = QtGui.QFont()
@@ -955,6 +978,7 @@ class Ui_keyboard_scene(object):
         self.cur_speed.setText(_translate("MainWindow", "0"))
         self.label_speed.setText(_translate("MainWindow", "Скорость"))
         self.back.setText(_translate("MainWindow", "Назад"))
+        self.time_label.setText(_translate("MainWindow", "0:0"))
         self.restart.setText(_translate("MainWindow", "Сброс"))
         self.start.setText(_translate("MainWindow", "►"))
         self.key_minus.setText(_translate("MainWindow", "-"))

@@ -243,7 +243,6 @@ class Keyboard_Scene(QtWidgets.QMainWindow):
             "shift left" : self.ui.key_Shift_l,
             "shift right" : self.ui.key_Shift_r
         }
-
         self.special_symbols = {
             "~": "ё",
             "!": "1",
@@ -261,45 +260,26 @@ class Keyboard_Scene(QtWidgets.QMainWindow):
             "/": "\\",
             ",": "."
         }
-
         self.with_right_shift = "ё12345йцукефывапячсми" + "\t"
 
-        self.textEdit = QTextEdit(self)
-        self.textEdit.setGeometry(QtCore.QRect(150, 250, 1580, 250))
         self.text = ""
         self.text = read_text(exerc_text, level_name)
         if isFromStartMenu == True:
             random_sentence_start = random.choice(split_text(self.text))
             self.text = get_text_chunk(self.text, random_sentence_start)
         self.ui.type_here.setText(self.text)
-
-        self.textEdit.setEnabled(True)
         self.ui.type_here.setEnabled(False)
-        self.textEdit.setStyleSheet("background-color: rgba(0,0,0,0);"
-                                    "color: rgba(0,0,0,0);")
-        self.textEdit.setFrameStyle(QFrame.NoFrame)
-        self.textEdit.setCursorWidth(0)
-        self.textEdit.setFocus()
+
         self.pos = -1
-        self.a = 0
+        self.scroll_position = 0
         self.rest = False
         self.errors = []
-        self.textEdit.document().contentsChange.connect(self.contents_change)
-        self.textEdit.document().contentsChange.connect(self.paint_letter)
+        self.ui.textEdit.document().contentsChange.connect(self.contents_change)
+        self.ui.textEdit.document().contentsChange.connect(self.paint_letter)
         self.ui.back.clicked.connect(self.goto_back)
         self.format = QTextCharFormat()
         self.format.setFont(QFont("Roboto", 25, QFont.Bold))
 
-        self.time_label = QLabel("0:0", self)
-        self.time_label.setGeometry(QtCore.QRect(910, 80, 150, 30))
-        self.time_label.setAlignment(QtCore.Qt.AlignCenter)
-        self.time_label.setStyleSheet("background-color: white;"
-                                      "color: black;"
-                                      "border-top-left-radius: 15px;"
-                                      "border-bottom-left-radius: 15px;"
-                                      "border-top-right-radius: 15px;"
-                                      "border-bottom-right-radius: 15px;")
-        self.time_label.setFrameStyle(QFrame.NoFrame)
         self.ui.start.clicked.connect(self.start)
         self.ui.restart.clicked.connect(self.restart)
 
@@ -353,65 +333,82 @@ class Keyboard_Scene(QtWidgets.QMainWindow):
             self.key_label[letter].setStyleSheet("background-color: grey;")
 
     def contents_change(self, position):
-        if self.textEdit.document().toPlainText() != "" and self.is_stopped:
-            self.ui.start.setText("||")
-            self.timer.start(1000)
-            self.is_stopped = False
-        cursor = self.ui.type_here.textCursor()
-        cursor.setPosition(position)
-        if cursor.position() <= self.pos or self.textEdit.document().toPlainText() == "":
-            for i in range(-cursor.position()+self.pos, -1, -1):
-                cursor.movePosition(QTextCursor.NextCharacter, -1)
-                self.format.setBackground(QBrush(QColor("white")))
-                self.format.setForeground(QBrush(QColor(
-                    "black" if self.textEdit.document().toPlainText() != "" else "grey")))
-                cursor.mergeCharFormat(self.format)
-                self.pos = position - 1
-                if (cursor.columnNumber() <= 1):
-                    self.a -= 1
-                    self.ui.type_here.verticalScrollBar().setValue(self.a * 30)
-            return
-        else:
-            end = cursor.movePosition(QTextCursor.NextCharacter, 1)
-        self.pos = position
-        if end:
-            letter_text = self.text[position]
-            self.count += 1
-            letter_area_for_typing = self.textEdit.document().toPlainText()[position]
-            if position in self.errors and letter_text == letter_area_for_typing:
-                self.format.setBackground(QBrush(QColor(255, 233, 178)))
-                self.format.setForeground(QBrush(QColor(0, 128, 0)))
-                self.format.setFontWordSpacing(10)
-            elif letter_text == letter_area_for_typing:
-                self.right_letters_count += 1
-                self.format.setBackground(QBrush(QColor(231, 251, 211)))
-                self.format.setForeground(QBrush(QColor(14, 99, 14)))
-                self.format.setFontWordSpacing(10)
-            else:
-                self.format.setBackground(QBrush(QColor(255, 192, 203)))
-                self.format.setForeground(QBrush(QColor(139, 0, 0)))
-                self.format.setFontWordSpacing(10)
-                self.errors.append(position)
-
-            if position == len(self.text) - 1:
-                self.textEdit.setEnabled(False)
-        else:
-            self.textEdit.setEnabled(False)
-        accuracy = self.right_letters_count / self.count
-        if cursor.columnNumber() <= 1:
-            self.ui.type_here.verticalScrollBar().setValue(self.a * 30)
-            self.a += 1
-        self.ui.cur_accuracy.setText("{:.2%}".format(accuracy))
-        cursor.mergeCharFormat(self.format)
-
-        if position >= len(self.ui.type_here.document().toPlainText()) - 2:
-            print("go")
+        if position >= len(self.ui.type_here.document().toPlainText()) - 1:
             if self.count != 0:
                 self.write_statistics()
                 if self.level_name == "random":
                     self.update_random_statistics_UI()
             self.goto_back()
             return
+
+        if self.ui.textEdit.document().toPlainText() != "" and\
+                self.is_stopped:
+            self.ui.start.setText("||")
+            self.timer.start(1000)
+            self.is_stopped = False
+
+        cursor = self.ui.type_here.textCursor()
+        cursor.setPosition(position)
+        if cursor.position() <= self.pos or\
+                self.ui.textEdit.document().toPlainText() == "":
+            self.clear_or_delete_symbol(cursor, position)
+            return
+        else:
+            end = cursor.movePosition(QTextCursor.NextCharacter, 1)
+
+        self.pos = position
+        if end:
+            self.change_letter_color(cursor, position)
+        else:
+            self.ui.textEdit.setEnabled(False)
+
+        accuracy = self.right_letters_count / self.count
+        self.ui.cur_accuracy.setText("{:.2%}".format(accuracy))
+
+        if cursor.columnNumber() <= 1:
+            self.ui.type_here.verticalScrollBar().setValue(self.scroll_position * 30)
+            self.scroll_position += 1
+    
+    def clear_or_delete_symbol(self, cursor, position):
+        for i in range(-cursor.position() + self.pos, -1, -1):
+            cursor.movePosition(QTextCursor.NextCharacter, -1)
+            self.set_right_letter_color(
+                QColor("white"),
+                QColor("black" if self.ui.textEdit.document().toPlainText() != ""
+                       else "grey"),
+                cursor)
+            self.pos = position - 1
+            if cursor.columnNumber() <= 1:
+                self.scroll_position -= 1
+                self.ui.type_here.verticalScrollBar().setValue(self.scroll_position * 30)
+
+    def change_letter_color(self, cursor, position):
+        letter_text = self.text[position]
+        self.count += 1
+        letter_area_for_typing = self.ui.textEdit.document().toPlainText()[position]
+        if position in self.errors and letter_text == letter_area_for_typing:
+            self.set_right_letter_color(QColor(255, 233, 178),
+                                        QColor(0, 128, 0),
+                                        cursor)
+        elif letter_text == letter_area_for_typing:
+            self.right_letters_count += 1
+            self.set_right_letter_color(QColor(231, 251, 211),
+                                        QColor(14, 99, 14),
+                                        cursor)
+        else:
+            self.set_right_letter_color(QColor(255, 192, 203),
+                                        QColor(139, 0, 0),
+                                        cursor)
+            self.errors.append(position)
+
+        if position == len(self.text) - 1:
+            self.ui.textEdit.setEnabled(False)
+
+    def set_right_letter_color(self, color_back, color_fore, cursor):
+        self.format.setBackground(QBrush(color_back))
+        self.format.setForeground(QBrush(color_fore))
+        self.format.setFontWordSpacing(10)
+        cursor.mergeCharFormat(self.format)
 
     def goto_back(self):
         prev = Start_Scene() if self.isFromStartMenu else Exercises_scene()
@@ -475,7 +472,6 @@ class Keyboard_Scene(QtWidgets.QMainWindow):
             .format(int(new_stat[4].split()[1]) + new_symbols)
         folder_statistics_path.joinpath("general_stat.txt")\
             .write_text("\n".join(new_stat))
-
 
 def read_text(text, level_number):
     with open(text, encoding="utf-8") as f:
