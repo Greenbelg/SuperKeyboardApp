@@ -50,9 +50,9 @@ class Ui_start_menu_scene(object):
         self.Start_exercises.setAlignment(QtCore.Qt.AlignCenter)
         self.Start_exercises.setObjectName("Start_exercises")
 
-        self.Progres_exercises = QtWidgets.QProgressBar(self.Exercises)
-        self.Progres_exercises.setGeometry(QtCore.QRect(27, 470, 701, 4))
-        self.Progres_exercises.setStyleSheet("QProgressBar{\n"
+        self.Progress_levels = QtWidgets.QProgressBar(self.Exercises)
+        self.Progress_levels.setGeometry(QtCore.QRect(27, 470, 701, 4))
+        self.Progress_levels.setStyleSheet("QProgressBar{\n"
 "    color: rgb(255, 180, 130);\n"
 "    border: 1px solid  grey;\n"
 "    border-radius: 5px;\n"
@@ -62,9 +62,9 @@ class Ui_start_menu_scene(object):
 "    background-color: rgb(39, 117, 117);;\n"
 "    border-radius: 3px;\n"
 "}")
-        self.Progres_exercises.setProperty("value", 24)
-        self.Progres_exercises.setTextVisible(False)
-        self.Progres_exercises.setObjectName("Progres_exercises")
+        self.Progress_levels.setProperty("value", 24)
+        self.Progress_levels.setTextVisible(False)
+        self.Progress_levels.setObjectName("Progress_levels")
 
         self.invisible_button = QtWidgets.QPushButton(self.Exercises)
         self.invisible_button.setGeometry(QtCore.QRect(0, 0, 760, 500))

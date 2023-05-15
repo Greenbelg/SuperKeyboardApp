@@ -1,5 +1,5 @@
 level random
-count: 0
-speed: 0
-accuracy: 0
-symbols: 0
+count: 3
+speed: 3338
+accuracy: 120
+symbols: 571

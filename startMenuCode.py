@@ -1,9 +1,12 @@
-from PyQt5 import QtWidgets, QtCore
-from PyQt5.Qt import QTextCursor, QColor, QTextEdit, QTextCharFormat, QFont, QBrush, QFrame
-from PyQt5.QtWidgets import QLabel
-from PyQt5.QtCore import QTimer
+import math
 import pathlib
 import sys
+
+from PyQt5 import QtWidgets, QtCore
+from PyQt5.Qt import QTextCursor, QColor, QTextEdit, QTextCharFormat, QFont, QBrush, QFrame
+from PyQt5.QtCore import QTimer
+from PyQt5.QtWidgets import QLabel
+
 folder_texts_path = pathlib.Path(__file__).parent.joinpath("Texts")
 folder_statistics_path = pathlib.Path(__file__).parent.joinpath("Statistics")
 
@@ -12,25 +15,69 @@ from UI_Files.startMenu import Ui_start_menu_scene
 from UI_Files.exampleLevel import Ui_keyboard_scene
 from UI_Files.levelsChange import Ui_exercises_scene
 
+
 class Start_Scene(QtWidgets.QMainWindow):
     def __init__(self):
         super(Start_Scene, self).__init__()
         self.ui = Ui_start_menu_scene()
         self.ui.setupUi(self)
+
+        self.main_speed = 0
+        self.main_accuracy = 0
+        self.main_symbols = 0
         self.initialize_statistics()
         self.ui.invisible_button_2.clicked.connect(self.goto_random)
         self.ui.invisible_button.clicked.connect(self.goto_exercises)
 
     def initialize_statistics(self):
-        random_stat = folder_statistics_path.joinpath("general_stat.txt").read_text().split("\n")
-        exercises_stat = folder_statistics_path.joinpath("levels_stat.txt").read_text().split("\n")
-        general_speed = 0
-        general_accuracy = 0
-        general_symbols = 0
-        count = int(float(random_stat[1].split()[1]))
-        self.ui.Count_WPM_random.setText(str(int(float(random_stat[2].split()[1])/count if count != 0 else 0)))
-        self.ui.Progress_random.setValue(int(float(random_stat[3].split()[1])*100/count if count != 0 else 0))
-        self.ui.Count_W_random.setText(random_stat[4].split()[1])
+        self.update_levels_stat("general")
+        self.update_levels_stat("levels")
+        self.ui.Count_WPM_main.setText(str(self.main_speed // 2))
+        self.ui.Progress_main.setValue(int(self.main_accuracy // 2))
+        self.ui.Count_W_main.setText(str(self.main_symbols))
+
+    def update_levels_stat(self, name_stat):
+        try:
+            exercises_stat = folder_statistics_path\
+                .joinpath(f"{name_stat}_stat.txt")\
+                .read_text()\
+                .split("\n")
+        except OSError:
+            return
+        folder_statistics_path\
+            .joinpath(f"{name_stat}_stat.txt")\
+            .write_text("\n".join(exercises_stat))
+
+        count = sum([int(line.split()[1]) for line in exercises_stat
+                     if "count" in line])
+        speeds = [int(line.split()[1]) for line in exercises_stat
+                  if "speed" in line]
+        accuracies = [int(line.split()[1]) for line in exercises_stat
+                      if "accuracy" in line and line.split()[1] != "0"]
+        curr_progress_symbols = sum(
+            [int(line.split()[1]) for line in exercises_stat
+                if "symbols" in line and line.split()[1] != "0"])
+        count_speeds = count if name_stat == "general" else len(speeds)
+        count_accuracies = count if name_stat == "general" else len(accuracies)
+        curr_progress_speed = int(sum(speeds) // count_speeds)\
+            if count_speeds != 0 else 0
+        curr_progress_accuracy = int(sum(accuracies) / count_accuracies)\
+            if count_accuracies != 0 else 0
+
+        self.main_speed += curr_progress_speed
+        self.main_accuracy += curr_progress_accuracy
+        self.main_symbols += curr_progress_symbols
+
+        if name_stat == "levels":
+            self.ui.Count_WPM_exercises.setText(str(curr_progress_speed))
+            self.ui.Progress_exercises.setValue(curr_progress_accuracy)
+            self.ui.Count_W_exercises.setText(str(curr_progress_symbols))
+            self.ui.Progress_levels.setValue(
+                int((curr_progress_speed + curr_progress_accuracy) // 10))
+        else:
+            self.ui.Count_WPM_random.setText(str(curr_progress_speed))
+            self.ui.Progress_random.setValue(curr_progress_accuracy)
+            self.ui.Count_W_random.setText(str(curr_progress_symbols))
 
     def goto_random(self):
         random = Keyboard_Scene("Texts/TextExample.txt", True, "random")
@@ -51,7 +98,7 @@ class Exercises_scene(QtWidgets.QMainWindow):
 
         main_text = "Texts/тренажер.txt"
         extra_text = "Texts/для мизинцев.txt"
-
+        self.initialize_statistics()
         self.ui.button_go_home.clicked.connect(self.goto_start_menu)
         self.ui.button_level_1.clicked.connect(lambda: self.goto_keyboard(main_text, '1'))
         self.ui.button_level_2.clicked.connect(lambda: self.goto_keyboard(main_text, '2'))
@@ -63,6 +110,34 @@ class Exercises_scene(QtWidgets.QMainWindow):
         self.ui.button_level_8.clicked.connect(lambda: self.goto_keyboard(main_text, '7'))
         self.ui.button_level_9.clicked.connect(lambda: self.goto_keyboard(main_text, '8'))
         self.ui.button_level_10.clicked.connect(lambda: self.goto_keyboard(main_text, '9'))
+
+    def initialize_statistics(self):
+        self.levels_stat = {
+            "level 1": (self.ui.count_spedd_level_1, self.ui.count_accuracy_level_1),
+            "level 2": (self.ui.count_spedd_level_2, self.ui.count_accuracy_level_2),
+            "level 3": (self.ui.count_spedd_level_3, self.ui.count_accuracy_level_3),
+            "level 4": (self.ui.count_spedd_level_4, self.ui.count_accuracy_level_4),
+            "level 5": (self.ui.count_spedd_level_5, self.ui.count_accuracy_level_5),
+            "level 0": (self.ui.count_spedd_level_6, self.ui.count_accuracy_level_6),
+            "level 6": (self.ui.count_spedd_level_7, self.ui.count_accuracy_level_7),
+            "level 7": (self.ui.count_spedd_level_8, self.ui.count_accuracy_level_8),
+            "level 8": (self.ui.count_spedd_level_9, self.ui.count_accuracy_level_9),
+            "level 9": (self.ui.count_spedd_level_10, self.ui.count_accuracy_level_10)
+        }
+
+        try:
+            levels_stat = folder_statistics_path.joinpath("levels_stat.txt")\
+                .read_text()\
+                .split("\n")
+        except OSError:
+            return
+        folder_statistics_path.joinpath("levels_stat.txt")\
+            .write_text("\n".join(levels_stat))
+        for i in range(0, len(levels_stat), 6):
+            self.levels_stat[levels_stat[i]][0]\
+                .setText(levels_stat[i + 2].split()[1])
+            self.levels_stat[levels_stat[i]][1]\
+                .setValue(int(levels_stat[i + 3].split()[1]))
 
     def goto_keyboard(self, text, level_name):
         keyboard = Keyboard_Scene(text, False, level_name)
@@ -236,7 +311,7 @@ class Keyboard_Scene(QtWidgets.QMainWindow):
     def update_time(self):
         self.second += 1
         self.time_label.setText(f'{self.second // 60}:{self.second % 60}')
-        self.speed = self.count / self.second
+        self.speed = int(self.count * 60 / self.second)
         self.ui.cur_speed.setText(str(round(self.speed, 2)))
 
     def start(self):
@@ -251,7 +326,8 @@ class Keyboard_Scene(QtWidgets.QMainWindow):
         self.ui.start.setText("►")
         self.ui.cur_speed.setText("0")
         self.ui.cur_accuracy.setText("0")
-        self.right_letters_count = self.count = self.speed = 0
+        self.right_letters_count = 0
+        self.count = self.speed = 0
         self.errors = []
         self.textEdit.document().clear()
         self.a = 0
@@ -318,52 +394,84 @@ class Keyboard_Scene(QtWidgets.QMainWindow):
                 self.textEdit.setEnabled(False)
         else:
             self.textEdit.setEnabled(False)
-        accuracy = self.right_letters_count/self.count
+        accuracy = self.right_letters_count / self.count
         if cursor.columnNumber() <= 1:
             self.ui.type_here.verticalScrollBar().setValue(self.a * 30)
             self.a += 1
         self.ui.cur_accuracy.setText("{:.2%}".format(accuracy))
         cursor.mergeCharFormat(self.format)
 
+        if position >= len(self.ui.type_here.document().toPlainText()) - 2:
+            print("go")
+            if self.count != 0:
+                self.write_statistics()
+                if self.level_name == "random":
+                    self.update_random_statistics_UI()
+            self.goto_back()
+            return
+
     def goto_back(self):
-        if self.count != 0:
-            self.write_statistics()
-            if self.level_name == "random":
-                self.update_random_statistics_UI()
         prev = Start_Scene() if self.isFromStartMenu else Exercises_scene()
         widget.addWidget(prev)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
     def write_statistics(self):
-        current_file = ("random" if self.level_name == "random" else "levels") + "_stat.txt"
-        old_stat = folder_statistics_path.joinpath(current_file).read_text().split("\n")
-        for i, line in enumerate(old_stat):
+        current_file = "random_stat.txt" if self.level_name == "random"\
+            else "levels_stat.txt"
+        try:
+            new_stat = folder_statistics_path.joinpath(current_file)\
+                .read_text()\
+                .split("\n")
+        except OSError:
+            return
+
+        for i, line in enumerate(new_stat):
             if line == "level {}".format(self.level_name):
-                if self.level_name == "random":
-                    old_stat[i+1] = "speed: {}".format(self.speed)
-                    old_stat[i+2] = "accuracy: {}".format(self.right_letters_count / self.count)
-                    old_stat[i+3] = "symbols: {}".format(self.count)
-                else:
-                    old_stat[i + 1] = "speed: {}".format(max(self.speed, float(old_stat[i+1].split()[1])))
-                    old_stat[i + 2] = "accuracy: {}".format(max(self.right_letters_count / self.count, float(old_stat[i+2].split()[1])))
-                    old_stat[i + 3] = "symbols: {}".format(self.count)
+                curr_speed = self.speed
+                curr_accuracy = int(self.right_letters_count / self.count * 100)
+                curr_symbols = self.count
+                if self.level_name != "random":
+                    curr_speed = max(curr_speed,
+                                     int(new_stat[i + 2].split()[1]))
+                    curr_accuracy = max(curr_accuracy,
+                                        int(new_stat[i + 3].split()[1]))
+                    curr_symbols += int(new_stat[i + 4].split()[1])
+
+                new_stat[i + 2] = "speed: {}".format(curr_speed)
+                new_stat[i + 3] = "accuracy: {}".format(curr_accuracy)
+                new_stat[i + 4] = "symbols: {}".format(curr_symbols)
                 break
-        folder_statistics_path.joinpath(current_file).write_text("\n".join(old_stat))
+        folder_statistics_path.joinpath(current_file)\
+            .write_text("\n".join(new_stat))
 
     def update_random_statistics_UI(self):
-        current_stat = folder_statistics_path.joinpath("random_stat.txt").read_text().split("\n")
-        new_speed = float(current_stat[1].split()[1])
-        new_accuracy = float(current_stat[2].split()[1])
-        new_symbols = float(current_stat[3].split()[1])
-        old_stat = folder_statistics_path.joinpath("general_stat.txt").read_text().split("\n")
-        for i, line in enumerate(old_stat):
-            if line == "level random":
-                old_stat[i+1] = "count: " + str(float(old_stat[i+1].split()[1]) + 1)
-                old_stat[i + 2] = "speed: " + str(float(old_stat[i + 2].split()[1]) + new_speed)
-                old_stat[i + 3] = "accuracy: " + str(float(old_stat[i + 3].split()[1]) + new_accuracy)
-                old_stat[i + 4] = "symbols: " + str(float(old_stat[i + 4].split()[1]) + new_symbols)
-                break
-        folder_statistics_path.joinpath("general_stat.txt").write_text("\n".join(old_stat))
+        try:
+            curr_stat = folder_statistics_path.joinpath("random_stat.txt")\
+                .read_text()\
+                .split("\n")
+        except OSError:
+            return
+
+        new_speed = int(curr_stat[2].split()[1])
+        new_accuracy = int(curr_stat[3].split()[1])
+        new_symbols = int(curr_stat[4].split()[1])
+        try:
+            new_stat = folder_statistics_path.joinpath("general_stat.txt")\
+                .read_text()\
+                .split("\n")
+        except OSError:
+            return
+
+        new_stat[1] = "count: {}"\
+            .format(int(new_stat[1].split()[1]) + 1)
+        new_stat[2] = "speed: {}"\
+            .format(int(new_stat[2].split()[1]) + new_speed)
+        new_stat[3] = "accuracy: {}"\
+            .format(int(new_stat[3].split()[1]) + new_accuracy)
+        new_stat[4] = "symbols: {}"\
+            .format(int(new_stat[4].split()[1]) + new_symbols)
+        folder_statistics_path.joinpath("general_stat.txt")\
+            .write_text("\n".join(new_stat))
 
 
 if __name__ == "__main__":
