@@ -1,6 +1,9 @@
 import math
 import pathlib
+import re
 import sys
+import random
+import unicodedata
 
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.Qt import QTextCursor, QColor, QTextEdit, QTextCharFormat, QFont, QBrush, QFrame
@@ -80,8 +83,9 @@ class Start_Scene(QtWidgets.QMainWindow):
             self.ui.Count_W_random.setText(str(curr_progress_symbols))
 
     def goto_random(self):
-        random = Keyboard_Scene("Texts/TextExample.txt", True, "random")
-        widget.addWidget(random)
+
+        random_text = Keyboard_Scene("Texts/Mumu.txt", True, "random")
+        widget.addWidget(random_text)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
     def goto_exercises(self):
@@ -97,7 +101,7 @@ class Exercises_scene(QtWidgets.QMainWindow):
         self.ui.setupUi(self)
 
         main_text = "Texts/тренажер.txt"
-        extra_text = "Texts/для мизинцев.txt"
+        extra_text = "Texts/тренажер для мизинцев.txt"
         self.initialize_statistics()
         self.ui.button_go_home.clicked.connect(self.goto_start_menu)
         self.ui.button_level_1.clicked.connect(lambda: self.goto_keyboard(main_text, '1'))
@@ -105,7 +109,7 @@ class Exercises_scene(QtWidgets.QMainWindow):
         self.ui.button_level_3.clicked.connect(lambda: self.goto_keyboard(main_text, '3'))
         self.ui.button_level_4.clicked.connect(lambda: self.goto_keyboard(main_text, '4'))
         self.ui.button_level_5.clicked.connect(lambda: self.goto_keyboard(main_text, '5'))
-        self.ui.button_level_6.clicked.connect(lambda: self.goto_keyboard(extra_text, '0'))
+        self.ui.button_level_6.clicked.connect(lambda: self.goto_keyboard(extra_text, 'for_little_fingers'))
         self.ui.button_level_7.clicked.connect(lambda: self.goto_keyboard(main_text, '6'))
         self.ui.button_level_8.clicked.connect(lambda: self.goto_keyboard(main_text, '7'))
         self.ui.button_level_9.clicked.connect(lambda: self.goto_keyboard(main_text, '8'))
@@ -263,11 +267,10 @@ class Keyboard_Scene(QtWidgets.QMainWindow):
         self.textEdit = QTextEdit(self)
         self.textEdit.setGeometry(QtCore.QRect(150, 250, 1580, 250))
         self.text = ""
-        with open(exerc_text, encoding="utf-8") as f:
-            if level_name.isdigit() and int(level_name) != 0:
-                self.text = f.read().split('\n')[int(level_name) - 1]
-            else:
-                self.text = f.read()
+        self.text = read_text(exerc_text, level_name)
+        if isFromStartMenu == True:
+            random_sentence_start = random.choice(split_text(self.text))
+            self.text = get_text_chunk(self.text, random_sentence_start)
         self.ui.type_here.setText(self.text)
 
         self.textEdit.setEnabled(True)
@@ -473,6 +476,33 @@ class Keyboard_Scene(QtWidgets.QMainWindow):
         folder_statistics_path.joinpath("general_stat.txt")\
             .write_text("\n".join(new_stat))
 
+
+def read_text(text, level_number):
+    with open(text, encoding="utf-8") as f:
+        if level_number != "for_little_fingers" and level_number !="random":
+            return unicodedata.normalize("NFKC", f.read().split('\n')[int(level_number) - 1])
+        else:
+            return unicodedata.normalize("NFKC", f.read())
+
+
+def split_text(text):
+    pattern = re.compile(r'([^\n.!?]+[.!?])', re.M)
+    sentences = pattern.findall(text)
+    return sentences
+
+
+def get_text_chunk(text, start_sentence, max_length=600):
+    sentences = split_text(text)
+    start_index = sentences.index(start_sentence)
+    chunk = start_sentence
+    length = len(start_sentence)
+    for sentence in sentences[start_index + 1:]:
+        if length + len(sentence) <= max_length:
+            chunk += sentence
+            length += len(sentence)
+        else:
+            break
+    return chunk
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)

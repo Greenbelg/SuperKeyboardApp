@@ -111,7 +111,7 @@ class Ui_start_menu_scene(object):
         self.separator_3.setObjectName("separator_3")
 
         self.Statistics_data = QtWidgets.QFrame(self.centralwidget)
-        self.Statistics_data.setGeometry(QtCore.QRect(160, 630, 1620, 320))
+        self.Statistics_data.setGeometry(QtCore.QRect(150, 630, 1620, 320))
         font = QtGui.QFont()
         font.setFamily("Arial")
         self.Statistics_data.setFont(font)
