@@ -264,7 +264,8 @@ class Keyboard_Scene(QtWidgets.QMainWindow):
         self.text = ""
         self.text = read_text(exerc_text, level_name)
         if isFromStartMenu == True:
-            random_sentence_start = random.choice(split_text(self.text))
+            self.ui.text_heading.setText(self.text[0])
+            random_sentence_start = random.choice(self.text[1:])
             self.text = get_text_chunk(self.text, random_sentence_start)
         self.ui.type_here.setText(self.text)
         self.ui.type_here.setEnabled(False)
@@ -292,7 +293,7 @@ class Keyboard_Scene(QtWidgets.QMainWindow):
 
     def update_time(self):
         self.second += 1
-        self.time_label.setText(f'{self.second // 60}:{self.second % 60}')
+        self.ui.time_label.setText(f'{self.second // 60}:{self.second % 60}')
         self.speed = int(self.count * 60 / self.second)
         self.ui.cur_speed.setText(str(round(self.speed, 2)))
 
@@ -304,14 +305,14 @@ class Keyboard_Scene(QtWidgets.QMainWindow):
     def restart(self):
         self.is_stopped = True
         self.timer.stop()
-        self.time_label.setText("0:0")
+        self.ui.time_label.setText("0:0")
         self.ui.start.setText("►")
         self.ui.cur_speed.setText("0")
         self.ui.cur_accuracy.setText("0")
         self.right_letters_count = 0
         self.count = self.speed = 0
         self.errors = []
-        self.textEdit.document().clear()
+        self.ui.textEdit.document().clear()
         self.a = 0
         self.ui.type_here.verticalScrollBar().setValue(0)
         self.pos = -1
@@ -476,25 +477,29 @@ def read_text(text, level_number):
     with open(folder_texts_path.joinpath(text).__str__(), encoding="utf-8") as f:
         if level_number != "for_little_fingers" and level_number !="random":
             return unicodedata.normalize("NFKC", f.read().split('\n')[int(level_number) - 1])
+        elif level_number =="random":
+            return split_text(unicodedata.normalize("NFKC", f.read()))
         else:
             return unicodedata.normalize("NFKC", f.read())
 
 
 def split_text(text):
-    pattern = re.compile(r'([^\n.!?]+[.!?])', re.M)
-    sentences = pattern.findall(text)
+    sentences = re.split(r"(?<!\w\.\w.)(?<![А-ЯЁ][а-яё]\.)(?<=[.?!:])\s+(?=[А-ЯЁ])", text)
     return sentences
 
 
-def get_text_chunk(text, start_sentence, max_length=600):
-    sentences = split_text(text)
+def get_text_chunk(sentences, start_sentence, max_length=900):
     start_index = sentences.index(start_sentence)
     chunk = start_sentence
     length = len(start_sentence)
     for sentence in sentences[start_index + 1:]:
-        if length + len(sentence) <= max_length:
-            chunk += sentence
-            length += len(sentence)
+        if length + len(sentence) < max_length:
+            if sentence.startswith("\n"):
+                chunk += sentence
+                length += len(sentence)
+            else:
+                chunk = chunk + " " + sentence
+                length += len(sentence) + 1
         else:
             break
     return chunk

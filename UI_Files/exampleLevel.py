@@ -29,7 +29,7 @@ class Ui_keyboard_scene(object):
         self.text.setGraphicsEffect(shadow)
         self.text.setObjectName("text")
         self.text_heading = QtWidgets.QLabel(self.text)
-        self.text_heading.setGeometry(QtCore.QRect(20, 10, 171, 51))
+        self.text_heading.setGeometry(QtCore.QRect(20, 10, 400, 51))
         font = QtGui.QFont()
         font.setFamily("Roboto")
         font.setPointSize(15)
