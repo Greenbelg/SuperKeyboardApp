@@ -474,6 +474,41 @@ class Ui_start_menu_scene(object):
         self.W_exercises.setFont(font)
         self.W_exercises.setStyleSheet("color: rgba(91, 117, 117, 100);")
         self.W_exercises.setObjectName("W_exercises")
+        
+# self.invisible_button = QtWidgets.QPushButton(self.centralwidget)
+#         self.invisible_button.setGeometry(QtCore.QRect(770, 900, 370, 60))
+#         self.invisible_button.setFocusPolicy(QtCore.Qt.StrongFocus)
+#         self.invisible_button.setContextMenuPolicy(QtCore.Qt.DefaultContextMenu)
+#         self.invisible_button.setStyleSheet("QPushButton::hover{background-color : rgba(250, 250, 250, 30);}\n"
+# "QPushButton { background-color: rgba(10, 0, 0, 0); }\n"
+# "\n"
+# "")
+#         self.invisible_button.setText("")
+#         self.invisible_button.setObjectName("invisible_button")
+
+        self.clear_data = QtWidgets.QPushButton(self.Statistics_data)
+        self.clear_data.setGeometry(QtCore.QRect(1500, 20, 100, 30))
+        self.clear_data.setStyleSheet("QPushButton::hover{background-color : rgb(230, 0, 0);}\n"
+"QPushButton { background-color: rgba(230, 0, 0, 130); }\n"
+"\n"
+"color: rgb(39, 117, 117);")
+        font = QtGui.QFont()
+        font.setFamily("Roboto")
+        font.setPointSize(9)
+        self.clear_data.setFont(font)
+        self.clear_data.setText("очистить")
+
+        self.recruitment_dynam = QtWidgets.QPushButton(self.Statistics_data)
+        self.recruitment_dynam.setGeometry(QtCore.QRect(20, 20, 170, 50))
+        self.recruitment_dynam.setStyleSheet("QPushButton::hover{background-color : rgba(0, 0, 230, 150);}\n"
+"QPushButton { background-color: rgba(0, 0, 230, 130); }\n"
+"\n"
+"color: rgb(39, 117, 117);")
+        font = QtGui.QFont()
+        font.setFamily("Roboto")
+        font.setPointSize(8)
+        self.recruitment_dynam.setFont(font)
+        self.recruitment_dynam.setText("Динамика прогресса")
 
         MainWindow.setCentralWidget(self.centralwidget)
 

@@ -1,23 +1,24 @@
-import math
 import pathlib
 import re
 import sys
 import random
+import typing
 import unicodedata
 
-from PyQt5 import QtWidgets, QtCore
-from PyQt5.Qt import QTextCursor, QColor, QTextEdit, QTextCharFormat, QFont, QBrush, QFrame
+from PyQt5 import QtCore, QtWidgets
+from PyQt5.Qt import QTextCursor, QColor, QTextCharFormat, QFont, QBrush
 from PyQt5.QtCore import QTimer
-from PyQt5.QtWidgets import QLabel
+from PyQt5.QtWidgets import QWidget, QMessageBox
 
 folder_texts_path = pathlib.Path(__file__).parent.joinpath("Texts")
 folder_statistics_path = pathlib.Path(__file__).parent.joinpath("Statistics")
 
-sys.path.append(pathlib.Path(__file__).parent.__str__())
+sys.path.append(pathlib.Path(__file__).parent)
+import Statistics
 from UI_Files.startMenu import Ui_start_menu_scene
 from UI_Files.exampleLevel import Ui_keyboard_scene
 from UI_Files.levelsChange import Ui_exercises_scene
-
+from UI_Files.graph import Ui_recruitment_dynam_scene
 
 class Start_Scene(QtWidgets.QMainWindow):
     def __init__(self):
@@ -28,59 +29,69 @@ class Start_Scene(QtWidgets.QMainWindow):
         self.main_speed = 0
         self.main_accuracy = 0
         self.main_symbols = 0
-        self.initialize_statistics()
+        Statistics.Statistics.initialize_statistics(
+            [
+                self.ui.Count_WPM_main,
+                self.ui.Progress_main,
+                self.ui.Count_W_main
+            ],
+            (
+            [
+                self.ui.Count_WPM_exercises,
+                self.ui.Progress_exercises,
+                self.ui.Count_W_exercises,
+                self.ui.Progress_levels
+            ],
+            [
+                self.ui.Count_WPM_random,
+                self.ui.Progress_random,
+                self.ui.Count_W_random,
+            ]
+            ))
         self.ui.invisible_button_2.clicked.connect(self.goto_random)
         self.ui.invisible_button.clicked.connect(self.goto_exercises)
+        self.ui.clear_data.clicked.connect(self.clear_data)
+        self.ui.recruitment_dynam.clicked.connect(self.goto_recruitment_dynam)
 
-    def initialize_statistics(self):
-        self.update_levels_stat("general")
-        self.update_levels_stat("levels")
-        self.ui.Count_WPM_main.setText(str(self.main_speed // 2))
-        self.ui.Progress_main.setValue(int(self.main_accuracy // 2))
-        self.ui.Count_W_main.setText(str(self.main_symbols))
+    def clear_data(self):
+        message = QMessageBox()
+        message.setWindowTitle("Предупреждение")
+        message.setText("Вы действительно хотите очистить текущий прогресс?")
+        message.setStandardButtons(QMessageBox.Yes|QMessageBox.No)
+        message.setDefaultButton(QMessageBox.No)
+        button_yes = message.button(QMessageBox.Yes)
+        button_yes.setText('Да')
+        button_no = message.button(QMessageBox.No)
+        button_no.setText('Нет')
+        message.buttonClicked.connect(self.take_answer)
+        message.exec_()
 
-    def update_levels_stat(self, name_stat):
-        try:
-            exercises_stat = folder_statistics_path\
-                .joinpath(f"{name_stat}_stat.txt")\
-                .read_text()\
-                .split("\n")
-        except OSError:
-            return
-        folder_statistics_path\
-            .joinpath(f"{name_stat}_stat.txt")\
-            .write_text("\n".join(exercises_stat))
+    def take_answer(self, message):
+        if message.text() == "Да":
+            Statistics.Statistics.clear_data()
+            Statistics.Statistics.initialize_statistics([
+                self.ui.Count_WPM_main,
+                self.ui.Progress_main,
+                self.ui.Count_W_main
+            ],
+            (
+            [
+                self.ui.Count_WPM_exercises,
+                self.ui.Progress_exercises,
+                self.ui.Count_W_exercises,
+                self.ui.Progress_levels
+            ],
+            [
+                self.ui.Count_WPM_random,
+                self.ui.Progress_random,
+                self.ui.Count_W_random,
+            ]
+            ))
 
-        count = sum([int(line.split()[1]) for line in exercises_stat
-                     if "count" in line])
-        speeds = [int(line.split()[1]) for line in exercises_stat
-                  if "speed" in line]
-        accuracies = [int(line.split()[1]) for line in exercises_stat
-                      if "accuracy" in line and line.split()[1] != "0"]
-        curr_progress_symbols = sum(
-            [int(line.split()[1]) for line in exercises_stat
-                if "symbols" in line and line.split()[1] != "0"])
-        count_speeds = count if name_stat == "general" else len(speeds)
-        count_accuracies = count if name_stat == "general" else len(accuracies)
-        curr_progress_speed = int(sum(speeds) // count_speeds)\
-            if count_speeds != 0 else 0
-        curr_progress_accuracy = int(sum(accuracies) / count_accuracies)\
-            if count_accuracies != 0 else 0
-
-        self.main_speed += curr_progress_speed
-        self.main_accuracy += curr_progress_accuracy
-        self.main_symbols += curr_progress_symbols
-
-        if name_stat == "levels":
-            self.ui.Count_WPM_exercises.setText(str(curr_progress_speed))
-            self.ui.Progress_exercises.setValue(curr_progress_accuracy)
-            self.ui.Count_W_exercises.setText(str(curr_progress_symbols))
-            self.ui.Progress_levels.setValue(
-                int((curr_progress_speed + curr_progress_accuracy) // 10))
-        else:
-            self.ui.Count_WPM_random.setText(str(curr_progress_speed))
-            self.ui.Progress_random.setValue(curr_progress_accuracy)
-            self.ui.Count_W_random.setText(str(curr_progress_symbols))
+    def goto_recruitment_dynam(self):
+        recruitment_dynam = Recruitment_Dynam_Scene()
+        widget.addWidget(recruitment_dynam)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
 
     def goto_random(self):
         random_text = Keyboard_Scene("Mumu.txt", True, "random")
@@ -98,24 +109,7 @@ class Exercises_scene(QtWidgets.QMainWindow):
         super(Exercises_scene, self).__init__()
         self.ui = Ui_exercises_scene()
         self.ui.setupUi(self)
-
-        main_text = "тренажер.txt"
-        extra_text = "тренажер для мизинцев.txt"
-        self.initialize_statistics()
-        self.ui.button_go_home.clicked.connect(self.goto_start_menu)
-        self.ui.button_level_1.clicked.connect(lambda: self.goto_keyboard(main_text, '1'))
-        self.ui.button_level_2.clicked.connect(lambda: self.goto_keyboard(main_text, '2'))
-        self.ui.button_level_3.clicked.connect(lambda: self.goto_keyboard(main_text, '3'))
-        self.ui.button_level_4.clicked.connect(lambda: self.goto_keyboard(main_text, '4'))
-        self.ui.button_level_5.clicked.connect(lambda: self.goto_keyboard(main_text, '5'))
-        self.ui.button_level_6.clicked.connect(lambda: self.goto_keyboard(extra_text, 'for_little_fingers'))
-        self.ui.button_level_7.clicked.connect(lambda: self.goto_keyboard(main_text, '6'))
-        self.ui.button_level_8.clicked.connect(lambda: self.goto_keyboard(main_text, '7'))
-        self.ui.button_level_9.clicked.connect(lambda: self.goto_keyboard(main_text, '8'))
-        self.ui.button_level_10.clicked.connect(lambda: self.goto_keyboard(main_text, '9'))
-
-    def initialize_statistics(self):
-        self.levels_stat = {
+        levels_stat = {
             "level 1": (self.ui.count_spedd_level_1, self.ui.count_accuracy_level_1),
             "level 2": (self.ui.count_spedd_level_2, self.ui.count_accuracy_level_2),
             "level 3": (self.ui.count_spedd_level_3, self.ui.count_accuracy_level_3),
@@ -128,29 +122,30 @@ class Exercises_scene(QtWidgets.QMainWindow):
             "level 9": (self.ui.count_spedd_level_10, self.ui.count_accuracy_level_10)
         }
 
-        try:
-            levels_stat = folder_statistics_path.joinpath("levels_stat.txt")\
-                .read_text()\
-                .split("\n")
-        except OSError:
-            return
-        folder_statistics_path.joinpath("levels_stat.txt")\
-            .write_text("\n".join(levels_stat))
-        for i in range(0, len(levels_stat), 6):
-            self.levels_stat[levels_stat[i]][0]\
-                .setText(levels_stat[i + 2].split()[1])
-            self.levels_stat[levels_stat[i]][1]\
-                .setValue(int(levels_stat[i + 3].split()[1]))
+        main_text = "тренажер.txt"
+        extra_text = "тренажер для мизинцев.txt"
+        Statistics.Statistics.initialize_statistics_1(levels_stat)
+        self.ui.button_go_home.clicked.connect(self.goto_start_menu)
+        self.ui.button_level_1.clicked.connect(lambda: self.goto_keyboard(main_text, '1'))
+        self.ui.button_level_2.clicked.connect(lambda: self.goto_keyboard(main_text, '2'))
+        self.ui.button_level_3.clicked.connect(lambda: self.goto_keyboard(main_text, '3'))
+        self.ui.button_level_4.clicked.connect(lambda: self.goto_keyboard(main_text, '4'))
+        self.ui.button_level_5.clicked.connect(lambda: self.goto_keyboard(main_text, '5'))
+        self.ui.button_level_6.clicked.connect(lambda: self.goto_keyboard(extra_text, 'for_little_fingers'))
+        self.ui.button_level_7.clicked.connect(lambda: self.goto_keyboard(main_text, '6'))
+        self.ui.button_level_8.clicked.connect(lambda: self.goto_keyboard(main_text, '7'))
+        self.ui.button_level_9.clicked.connect(lambda: self.goto_keyboard(main_text, '8'))
+        self.ui.button_level_10.clicked.connect(lambda: self.goto_keyboard(main_text, '9'))
 
     def goto_keyboard(self, text, level_name):
         keyboard = Keyboard_Scene(text, False, level_name)
         widget.addWidget(keyboard)
         widget.setCurrentIndex(widget.currentIndex() + 1)
-    
+
     def goto_start_menu(self):
         start_menu = Start_Scene()
         widget.addWidget(start_menu)
-        widget.setCurrentIndex(widget.currentIndex()+1)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
 
 
 class Keyboard_Scene(QtWidgets.QMainWindow):
@@ -235,12 +230,12 @@ class Keyboard_Scene(QtWidgets.QMainWindow):
             "б": self.ui.letter_2,
             "ю": self.ui.letter_32,
             "\\": self.ui.key_backslash,
-            "ctrl left" : self.ui.key_Ctrl_l,
-            "ctrl right" : self.ui.key_Ctrl_r,
-            "alt left" : self.ui.key_Alt_l,
-            "alt right" : self.ui.key_Alt_r,
-            "shift left" : self.ui.key_Shift_l,
-            "shift right" : self.ui.key_Shift_r
+            "ctrl left": self.ui.key_Ctrl_l,
+            "ctrl right": self.ui.key_Ctrl_r,
+            "alt left": self.ui.key_Alt_l,
+            "alt right": self.ui.key_Alt_r,
+            "shift left": self.ui.key_Shift_l,
+            "shift right": self.ui.key_Shift_r
         }
         self.special_symbols = {
             "~": "ё",
@@ -318,7 +313,7 @@ class Keyboard_Scene(QtWidgets.QMainWindow):
         self.pos = -1
 
     def paint_letter(self):
-        letter = self.ui.type_here.document().toPlainText()[self.pos+1]
+        letter = self.ui.type_here.document().toPlainText()[self.pos + 1]
         for i in self.key_label.keys():
             self.key_label[i].setStyleSheet("background-color: white;")
 
@@ -335,13 +330,17 @@ class Keyboard_Scene(QtWidgets.QMainWindow):
     def contents_change(self, position):
         if position >= len(self.ui.type_here.document().toPlainText()) - 1:
             if self.count != 0:
-                self.write_statistics()
+                Statistics.Statistics \
+                    .write_statistics(self.level_name,
+                                      self.speed,
+                                      self.right_letters_count,
+                                      self.count)
                 if self.level_name == "random":
-                    self.update_random_statistics_UI()
+                    Statistics.Statistics.update_random_statistics_UI()
             self.goto_back()
             return
 
-        if self.ui.textEdit.document().toPlainText() != "" and\
+        if self.ui.textEdit.document().toPlainText() != "" and \
                 self.is_stopped:
             self.ui.start.setText("||")
             self.timer.start(1000)
@@ -349,7 +348,7 @@ class Keyboard_Scene(QtWidgets.QMainWindow):
 
         cursor = self.ui.type_here.textCursor()
         cursor.setPosition(position)
-        if cursor.position() <= self.pos or\
+        if cursor.position() <= self.pos or \
                 self.ui.textEdit.document().toPlainText() == "":
             self.clear_or_delete_symbol(cursor, position)
             return
@@ -368,7 +367,7 @@ class Keyboard_Scene(QtWidgets.QMainWindow):
         if cursor.columnNumber() <= 1:
             self.ui.type_here.verticalScrollBar().setValue(self.scroll_position * 30)
             self.scroll_position += 1
-    
+
     def clear_or_delete_symbol(self, cursor, position):
         for i in range(-cursor.position() + self.pos, -1, -1):
             cursor.movePosition(QTextCursor.NextCharacter, -1)
@@ -415,69 +414,24 @@ class Keyboard_Scene(QtWidgets.QMainWindow):
         widget.addWidget(prev)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
-    def write_statistics(self):
-        current_file = "random_stat.txt" if self.level_name == "random"\
-            else "levels_stat.txt"
-        try:
-            new_stat = folder_statistics_path.joinpath(current_file)\
-                .read_text()\
-                .split("\n")
-        except OSError:
-            return
+class Recruitment_Dynam_Scene(QtWidgets.QMainWindow):
+    def __init__(self):
+        super(Recruitment_Dynam_Scene, self).__init__()
+        self.ui = Ui_recruitment_dynam_scene()
+        levels, speeds, accuracies = Statistics.Statistics.find_recruitment_dynam()
+        self.ui.setupUi(self, levels, speeds, accuracies)
+        self.ui.invisible_button.clicked.connect(self.goto_start_menu)
 
-        for i, line in enumerate(new_stat):
-            if line == "level {}".format(self.level_name):
-                curr_speed = self.speed
-                curr_accuracy = int(self.right_letters_count / self.count * 100)
-                curr_symbols = self.count
-                if self.level_name != "random":
-                    curr_speed = max(curr_speed,
-                                     int(new_stat[i + 2].split()[1]))
-                    curr_accuracy = max(curr_accuracy,
-                                        int(new_stat[i + 3].split()[1]))
-                    curr_symbols += int(new_stat[i + 4].split()[1])
-
-                new_stat[i + 2] = "speed: {}".format(curr_speed)
-                new_stat[i + 3] = "accuracy: {}".format(curr_accuracy)
-                new_stat[i + 4] = "symbols: {}".format(curr_symbols)
-                break
-        folder_statistics_path.joinpath(current_file)\
-            .write_text("\n".join(new_stat))
-
-    def update_random_statistics_UI(self):
-        try:
-            curr_stat = folder_statistics_path.joinpath("random_stat.txt")\
-                .read_text()\
-                .split("\n")
-        except OSError:
-            return
-
-        new_speed = int(curr_stat[2].split()[1])
-        new_accuracy = int(curr_stat[3].split()[1])
-        new_symbols = int(curr_stat[4].split()[1])
-        try:
-            new_stat = folder_statistics_path.joinpath("general_stat.txt")\
-                .read_text()\
-                .split("\n")
-        except OSError:
-            return
-
-        new_stat[1] = "count: {}"\
-            .format(int(new_stat[1].split()[1]) + 1)
-        new_stat[2] = "speed: {}"\
-            .format(int(new_stat[2].split()[1]) + new_speed)
-        new_stat[3] = "accuracy: {}"\
-            .format(int(new_stat[3].split()[1]) + new_accuracy)
-        new_stat[4] = "symbols: {}"\
-            .format(int(new_stat[4].split()[1]) + new_symbols)
-        folder_statistics_path.joinpath("general_stat.txt")\
-            .write_text("\n".join(new_stat))
+    def goto_start_menu(self):
+        start_menu = Start_Scene()
+        widget.addWidget(start_menu)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
 
 def read_text(text, level_number):
-    with open(folder_texts_path.joinpath(text).__str__(), encoding="utf-8") as f:
-        if level_number != "for_little_fingers" and level_number !="random":
+    with open(folder_texts_path.joinpath(text), encoding="utf-8") as f:
+        if level_number != "for_little_fingers" and level_number != "random":
             return unicodedata.normalize("NFKC", f.read().split('\n')[int(level_number) - 1])
-        elif level_number =="random":
+        elif level_number == "random":
             return split_text(unicodedata.normalize("NFKC", f.read()))
         else:
             return unicodedata.normalize("NFKC", f.read())
@@ -504,12 +458,13 @@ def get_text_chunk(sentences, start_sentence, max_length=900):
             break
     return chunk
 
+
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     widget = QtWidgets.QStackedWidget()
     application = Start_Scene()
     widget.addWidget(application)
-    widget.resize(1920, 1080)
+    widget.showMaximized()
     widget.show()
 
     sys.exit(app.exec())
