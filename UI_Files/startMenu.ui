@@ -168,7 +168,7 @@ background-color: rgb(255, 177, 125);</string>
       <property name="geometry">
        <rect>
         <x>120</x>
-        <y>320</y>
+        <y>420</y>
         <width>520</width>
         <height>70</height>
        </rect>
@@ -184,7 +184,7 @@ background-color: rgb(255, 177, 125);</string>
 background-color: rgb(255, 177, 125);</string>
       </property>
       <property name="text">
-       <string>Случайный текст</string>
+       <string>Начать</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -194,9 +194,9 @@ background-color: rgb(255, 177, 125);</string>
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>0</y>
+        <y>410</y>
         <width>760</width>
-        <height>500</height>
+        <height>90</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -205,6 +205,56 @@ background-color: rgb(255, 177, 125);</string>
       <property name="text">
        <string/>
       </property>
+     </widget>
+     <widget class="QComboBox" name="comboBox">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>320</y>
+        <width>520</width>
+        <height>42</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>20</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(42, 85, 126);
+</string>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>20</width>
+        <height>20</height>
+       </size>
+      </property>
+      <item>
+       <property name="text">
+        <string>Классическая литература</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Научно-популярная литература</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Философия</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Детская литература</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Публицистика</string>
+       </property>
+      </item>
      </widget>
     </widget>
     <widget class="Line" name="separator_3">

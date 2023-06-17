@@ -87,7 +87,7 @@ class Ui_start_menu_scene(object):
         self.WriterMachine_image.setObjectName("WriterMachine_image")
 
         self.Start_random_text = QtWidgets.QLabel(self.Random_text)
-        self.Start_random_text.setGeometry(QtCore.QRect(120, 320, 520, 70))
+        self.Start_random_text.setGeometry(QtCore.QRect(120, 420, 520, 70))
         font = QtGui.QFont()
         font.setFamily("Roboto")
         font.setPointSize(20)
@@ -96,13 +96,32 @@ class Ui_start_menu_scene(object):
 "background-color: rgb(255, 177, 125);")
         self.Start_random_text.setAlignment(QtCore.Qt.AlignCenter)
         self.Start_random_text.setObjectName("Start_random_text")
-
         self.invisible_button_2 = QtWidgets.QPushButton(self.Random_text)
-        self.invisible_button_2.setGeometry(QtCore.QRect(0, 0, 760, 500))
+        self.invisible_button_2.setGeometry(QtCore.QRect(0, 410, 760, 90))
         self.invisible_button_2.setStyleSheet("QPushButton::hover{background-color : rgba(250, 250, 250, 30);}")
         self.invisible_button_2.setText("")
         self.invisible_button_2.setObjectName("invisible_button_2")
         
+        self.comboBox = QtWidgets.QComboBox(self.Random_text)
+        self.comboBox.setGeometry(QtCore.QRect(120, 320, 520, 70))
+        font = QtGui.QFont()
+        font.setFamily("Roboto")
+        font.setPointSize(20)
+        self.comboBox.setFont(font)
+        self.comboBox.setStyleSheet("color: rgb(42, 85, 126);\n"
+"background-color: rgb(255, 255, 255);\n"
+"padding-left:10px;\n"
+"selection-background-color: blue;\n"
+"border: 1px solid grey;")
+        
+        self.comboBox.setIconSize(QtCore.QSize(20, 20))
+        self.comboBox.setObjectName("comboBox")
+        self.comboBox.addItem("Классическая литература")
+        self.comboBox.addItem("Научно-популярная литература")
+        self.comboBox.addItem("Философия")
+        self.comboBox.addItem("Детская литература")
+        self.comboBox.addItem("Публицистика")
+
         self.separator_3 = QtWidgets.QFrame(self.Change_type_levels)
         self.separator_3.setGeometry(QtCore.QRect(810, 30, 1, 500))
         self.separator_3.setStyleSheet("background-color: rgb(199, 199, 199);")
@@ -519,7 +538,7 @@ class Ui_start_menu_scene(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.Start_exercises.setText(_translate("MainWindow", "Начать упражнения"))
-        self.Start_random_text.setText(_translate("MainWindow", "Случайный текст"))
+        self.Start_random_text.setText(_translate("MainWindow", "Начать"))
         self.Speed.setText(_translate("MainWindow", "Скорость"))
         self.Main_speed.setText(_translate("MainWindow", "Общая скорость"))
         self.Exercises_speed.setText(_translate("MainWindow", "Упражения"))

@@ -48,6 +48,7 @@ class Start_Scene(QtWidgets.QMainWindow):
                 self.ui.Count_W_random,
             ]
             ))
+        
         self.ui.invisible_button_2.clicked.connect(self.goto_random)
         self.ui.invisible_button.clicked.connect(self.goto_exercises)
         self.ui.clear_data.clicked.connect(self.clear_data)
@@ -97,7 +98,14 @@ class Start_Scene(QtWidgets.QMainWindow):
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
     def goto_random(self):
-        random_text = Keyboard_Scene("Mumu.txt", True, "random")
+        self.genre_texts = {
+            "Классическая литература": "Mumu.txt",
+            "Научно-популярная литература": "BriefHistoryOfTime.txt",
+            "Философия": "philosophy.txt",
+            "Детская литература":"childrenLiterarute.txt",
+            "Публицистика":"статья.txt"}
+        genre = self.ui.comboBox.currentText()
+        random_text = Keyboard_Scene(self.genre_texts[genre], True, "random")
         widget.addWidget(random_text)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
@@ -260,10 +268,17 @@ class Keyboard_Scene(QtWidgets.QMainWindow):
 
         self.text = ""
         self.text = read_text(exerc_text, level_name)
+        self.max_text_len = 900
         if isFromStartMenu == True:
             self.ui.text_heading.setText(self.text[0])
             random_sentence_start = random.choice(self.text[1:])
-            self.text = get_text_chunk(self.text, random_sentence_start)
+            self.text = get_text_chunk(self.text, random_sentence_start, self.max_text_len)
+        elif level_name == "for_little_fingers":
+            self.ui.text_heading.setText("Уровень 6")
+        elif int(level_name) <=5:
+            self.ui.text_heading.setText("Уровень {}".format(level_name))
+        elif int(level_name) > 5:
+            self.ui.text_heading.setText("Уровень {}".format(int(level_name)+1))
         self.ui.type_here.setText(self.text)
         self.ui.type_here.setEnabled(False)
 
@@ -436,11 +451,11 @@ def read_text(text, level_number):
 
 
 def split_text(text):
-    sentences = re.split(r"(?<!\w\.\w.)(?<![А-ЯЁ][а-яё]\.)(?<=[.?!:])\s+(?=[А-ЯЁ])", text)
+    sentences = re.split(r"(?<![А-ЯЁ][а-яё]\.)(?<=[.?!:])\s+(?=[А-ЯЁ])", text)
     return sentences
 
 
-def get_text_chunk(sentences, start_sentence, max_length=900):
+def get_text_chunk(sentences, start_sentence, max_length):
     start_index = sentences.index(start_sentence)
     chunk = start_sentence
     length = len(start_sentence)
