@@ -110,6 +110,7 @@ class Ui_start_menu_scene(object):
         self.comboBox.setFont(font)
         self.comboBox.setStyleSheet("color: rgb(42, 85, 126);\n"
 "background-color: rgb(255, 255, 255);\n"
+"padding-left:10px;\n"
 "selection-background-color: blue;\n"
 "border: 1px solid grey;")
         
