@@ -1,0 +1,5 @@
+level random
+count: 65
+speed: 1136
+accuracy: 1296
+symbols: 1456

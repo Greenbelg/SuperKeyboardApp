@@ -14,7 +14,7 @@ folder_texts_path = pathlib.Path(__file__).parent.joinpath("Texts")
 folder_statistics_path = pathlib.Path(__file__).parent.joinpath("Statistics")
 
 sys.path.append(pathlib.Path(__file__).parent)
-import Statistics
+import Statistics as Stat
 from UI_Files.startMenu import Ui_start_menu_scene
 from UI_Files.exampleLevel import Ui_keyboard_scene
 from UI_Files.levelsChange import Ui_exercises_scene
@@ -29,7 +29,7 @@ class Start_Scene(QtWidgets.QMainWindow):
         self.main_speed = 0
         self.main_accuracy = 0
         self.main_symbols = 0
-        Statistics.Statistics.initialize_statistics(
+        Stat.Statistics.initialize_statistics_main_menu(
             [
                 self.ui.Count_WPM_main,
                 self.ui.Progress_main,
@@ -57,19 +57,22 @@ class Start_Scene(QtWidgets.QMainWindow):
         message = QMessageBox()
         message.setWindowTitle("Предупреждение")
         message.setText("Вы действительно хотите очистить текущий прогресс?")
+        message.setIcon(QMessageBox.Warning)
+
         message.setStandardButtons(QMessageBox.Yes|QMessageBox.No)
         message.setDefaultButton(QMessageBox.No)
         button_yes = message.button(QMessageBox.Yes)
         button_yes.setText('Да')
         button_no = message.button(QMessageBox.No)
         button_no.setText('Нет')
+        
         message.buttonClicked.connect(self.take_answer)
         message.exec_()
 
     def take_answer(self, message):
         if message.text() == "Да":
-            Statistics.Statistics.clear_data()
-            Statistics.Statistics.initialize_statistics([
+            Stat.Statistics.clear_data("stack_stat.txt")
+            Stat.Statistics.initialize_statistics_main_menu([
                 self.ui.Count_WPM_main,
                 self.ui.Progress_main,
                 self.ui.Count_W_main
@@ -124,7 +127,7 @@ class Exercises_scene(QtWidgets.QMainWindow):
 
         main_text = "тренажер.txt"
         extra_text = "тренажер для мизинцев.txt"
-        Statistics.Statistics.initialize_statistics_1(levels_stat)
+        Stat.Statistics.update_fields_levels_selection(levels_stat)
         self.ui.button_go_home.clicked.connect(self.goto_start_menu)
         self.ui.button_level_1.clicked.connect(lambda: self.goto_keyboard(main_text, '1'))
         self.ui.button_level_2.clicked.connect(lambda: self.goto_keyboard(main_text, '2'))
@@ -151,7 +154,6 @@ class Exercises_scene(QtWidgets.QMainWindow):
 class Keyboard_Scene(QtWidgets.QMainWindow):
     def __init__(self, exerc_text, isFromStartMenu, level_name):
         super(Keyboard_Scene, self).__init__()
-
         self.ui = Ui_keyboard_scene()
         self.ui.setupUi(self)
         self.isFromStartMenu = isFromStartMenu
@@ -330,13 +332,9 @@ class Keyboard_Scene(QtWidgets.QMainWindow):
     def contents_change(self, position):
         if position >= len(self.ui.type_here.document().toPlainText()) - 1:
             if self.count != 0:
-                Statistics.Statistics \
-                    .write_statistics(self.level_name,
-                                      self.speed,
-                                      self.right_letters_count,
-                                      self.count)
-                if self.level_name == "random":
-                    Statistics.Statistics.update_random_statistics_UI()
+                Stat.Statistics.write_statistics_in_files(self.level_name, self.speed,
+                                                          self.right_letters_count,
+                                                          self.count)
             self.goto_back()
             return
 
@@ -418,7 +416,7 @@ class Recruitment_Dynam_Scene(QtWidgets.QMainWindow):
     def __init__(self):
         super(Recruitment_Dynam_Scene, self).__init__()
         self.ui = Ui_recruitment_dynam_scene()
-        levels, speeds, accuracies = Statistics.Statistics.find_recruitment_dynam()
+        levels, speeds, accuracies = Stat.Statistics.find_recruitment_dynam()
         self.ui.setupUi(self, levels, speeds, accuracies)
         self.ui.invisible_button.clicked.connect(self.goto_start_menu)
 
