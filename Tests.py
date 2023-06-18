@@ -1,8 +1,10 @@
 import Statistics
 import startMenuCode, unittest, pathlib
-
+from PyQt5 import QtWidgets
 
 folder_stat = pathlib.Path(__file__).parent.joinpath("Statistics_for_tests")
+
+
 class TestTest(unittest.TestCase):
     def _check_is_empty(self, name_file):
         lines = folder_stat.joinpath(name_file).read_text()
@@ -69,14 +71,102 @@ class TestTest(unittest.TestCase):
                        if line.split()[1].isdigit()]
         self._check_is_right_data(update_data, new_data)
         folder_stat.joinpath(file).write_text("\n".join(old_data))
-    
+
+    def test_write_statistics_in_files(self):
+        files = [file.name for file in folder_stat.iterdir()]
+        old_data = {}
+        for file in files:
+            old_data[file] = folder_stat.joinpath(file).read_text().split("\n")
+
+        def test_write_in_levels_stat():
+            Statistics.Statistics.write_statistics_in_files(
+                "1", 150, 90, 100, folder_stat)
+            Statistics.Statistics.write_statistics_in_files(
+                "1", 149, 89, 100, folder_stat)
+
+            stat = folder_stat.joinpath("levels_stat.txt").read_text()
+            results = [number.split()[1] for number in
+                       stat[stat.find("level 1"): stat.find("level 2")].split("\n")
+                       if len(number) > 1]
+            self._check_is_right_data(results, ["1", "0", "150", "90", "200"])
+
+        def test_write_in_random_stat():
+            Statistics.Statistics.write_statistics_in_files(
+                "random", 150, 90, 100, folder_stat)
+            Statistics.Statistics.write_statistics_in_files(
+                "random", 149, 89, 100, folder_stat)
+
+            stat = folder_stat.joinpath("random_stat.txt").read_text()
+            results = [number.split()[1] for number in
+                       stat.split("\n")
+                       if len(number) > 1]
+            self._check_is_right_data(results, ["random", "0", "149", "89", "100"])
+
+        test_write_in_levels_stat()
+        for file in files:
+            folder_stat.joinpath(file).write_text("\n".join(old_data[file]))
+
+        test_write_in_random_stat()
+        for file in files:
+            folder_stat.joinpath(file).write_text("\n".join(old_data[file]))
+
+    # def test_update_fields_main_menu(self):
+    #     Count_WPM_exercises = QtWidgets.QLineEdit()
+    #     Progress_exercises = QtWidgets.QProgressBar()
+    #     Count_W_exercises = QtWidgets.QLineEdit()
+    #     Progress_levels = QtWidgets.QProgressBar()
+
+    #     Count_WPM_random = QtWidgets.QLineEdit()
+    #     Progress_random = QtWidgets.QProgressBar()
+    #     Count_W_random = QtWidgets.QLineEdit()
+
+    #     files = [file.name for file in folder_stat.iterdir()]
+    #     old_data = {}
+    #     for file in files:
+    #         old_data[file] = folder_stat.joinpath(file).read_text().split("\n")
+
+    #     def test_update_exercises(levels, answers):
+    #         for level in levels:
+    #             Statistics.Statistics.write_statistics_in_files(
+    #                 level, 170, 95, 100, folder_stat)
+
+    #         Statistics.Statistics.update_fields_main_menu(
+    #             "levels" if len(levels) > 1 else "general",
+    #             [Count_WPM_exercises,
+    #              Progress_exercises,
+    #              Count_W_exercises,
+    #              Progress_levels],
+    #             folder_stat)
+    #         self._check_is_right_data([Count_WPM_exercises.text(), Progress_exercises.text(),
+    #                                    Count_W_exercises.text(), Progress_levels.text()],
+    #                                   answers)
+
+    #     test_update_exercises([str(i) for i in range(1, 11)],
+    #                           ["170", "90", "1000", "26"])
+    #     for file in files:
+    #         folder_stat.joinpath(file).write_text("\n".join(old_data[file]))
+
+    def test_check_lies_path(self):
+        empty = folder_stat.joinpath("i don't exist")
+        self.assertIsNone(Statistics.Statistics.update_fields_main_menu(
+            "i don't exist", [], folder_stat))
+        self.assertIsNone(Statistics.Statistics.update_fields_levels_selection(
+            [], empty))
+        self.assertIsNone(Statistics.Statistics.write_statistics_in_files(
+            "random", 20, 20, 20, empty))
+        self.assertIsNone(Statistics.Statistics.write_statistics_in_stack(
+            "random", 10, 10, 10, 10, empty))
+        self.assertIsNone(Statistics.Statistics.update_general_statistics_file(
+            10, 10, 10, empty))
+        self.assertIsNone(Statistics.Statistics.find_recruitment_dynam(empty))
+
     def test_simple_punctuation(self):
         test_text = "Да замолчи ты! Зачем такие вещи рассказывать? Старик покраснел и извинился."
         correct_split = ['Да замолчи ты!',
                          'Зачем такие вещи рассказывать?',
                          'Старик покраснел и извинился.']
         self.assertEqual(correct_split, startMenuCode.split_text(test_text))
-    
+
     def test_split_sent_with_enter(self):
         test_text = 'Он не любил, чтобы к нему ходили.\nТак прошел год,' \
                     ' по окончании которого с Герасимом случилось небольшое происшествие.'
@@ -84,7 +174,7 @@ class TestTest(unittest.TestCase):
                          'Так прошел год, по окончании которого '
                          'с Герасимом случилось небольшое происшествие.']
         self.assertEqual(correct_split, startMenuCode.split_text(test_text))
-    
+
     def test_initials(self):
         test_text = 'Речь идет об историческом четырехтомном романе' \
                     ' «Стрельцы» К.П.Масальского (1802–1861),' \
@@ -95,7 +185,7 @@ class TestTest(unittest.TestCase):
         self.assertEqual(correct_split, startMenuCode.split_text(test_text))
 
     def test_complex_punctuation(self):
-        test_text = '"А ты небось лучше?" - подумал он про себя.'\
+        test_text = '"А ты небось лучше?" - подумал он про себя.' \
                     ' Да!.. пусть посватает Татьяну,- решила барыня,' \
                     ' с удовольствием понюхивая табачок,- слышишь?' \
                     ' Душевно рад,– начал он,' \
@@ -107,18 +197,20 @@ class TestTest(unittest.TestCase):
                          'Душевно рад,– начал он,– и благодарен за доброе намерение посетить нас; '
                          'надеюсь… позвольте узнать ваше имя и отчество?']
         self.assertEqual(correct_split, startMenuCode.split_text(test_text))
-    
+
     def test_text_chunk_len(self):
         test_text = "Зайка сидит в витрине. " \
-        "Он в серенькой рубашке из плюша. " \
-        "Сделали серому зайке cлишком большие уши. " \
-        "В плюшевой шубке серой cидит он, прижавшись к раме. " \
-        "Ну как тут казаться храбрым c такими большими ушами?"
+                    "Он в серенькой рубашке из плюша. " \
+                    "Сделали серому зайке cлишком большие уши. " \
+                    "В плюшевой шубке серой cидит он, прижавшись к раме. " \
+                    "Ну как тут казаться храбрым c такими большими ушами?"
         splitted_text = startMenuCode.split_text(test_text)
         max_len = 100
         curr_len = len(startMenuCode.get_text_chunk(splitted_text,
                                                     "Зайка сидит в витрине.",
                                                     max_len))
         assert curr_len <= max_len
+
+
 if __name__ == "__main__":
     unittest.main()

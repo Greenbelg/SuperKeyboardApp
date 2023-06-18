@@ -88,27 +88,28 @@ class Statistics:
 
         for i, line in enumerate(new_stat):
             if line == "level {}".format(level_name):
-                curr_speed = speed
-                curr_accuracy = int(right_letters_count / count * 100)
-                curr_symbols = count
+                cur_speed = speed
+                cur_accuracy = int(right_letters_count / count * 100)
+                cur_symbols = count
                 Statistics.write_statistics_in_stack(level_name, new_stat[1],
-                                                     speed, curr_accuracy, 
-                                                     curr_symbols)
+                                                     speed, cur_accuracy,
+                                                     cur_symbols, folder_stat)
                 
                 if level_name != "random":
-                    curr_speed = max(curr_speed,
-                                     int(new_stat[i + 2].split()[1]))
-                    curr_accuracy = max(curr_accuracy,
-                                        int(new_stat[i + 3].split()[1]))
-                    curr_symbols += int(new_stat[i + 4].split()[1])
+                    cur_speed = max(cur_speed,
+                                    int(new_stat[i + 2].split()[1]))
+                    cur_accuracy = max(cur_accuracy,
+                                       int(new_stat[i + 3].split()[1]))
+                    cur_symbols += int(new_stat[i + 4].split()[1])
                 else:
-                    Statistics.update_general_statistics_file(curr_speed,
-                                                              curr_accuracy,
-                                                              curr_symbols)
+                    Statistics.update_general_statistics_file(cur_speed,
+                                                              cur_accuracy,
+                                                              cur_symbols,
+                                                              folder_stat)
 
-                new_stat[i + 2] = "speed: {}".format(curr_speed)
-                new_stat[i + 3] = "accuracy: {}".format(curr_accuracy)
-                new_stat[i + 4] = "symbols: {}".format(curr_symbols)
+                new_stat[i + 2] = "speed: {}".format(cur_speed)
+                new_stat[i + 3] = "accuracy: {}".format(cur_accuracy)
+                new_stat[i + 4] = "symbols: {}".format(cur_symbols)
                 break
         folder_stat.joinpath(current_file).write_text("\n".join(new_stat))
 

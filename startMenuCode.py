@@ -5,13 +5,15 @@ import random
 import typing
 import unicodedata
 
-from PyQt5 import QtCore, QtWidgets
+from PyQt5 import QtWidgets
 from PyQt5.Qt import QTextCursor, QColor, QTextCharFormat, QFont, QBrush
-from PyQt5.QtCore import QTimer
-from PyQt5.QtWidgets import QWidget, QMessageBox
+from PyQt5.QtCore import QTimer, QUrl
+from PyQt5.QtWidgets import QMessageBox
+from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent, QMediaPlaylist
 
 folder_texts_path = pathlib.Path(__file__).parent.joinpath("Texts")
 folder_statistics_path = pathlib.Path(__file__).parent.joinpath("Statistics")
+folder_music_path = pathlib.Path(__file__).parent.joinpath("Music")
 
 sys.path.append(pathlib.Path(__file__).parent)
 import Statistics as Stat
@@ -19,6 +21,7 @@ from UI_Files.startMenu import Ui_start_menu_scene
 from UI_Files.exampleLevel import Ui_keyboard_scene
 from UI_Files.levelsChange import Ui_exercises_scene
 from UI_Files.graph import Ui_recruitment_dynam_scene
+
 
 class Start_Scene(QtWidgets.QMainWindow):
     def __init__(self):
@@ -48,7 +51,7 @@ class Start_Scene(QtWidgets.QMainWindow):
                 self.ui.Count_W_random,
             ]
             ))
-        
+
         self.ui.invisible_button_2.clicked.connect(self.goto_random)
         self.ui.invisible_button.clicked.connect(self.goto_exercises)
         self.ui.clear_data.clicked.connect(self.clear_data)
@@ -120,6 +123,7 @@ class Exercises_scene(QtWidgets.QMainWindow):
         super(Exercises_scene, self).__init__()
         self.ui = Ui_exercises_scene()
         self.ui.setupUi(self)
+
         levels_stat = {
             "level 1": (self.ui.count_spedd_level_1, self.ui.count_accuracy_level_1),
             "level 2": (self.ui.count_spedd_level_2, self.ui.count_accuracy_level_2),
@@ -166,6 +170,7 @@ class Keyboard_Scene(QtWidgets.QMainWindow):
         self.ui.setupUi(self)
         self.isFromStartMenu = isFromStartMenu
         self.level_name = level_name
+        play_audio("keyboard")
 
         self.key_label = {
             "0": self.ui.number_0,
@@ -426,6 +431,8 @@ class Keyboard_Scene(QtWidgets.QMainWindow):
         prev = Start_Scene() if self.isFromStartMenu else Exercises_scene()
         widget.addWidget(prev)
         widget.setCurrentIndex(widget.currentIndex() + 1)
+        play_audio("background")
+
 
 class Recruitment_Dynam_Scene(QtWidgets.QMainWindow):
     def __init__(self):
@@ -471,6 +478,15 @@ def get_text_chunk(sentences, start_sentence, max_length):
             break
     return chunk
 
+def play_audio(music):
+    play_list.clear()
+    full_file_path = folder_music_path.joinpath(f'{music}.mp3')
+    url = QUrl.fromLocalFile(full_file_path.__str__())
+    content = QMediaContent(url)
+    play_list.addMedia(content)
+    play_list.setPlaybackMode(QMediaPlaylist.Loop)
+    player.setPlaylist(play_list)
+    player.play()
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
@@ -479,5 +495,8 @@ if __name__ == "__main__":
     widget.addWidget(application)
     widget.showMaximized()
     widget.show()
+    player = QMediaPlayer()
+    play_list = QMediaPlaylist()
+    play_audio("background")
 
     sys.exit(app.exec())
