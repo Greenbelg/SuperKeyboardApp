@@ -102,8 +102,8 @@ class Start_Scene(QtWidgets.QMainWindow):
 
     def goto_random(self):
         self.genre_texts = {
-            "Классическая литература": "Mumu.txt",
-            "Научно-популярная литература": "BriefHistoryOfTime.txt",
+            "Классика": "Mumu.txt",
+            "Науч-поп": "BriefHistoryOfTime.txt",
             "Философия": "philosophy.txt",
             "Детская литература":"childrenLiterarute.txt",
             "Публицистика":"статья.txt"}
