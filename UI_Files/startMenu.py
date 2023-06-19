@@ -116,8 +116,8 @@ class Ui_start_menu_scene(object):
         
         self.comboBox.setIconSize(QtCore.QSize(20, 20))
         self.comboBox.setObjectName("comboBox")
-        self.comboBox.addItem("Классическая литература")
-        self.comboBox.addItem("Научно-популярная литература")
+        self.comboBox.addItem("Классика")
+        self.comboBox.addItem("Науч-поп")
         self.comboBox.addItem("Философия")
         self.comboBox.addItem("Детская литература")
         self.comboBox.addItem("Публицистика")
