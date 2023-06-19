@@ -1,0 +1,11 @@
+
+level random
+count: 0
+speed 1986
+accuracy 15
+symbols 896
+level 3
+count: 0
+speed 1976
+accuracy 15
+symbols 547

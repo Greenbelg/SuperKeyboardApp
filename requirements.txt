@@ -1,1 +1,6 @@
+pip~=23.1.2
+lxml~=4.9.1
+tornado~=6.2
+setuptools~=57.4.0
+pyqtgraph~=0.13.3
 PyQt5~=5.15.9

@@ -17,10 +17,11 @@ class Ui_keyboard_scene(object):
         self.text = QtWidgets.QFrame(self.centralwidget)
         self.text.setGeometry(QtCore.QRect(160, 150, 1620, 371))
         self.text.setStyleSheet("background-color: rgb(253, 253, 253);\n"
-"border-top-left-radius: 15px;\n"
-"border-bottom-left-radius: 15px;\n"
-"border-top-right-radius: 15px;\n"
-"border-bottom-right-radius: 15px;")
+                                "border-top-left-radius: 15px;\n"
+                                "border-bottom-left-radius: 15px;\n"
+                                "border-top-right-radius: 15px;\n"
+                                "border-bottom-right-radius: 15px;"
+                                )
         self.text.setFrameShape(QtWidgets.QFrame.NoFrame)
         self.text.setFrameShadow(QtWidgets.QFrame.Plain)
         self.text.setLineWidth(0)
@@ -46,14 +47,15 @@ class Ui_keyboard_scene(object):
         self.type_here.setFont(font)
         self.type_here.setFontWeight(215)
         self.type_here.setText("")
-        self.type_here.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
+        self.type_here.setAlignment(QtCore.Qt.AlignLeading | QtCore.Qt.AlignLeft | QtCore.Qt.AlignTop)
         self.type_here.setReadOnly(True)
         self.type_here.setObjectName("type_here")
         self.frame = QtWidgets.QFrame(self.centralwidget)
         self.frame.setGeometry(QtCore.QRect(0, 0, 1920, 70))
         self.frame.setAutoFillBackground(False)
         self.frame.setStyleSheet("background-color: rgb(253, 253, 253);\n"
-"")
+                                 ""
+                                 )
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
@@ -94,8 +96,9 @@ class Ui_keyboard_scene(object):
         font.setWeight(75)
         self.label_speed.setFont(font)
         self.label_speed.setStyleSheet("color: rgb(39, 117, 117);\n"
-"text-align: justify;\n"
-"")
+                                       "text-align: justify;\n"
+                                       ""
+                                       )
         self.label_speed.setWordWrap(True)
         self.label_speed.setObjectName("label_speed")
         self.back = QtWidgets.QPushButton(self.frame)
@@ -107,7 +110,8 @@ class Ui_keyboard_scene(object):
         self.back.setFont(font)
         self.back.setAutoFillBackground(False)
         self.back.setStyleSheet("color: rgb(42, 85, 126);\n"
-"background-color: rgb(255, 177, 125);")
+                                "background-color: rgb(255, 177, 125);"
+                                )
         self.back.setFocusPolicy(Qt.NoFocus)
         self.back.setObjectName("back")
 
@@ -119,7 +123,8 @@ class Ui_keyboard_scene(object):
                                       "border-top-left-radius: 15px;"
                                       "border-bottom-left-radius: 15px;"
                                       "border-top-right-radius: 15px;"
-                                      "border-bottom-right-radius: 15px;")
+                                      "border-bottom-right-radius: 15px;"
+                                      )
         self.time_label.setFrameStyle(QtWidgets.QFrame.NoFrame)
         self.time_label.setObjectName("time_label")
 
@@ -127,7 +132,8 @@ class Ui_keyboard_scene(object):
         self.textEdit.setGeometry(QtCore.QRect(150, 250, 1580, 250))
         self.textEdit.setEnabled(True)
         self.textEdit.setStyleSheet("background-color: rgba(0,0,0,0);"
-                                    "color: rgba(0,0,0,0);")
+                                    "color: rgba(0,0,0,0);"
+                                    )
         self.textEdit.setFrameStyle(QtWidgets.QFrame.NoFrame)
         self.textEdit.setCursorWidth(0)
         self.textEdit.setFocus()
@@ -142,7 +148,8 @@ class Ui_keyboard_scene(object):
         self.restart.setFont(font)
         self.restart.setAutoFillBackground(False)
         self.restart.setStyleSheet("color: rgb(42, 85, 126);\n"
-"background-color: rgb(255, 177, 125);")
+                                   "background-color: rgb(255, 177, 125);"
+                                   )
         self.restart.setFocusPolicy(Qt.NoFocus)
         self.restart.setObjectName("restart")
         self.start = QtWidgets.QPushButton(self.frame)
@@ -154,7 +161,8 @@ class Ui_keyboard_scene(object):
         self.start.setFont(font)
         self.start.setAutoFillBackground(False)
         self.start.setStyleSheet("color: rgb(42, 85, 126);\n"
-"background-color: rgb(255, 177, 125);")
+                                 "background-color: rgb(255, 177, 125);"
+                                 )
         self.start.setFocusPolicy(Qt.NoFocus)
         self.start.setObjectName("start")
         self.keyboard = QtWidgets.QSplitter(self.centralwidget)
@@ -167,10 +175,11 @@ class Ui_keyboard_scene(object):
         self.keyboard.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.keyboard.setAutoFillBackground(False)
         self.keyboard.setStyleSheet("background-color: rgb(253, 253, 253);\n"
-"border-top-left-radius: 15px;\n"
-"border-bottom-left-radius: 15px;\n"
-"border-top-right-radius: 15px;\n"
-"border-bottom-right-radius: 15px;")
+                                    "border-top-left-radius: 15px;\n"
+                                    "border-bottom-left-radius: 15px;\n"
+                                    "border-top-right-radius: 15px;\n"
+                                    "border-bottom-right-radius: 15px;"
+                                    )
         self.keyboard.setOrientation(QtCore.Qt.Vertical)
         self.keyboard.setOpaqueResize(True)
         self.keyboard.setHandleWidth(1)
@@ -299,9 +308,10 @@ class Ui_keyboard_scene(object):
         self.key_F12.setFont(font)
         self.key_F12.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.key_F12.setStyleSheet("border-top-left-radius: 15px;\n"
-"border-bottom-left-radius: 15px;\n"
-"border-top-right-radius: 15px;\n"
-"border-bottom-right-radius: 15px;")
+                                   "border-bottom-left-radius: 15px;\n"
+                                   "border-top-right-radius: 15px;\n"
+                                   "border-bottom-right-radius: 15px;"
+                                   )
         self.key_F12.setAlignment(QtCore.Qt.AlignCenter)
         self.key_F12.setObjectName("key_F12")
         self.gridLayout.addWidget(self.key_F12, 0, 12, 1, 1)
@@ -420,9 +430,10 @@ class Ui_keyboard_scene(object):
         self.key_F9.setFont(font)
         self.key_F9.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.key_F9.setStyleSheet("border-top-left-radius: 15px;\n"
-"border-bottom-left-radius: 15px;\n"
-"border-top-right-radius: 15px;\n"
-"border-bottom-right-radius: 15px;")
+                                  "border-bottom-left-radius: 15px;\n"
+                                  "border-top-right-radius: 15px;\n"
+                                  "border-bottom-right-radius: 15px;"
+                                  )
         self.key_F9.setAlignment(QtCore.Qt.AlignCenter)
         self.key_F9.setObjectName("key_F9")
         self.gridLayout.addWidget(self.key_F9, 0, 9, 1, 1)
@@ -525,9 +536,10 @@ class Ui_keyboard_scene(object):
         self.key_F10.setFont(font)
         self.key_F10.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.key_F10.setStyleSheet("border-top-left-radius: 15px;\n"
-"border-bottom-left-radius: 15px;\n"
-"border-top-right-radius: 15px;\n"
-"border-bottom-right-radius: 15px;")
+                                   "border-bottom-left-radius: 15px;\n"
+                                   "border-top-right-radius: 15px;\n"
+                                   "border-bottom-right-radius: 15px;"
+                                   )
         self.key_F10.setAlignment(QtCore.Qt.AlignCenter)
         self.key_F10.setObjectName("key_F10")
         self.gridLayout.addWidget(self.key_F10, 0, 10, 1, 1)
@@ -559,9 +571,10 @@ class Ui_keyboard_scene(object):
         self.key_Insert.setFont(font)
         self.key_Insert.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.key_Insert.setStyleSheet("border-top-left-radius: 15px;\n"
-"border-bottom-left-radius: 15px;\n"
-"border-top-right-radius: 15px;\n"
-"border-bottom-right-radius: 15px;")
+                                      "border-bottom-left-radius: 15px;\n"
+                                      "border-top-right-radius: 15px;\n"
+                                      "border-bottom-right-radius: 15px;"
+                                      )
         self.key_Insert.setAlignment(QtCore.Qt.AlignCenter)
         self.key_Insert.setObjectName("key_Insert")
         self.gridLayout.addWidget(self.key_Insert, 0, 13, 1, 1)
@@ -577,9 +590,10 @@ class Ui_keyboard_scene(object):
         self.key_F11.setFont(font)
         self.key_F11.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.key_F11.setStyleSheet("border-top-left-radius: 15px;\n"
-"border-bottom-left-radius: 15px;\n"
-"border-top-right-radius: 15px;\n"
-"border-bottom-right-radius: 15px;")
+                                   "border-bottom-left-radius: 15px;\n"
+                                   "border-top-right-radius: 15px;\n"
+                                   "border-bottom-right-radius: 15px;"
+                                   )
         self.key_F11.setAlignment(QtCore.Qt.AlignCenter)
         self.key_F11.setObjectName("key_F11")
         self.gridLayout.addWidget(self.key_F11, 0, 11, 1, 1)
@@ -603,9 +617,10 @@ class Ui_keyboard_scene(object):
         self.key_Delete.setFont(font)
         self.key_Delete.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.key_Delete.setStyleSheet("border-top-left-radius: 15px;\n"
-"border-bottom-left-radius: 15px;\n"
-"border-top-right-radius: 15px;\n"
-"border-bottom-right-radius: 15px;")
+                                      "border-bottom-left-radius: 15px;\n"
+                                      "border-top-right-radius: 15px;\n"
+                                      "border-bottom-right-radius: 15px;"
+                                      )
         self.key_Delete.setAlignment(QtCore.Qt.AlignCenter)
         self.key_Delete.setObjectName("key_Delete")
         self.gridLayout.addWidget(self.key_Delete, 0, 14, 1, 1)
@@ -700,9 +715,10 @@ class Ui_keyboard_scene(object):
         self.key_up.setFont(font)
         self.key_up.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.key_up.setStyleSheet("border-top-left-radius: 15px;\n"
-"border-bottom-left-radius: 15px;\n"
-"border-top-right-radius: 15px;\n"
-"border-bottom-right-radius: 15px;")
+                                  "border-bottom-left-radius: 15px;\n"
+                                  "border-top-right-radius: 15px;\n"
+                                  "border-bottom-right-radius: 15px;"
+                                  )
         self.key_up.setAlignment(QtCore.Qt.AlignCenter)
         self.key_up.setObjectName("key_up")
         self.verticalLayout_2.addWidget(self.key_up)
@@ -712,9 +728,10 @@ class Ui_keyboard_scene(object):
         self.key_down.setFont(font)
         self.key_down.setContextMenuPolicy(QtCore.Qt.PreventContextMenu)
         self.key_down.setStyleSheet("border-top-left-radius: 15px;\n"
-"border-bottom-left-radius: 15px;\n"
-"border-top-right-radius: 15px;\n"
-"border-bottom-right-radius: 15px;")
+                                    "border-bottom-left-radius: 15px;\n"
+                                    "border-top-right-radius: 15px;\n"
+                                    "border-bottom-right-radius: 15px;"
+                                    )
         self.key_down.setAlignment(QtCore.Qt.AlignCenter)
         self.key_down.setObjectName("key_down")
         self.verticalLayout_2.addWidget(self.key_down)
@@ -744,9 +761,10 @@ class Ui_keyboard_scene(object):
         self.key_F8.setFont(font)
         self.key_F8.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.key_F8.setStyleSheet("border-top-left-radius: 15px;\n"
-"border-bottom-left-radius: 15px;\n"
-"border-top-right-radius: 15px;\n"
-"border-bottom-right-radius: 15px;")
+                                  "border-bottom-left-radius: 15px;\n"
+                                  "border-top-right-radius: 15px;\n"
+                                  "border-bottom-right-radius: 15px;"
+                                  )
         self.key_F8.setAlignment(QtCore.Qt.AlignCenter)
         self.key_F8.setObjectName("key_F8")
         self.gridLayout.addWidget(self.key_F8, 0, 8, 1, 1)
@@ -770,9 +788,10 @@ class Ui_keyboard_scene(object):
         self.key_F1.setFont(font)
         self.key_F1.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.key_F1.setStyleSheet("border-top-left-radius: 15px;\n"
-"border-bottom-left-radius: 15px;\n"
-"border-top-right-radius: 15px;\n"
-"border-bottom-right-radius: 15px;")
+                                  "border-bottom-left-radius: 15px;\n"
+                                  "border-top-right-radius: 15px;\n"
+                                  "border-bottom-right-radius: 15px;"
+                                  )
         self.key_F1.setAlignment(QtCore.Qt.AlignCenter)
         self.key_F1.setObjectName("key_F1")
         self.gridLayout.addWidget(self.key_F1, 0, 1, 1, 1)
@@ -788,9 +807,10 @@ class Ui_keyboard_scene(object):
         self.key_F3.setFont(font)
         self.key_F3.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.key_F3.setStyleSheet("border-top-left-radius: 15px;\n"
-"border-bottom-left-radius: 15px;\n"
-"border-top-right-radius: 15px;\n"
-"border-bottom-right-radius: 15px;")
+                                  "border-bottom-left-radius: 15px;\n"
+                                  "border-top-right-radius: 15px;\n"
+                                  "border-bottom-right-radius: 15px;"
+                                  )
         self.key_F3.setAlignment(QtCore.Qt.AlignCenter)
         self.key_F3.setObjectName("key_F3")
         self.gridLayout.addWidget(self.key_F3, 0, 3, 1, 1)
@@ -806,9 +826,10 @@ class Ui_keyboard_scene(object):
         self.key_F4.setFont(font)
         self.key_F4.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.key_F4.setStyleSheet("border-top-left-radius: 15px;\n"
-"border-bottom-left-radius: 15px;\n"
-"border-top-right-radius: 15px;\n"
-"border-bottom-right-radius: 15px;")
+                                  "border-bottom-left-radius: 15px;\n"
+                                  "border-top-right-radius: 15px;\n"
+                                  "border-bottom-right-radius: 15px;"
+                                  )
         self.key_F4.setAlignment(QtCore.Qt.AlignCenter)
         self.key_F4.setObjectName("key_F4")
         self.gridLayout.addWidget(self.key_F4, 0, 4, 1, 1)
@@ -824,9 +845,10 @@ class Ui_keyboard_scene(object):
         self.key_F2.setFont(font)
         self.key_F2.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.key_F2.setStyleSheet("border-top-left-radius: 15px;\n"
-"border-bottom-left-radius: 15px;\n"
-"border-top-right-radius: 15px;\n"
-"border-bottom-right-radius: 15px;")
+                                  "border-bottom-left-radius: 15px;\n"
+                                  "border-top-right-radius: 15px;\n"
+                                  "border-bottom-right-radius: 15px;"
+                                  )
         self.key_F2.setAlignment(QtCore.Qt.AlignCenter)
         self.key_F2.setObjectName("key_F2")
         self.gridLayout.addWidget(self.key_F2, 0, 2, 1, 1)
@@ -858,9 +880,10 @@ class Ui_keyboard_scene(object):
         self.key_F7.setFont(font)
         self.key_F7.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.key_F7.setStyleSheet("border-top-left-radius: 15px;\n"
-"border-bottom-left-radius: 15px;\n"
-"border-top-right-radius: 15px;\n"
-"border-bottom-right-radius: 15px;")
+                                  "border-bottom-left-radius: 15px;\n"
+                                  "border-top-right-radius: 15px;\n"
+                                  "border-bottom-right-radius: 15px;"
+                                  )
         self.key_F7.setAlignment(QtCore.Qt.AlignCenter)
         self.key_F7.setObjectName("key_F7")
         self.gridLayout.addWidget(self.key_F7, 0, 7, 1, 1)
@@ -876,9 +899,10 @@ class Ui_keyboard_scene(object):
         self.key_F5.setFont(font)
         self.key_F5.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.key_F5.setStyleSheet("border-top-left-radius: 15px;\n"
-"border-bottom-left-radius: 15px;\n"
-"border-top-right-radius: 15px;\n"
-"border-bottom-right-radius: 15px;")
+                                  "border-bottom-left-radius: 15px;\n"
+                                  "border-top-right-radius: 15px;\n"
+                                  "border-bottom-right-radius: 15px;"
+                                  )
         self.key_F5.setAlignment(QtCore.Qt.AlignCenter)
         self.key_F5.setObjectName("key_F5")
         self.gridLayout.addWidget(self.key_F5, 0, 5, 1, 1)
@@ -894,9 +918,10 @@ class Ui_keyboard_scene(object):
         self.key_F6.setFont(font)
         self.key_F6.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.key_F6.setStyleSheet("border-top-left-radius: 15px;\n"
-"border-bottom-left-radius: 15px;\n"
-"border-top-right-radius: 15px;\n"
-"border-bottom-right-radius: 15px;")
+                                  "border-bottom-left-radius: 15px;\n"
+                                  "border-top-right-radius: 15px;\n"
+                                  "border-bottom-right-radius: 15px;"
+                                  )
         self.key_F6.setAlignment(QtCore.Qt.AlignCenter)
         self.key_F6.setObjectName("key_F6")
         self.gridLayout.addWidget(self.key_F6, 0, 6, 1, 1)

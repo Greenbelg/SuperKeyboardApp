@@ -1,34 +1,38 @@
 import pathlib
-import re
-import sys
 import random
-import typing
-import unicodedata
+import sys
 
 from PyQt5 import QtWidgets
 from PyQt5.Qt import QTextCursor, QColor, QTextCharFormat, QFont, QBrush
 from PyQt5.QtCore import QTimer, QUrl
-from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent, QMediaPlaylist
+from PyQt5.QtWidgets import QMessageBox
 
 folder_texts_path = pathlib.Path(__file__).parent.joinpath("Texts")
 folder_statistics_path = pathlib.Path(__file__).parent.joinpath("Statistics")
 folder_music_path = pathlib.Path(__file__).parent.joinpath("Music")
 
 sys.path.append(pathlib.Path(__file__).parent)
-import Statistics as Stat
+import Statistics.Statistics as Stat
 from UI_Files.startMenu import Ui_start_menu_scene
 from UI_Files.exampleLevel import Ui_keyboard_scene
 from UI_Files.levelsChange import Ui_exercises_scene
 from UI_Files.graph import Ui_recruitment_dynam_scene
+from Texts.Parser import Parser
 
 
-class Start_Scene(QtWidgets.QMainWindow):
+class StartScene(QtWidgets.QMainWindow):
     def __init__(self):
-        super(Start_Scene, self).__init__()
+        super(StartScene, self).__init__()
         self.ui = Ui_start_menu_scene()
         self.ui.setupUi(self)
 
+        self.genre_texts = {
+            "Классическая литература": "Mumu.txt",
+            "Научно-популярная литература": "BriefHistoryOfTime.txt",
+            "Философия": "philosophy.txt",
+            "Детская литература": "childrenLiterarute.txt",
+            "Публицистика": "статья.txt"}
         self.main_speed = 0
         self.main_accuracy = 0
         self.main_symbols = 0
@@ -39,17 +43,17 @@ class Start_Scene(QtWidgets.QMainWindow):
                 self.ui.Count_W_main
             ],
             (
-            [
-                self.ui.Count_WPM_exercises,
-                self.ui.Progress_exercises,
-                self.ui.Count_W_exercises,
-                self.ui.Progress_levels
-            ],
-            [
-                self.ui.Count_WPM_random,
-                self.ui.Progress_random,
-                self.ui.Count_W_random,
-            ]
+                [
+                    self.ui.Count_WPM_exercises,
+                    self.ui.Progress_exercises,
+                    self.ui.Count_W_exercises,
+                    self.ui.Progress_levels
+                ],
+                [
+                    self.ui.Count_WPM_random,
+                    self.ui.Progress_random,
+                    self.ui.Count_W_random,
+                ]
             ))
 
         self.ui.invisible_button_2.clicked.connect(self.goto_random)
@@ -63,13 +67,13 @@ class Start_Scene(QtWidgets.QMainWindow):
         message.setText("Вы действительно хотите очистить текущий прогресс?")
         message.setIcon(QMessageBox.Warning)
 
-        message.setStandardButtons(QMessageBox.Yes|QMessageBox.No)
+        message.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
         message.setDefaultButton(QMessageBox.No)
         button_yes = message.button(QMessageBox.Yes)
         button_yes.setText('Да')
         button_no = message.button(QMessageBox.No)
         button_no.setText('Нет')
-        
+
         message.buttonClicked.connect(self.take_answer)
         message.exec_()
 
@@ -81,46 +85,40 @@ class Start_Scene(QtWidgets.QMainWindow):
                 self.ui.Progress_main,
                 self.ui.Count_W_main
             ],
-            (
-            [
-                self.ui.Count_WPM_exercises,
-                self.ui.Progress_exercises,
-                self.ui.Count_W_exercises,
-                self.ui.Progress_levels
-            ],
-            [
-                self.ui.Count_WPM_random,
-                self.ui.Progress_random,
-                self.ui.Count_W_random,
-            ]
-            ))
+                (
+                    [
+                        self.ui.Count_WPM_exercises,
+                        self.ui.Progress_exercises,
+                        self.ui.Count_W_exercises,
+                        self.ui.Progress_levels
+                    ],
+                    [
+                        self.ui.Count_WPM_random,
+                        self.ui.Progress_random,
+                        self.ui.Count_W_random,
+                    ]
+                ))
 
     def goto_recruitment_dynam(self):
-        recruitment_dynam = Recruitment_Dynam_Scene()
+        recruitment_dynam = RecruitmentDynamScene()
         widget.addWidget(recruitment_dynam)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
     def goto_random(self):
-        self.genre_texts = {
-            "Классическая литература": "Mumu.txt",
-            "Научно-популярная литература": "BriefHistoryOfTime.txt",
-            "Философия": "philosophy.txt",
-            "Детская литература":"childrenLiterarute.txt",
-            "Публицистика":"статья.txt"}
         genre = self.ui.comboBox.currentText()
-        random_text = Keyboard_Scene(self.genre_texts[genre], True, "random")
+        random_text = KeyboardScene(self.genre_texts[genre], True, "random")
         widget.addWidget(random_text)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
     def goto_exercises(self):
-        exercises = Exercises_scene()
+        exercises = ExercisesScene()
         widget.addWidget(exercises)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
 
-class Exercises_scene(QtWidgets.QMainWindow):
+class ExercisesScene(QtWidgets.QMainWindow):
     def __init__(self):
-        super(Exercises_scene, self).__init__()
+        super(ExercisesScene, self).__init__()
         self.ui = Ui_exercises_scene()
         self.ui.setupUi(self)
 
@@ -146,29 +144,30 @@ class Exercises_scene(QtWidgets.QMainWindow):
         self.ui.button_level_3.clicked.connect(lambda: self.goto_keyboard(main_text, '3'))
         self.ui.button_level_4.clicked.connect(lambda: self.goto_keyboard(main_text, '4'))
         self.ui.button_level_5.clicked.connect(lambda: self.goto_keyboard(main_text, '5'))
-        self.ui.button_level_6.clicked.connect(lambda: self.goto_keyboard(extra_text, 'for_little_fingers'))
+        self.ui.button_level_6.clicked.connect(
+            lambda: self.goto_keyboard(extra_text, 'for_little_fingers'))
         self.ui.button_level_7.clicked.connect(lambda: self.goto_keyboard(main_text, '6'))
         self.ui.button_level_8.clicked.connect(lambda: self.goto_keyboard(main_text, '7'))
         self.ui.button_level_9.clicked.connect(lambda: self.goto_keyboard(main_text, '8'))
         self.ui.button_level_10.clicked.connect(lambda: self.goto_keyboard(main_text, '9'))
 
     def goto_keyboard(self, text, level_name):
-        keyboard = Keyboard_Scene(text, False, level_name)
+        keyboard = KeyboardScene(text, False, level_name)
         widget.addWidget(keyboard)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
     def goto_start_menu(self):
-        start_menu = Start_Scene()
+        start_menu = StartScene()
         widget.addWidget(start_menu)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
 
-class Keyboard_Scene(QtWidgets.QMainWindow):
-    def __init__(self, exerc_text, isFromStartMenu, level_name):
-        super(Keyboard_Scene, self).__init__()
+class KeyboardScene(QtWidgets.QMainWindow):
+    def __init__(self, exerc_text, is_from_start_menu, level_name):
+        super(KeyboardScene, self).__init__()
         self.ui = Ui_keyboard_scene()
         self.ui.setupUi(self)
-        self.isFromStartMenu = isFromStartMenu
+        self.isFromStartMenu = is_from_start_menu
         self.level_name = level_name
         play_audio("keyboard")
 
@@ -272,18 +271,19 @@ class Keyboard_Scene(QtWidgets.QMainWindow):
         self.with_right_shift = "ё12345йцукефывапячсми" + "\t"
 
         self.text = ""
-        self.text = read_text(exerc_text, level_name)
+        self.text = Parser.read_text(exerc_text, level_name, folder_texts_path)
         self.max_text_len = 900
-        if isFromStartMenu == True:
+        if is_from_start_menu:
             self.ui.text_heading.setText(self.text[0])
             random_sentence_start = random.choice(self.text[1:])
-            self.text = get_text_chunk(self.text, random_sentence_start, self.max_text_len)
+            self.text = Parser.get_text_chunk(
+                self.text, random_sentence_start, self.max_text_len)
         elif level_name == "for_little_fingers":
             self.ui.text_heading.setText("Уровень 6")
-        elif int(level_name) <=5:
+        elif int(level_name) <= 5:
             self.ui.text_heading.setText("Уровень {}".format(level_name))
         elif int(level_name) > 5:
-            self.ui.text_heading.setText("Уровень {}".format(int(level_name)+1))
+            self.ui.text_heading.setText("Уровень {}".format(int(level_name) + 1))
         self.ui.type_here.setText(self.text)
         self.ui.type_here.setEnabled(False)
 
@@ -330,7 +330,6 @@ class Keyboard_Scene(QtWidgets.QMainWindow):
         self.count = self.speed = 0
         self.errors = []
         self.ui.textEdit.document().clear()
-        self.a = 0
         self.ui.type_here.verticalScrollBar().setValue(0)
         self.pos = -1
 
@@ -346,7 +345,10 @@ class Keyboard_Scene(QtWidgets.QMainWindow):
             else:
                 self.ui.key_Shift_l.setStyleSheet("background: grey;")
             self.key_label[a].setStyleSheet("background-color: grey;")
-        elif letter.isalpha() and letter.islower() or letter.isdigit() or letter in [" ", "\n", "\t", "."]:
+        elif letter.isalpha() and \
+                letter.islower() or \
+                letter.isdigit() or \
+                letter in [" ", "\n", "\t", "."]:
             self.key_label[letter].setStyleSheet("background-color: grey;")
 
     def contents_change(self, position):
@@ -428,55 +430,25 @@ class Keyboard_Scene(QtWidgets.QMainWindow):
         cursor.mergeCharFormat(self.format)
 
     def goto_back(self):
-        prev = Start_Scene() if self.isFromStartMenu else Exercises_scene()
+        prev = StartScene() if self.isFromStartMenu else ExercisesScene()
         widget.addWidget(prev)
         widget.setCurrentIndex(widget.currentIndex() + 1)
         play_audio("background")
 
 
-class Recruitment_Dynam_Scene(QtWidgets.QMainWindow):
+class RecruitmentDynamScene(QtWidgets.QMainWindow):
     def __init__(self):
-        super(Recruitment_Dynam_Scene, self).__init__()
+        super(RecruitmentDynamScene, self).__init__()
         self.ui = Ui_recruitment_dynam_scene()
         levels, speeds, accuracies = Stat.Statistics.find_recruitment_dynam()
         self.ui.setupUi(self, levels, speeds, accuracies)
         self.ui.invisible_button.clicked.connect(self.goto_start_menu)
 
     def goto_start_menu(self):
-        start_menu = Start_Scene()
+        start_menu = StartScene()
         widget.addWidget(start_menu)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
-def read_text(text, level_number):
-    with open(folder_texts_path.joinpath(text), encoding="utf-8") as f:
-        if level_number != "for_little_fingers" and level_number != "random":
-            return unicodedata.normalize("NFKC", f.read().split('\n')[int(level_number) - 1])
-        elif level_number == "random":
-            return split_text(unicodedata.normalize("NFKC", f.read()))
-        else:
-            return unicodedata.normalize("NFKC", f.read())
-
-
-def split_text(text):
-    sentences = re.split(r"(?<![А-ЯЁ][а-яё]\.)(?<=[.?!:])\s+(?=[А-ЯЁ])", text)
-    return sentences
-
-
-def get_text_chunk(sentences, start_sentence, max_length):
-    start_index = sentences.index(start_sentence)
-    chunk = start_sentence
-    length = len(start_sentence)
-    for sentence in sentences[start_index + 1:]:
-        if length + len(sentence) < max_length:
-            if sentence.startswith("\n"):
-                chunk += sentence
-                length += len(sentence)
-            else:
-                chunk = chunk + " " + sentence
-                length += len(sentence) + 1
-        else:
-            break
-    return chunk
 
 def play_audio(music):
     play_list.clear()
@@ -488,10 +460,11 @@ def play_audio(music):
     player.setPlaylist(play_list)
     player.play()
 
+
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     widget = QtWidgets.QStackedWidget()
-    application = Start_Scene()
+    application = StartScene()
     widget.addWidget(application)
     widget.showMaximized()
     widget.show()

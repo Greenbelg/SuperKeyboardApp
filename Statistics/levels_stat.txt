@@ -12,9 +12,9 @@ symbols: 0
 
 level 3
 count: 0
-speed: 0
-accuracy: 0
-symbols: 0
+speed: 1976
+accuracy: 15
+symbols: 547
 
 level 4
 count: 0
