@@ -28,8 +28,8 @@ class StartScene(QtWidgets.QMainWindow):
         self.ui.setupUi(self)
 
         self.genre_texts = {
-            "Классическая литература": "Mumu.txt",
-            "Научно-популярная литература": "BriefHistoryOfTime.txt",
+            "Классика": "Mumu.txt",
+            "Науч-поп": "BriefHistoryOfTime.txt",
             "Философия": "philosophy.txt",
             "Детская литература": "childrenLiterarute.txt",
             "Публицистика": "статья.txt"}
