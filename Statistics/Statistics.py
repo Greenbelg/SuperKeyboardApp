@@ -1,4 +1,6 @@
-from StartCode import folder_statistics_path
+import pathlib
+
+folder_statistics_path = pathlib.Path(__file__).parent
 
 
 class Statistics:
